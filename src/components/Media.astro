@@ -1,0 +1,25 @@
+---
+/**
+ * Media block. Renders an image when `src` is given; otherwise a branded
+ * placeholder so layout stays intact until real media is dropped in.
+ * Only media the client provides should ever be wired in here.
+ */
+interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  ratio?: string;
+  className?: string;
+}
+const { src, alt = '', label = 'Media', ratio = '4 / 3', className = '' } = Astro.props;
+---
+<div class:list={['media', className]} style={`aspect-ratio:${ratio}`}>
+  {src ? (
+    <img src={src} alt={alt} loading="lazy" decoding="async" />
+  ) : (
+    <div class="media-ph" style={`aspect-ratio:${ratio}`}>
+      <span>{label}</span>
+      <small>Drop artwork here</small>
+    </div>
+  )}
+</div>

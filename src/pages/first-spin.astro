@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+---
+<Base title="First Spin DJ Bootcamp" description="First Spin DJ Bootcamp — free DJ education for girls ages 7+, plus gifted equipment. MixHer’s pipeline for the next generation of female DJs.">
+  <PageHeader
+    kicker="First Spin DJ Bootcamp"
+    title={`Every legend<br/>had a <span class='grad'>first spin.</span>`}
+    lead="Free DJ education for girls ages 7 and up. We teach the fundamentals, put hands on real gear, and gift equipment — turning curiosity into the next generation of women behind the decks."
+  />
+
+  <!-- Intro -->
+  <section class="section-pad">
+    <div class="wrap fs">
+      <div class="fs__media" data-reveal>
+        <Media label="First Spin class" ratio="4 / 3" />
+      </div>
+      <div class="fs__text" data-reveal>
+        <p class="kicker">The mission</p>
+        <h2 class="display">Access, not <span class="grad">barriers</span></h2>
+        <p>
+          The biggest thing standing between a young girl and the decks is access — to equipment, to
+          instruction, to someone who looks like her doing it. First Spin removes those barriers. Using
+          proceeds from MixHer events, we fund free classes and gift gear so talent — not budget —
+          decides who gets to play.
+        </p>
+        <p>MixHer teaches the very basics of DJing, 101, for ages 7 and up — the foundation every future headliner starts from.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What they learn -->
+  <section class="section-pad learn">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>What students learn</p>
+      <h2 class="display" data-reveal>From zero to first mix</h2></div>
+      <div class="grid grid-3">
+        <div class="card" data-reveal><h3 class="learn__h">The Gear</h3><p class="learn__p">Controllers, decks, and mixers — what each does and how to set up with confidence.</p></div>
+        <div class="card" data-reveal><h3 class="learn__h">Beatmatching</h3><p class="learn__p">Reading music, counting bars, and blending two tracks into one seamless groove.</p></div>
+        <div class="card" data-reveal><h3 class="learn__h">Reading a Room</h3><p class="learn__p">Song selection, energy, and the art of keeping a crowd moving.</p></div>
+        <div class="card" data-reveal><h3 class="learn__h">Confidence</h3><p class="learn__p">Stage presence and self-belief — playing like the room is already yours.</p></div>
+        <div class="card" data-reveal><h3 class="learn__h">Your First Set</h3><p class="learn__p">Every student builds and performs a real mix by the end of the program.</p></div>
+        <div class="card" data-reveal><h3 class="learn__h">Community</h3><p class="learn__p">A graduation into the wider MixHer network of mentors and peers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two CTAs: enroll + fund -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="grid grid-2">
+        <div class="card fscta" data-reveal>
+          <h3 class="fscta__h grad">Enroll a student</h3>
+          <p>Know a girl ages 7+ who wants to learn? Reach out and we’ll share upcoming class dates and how to sign up — always free.</p>
+          <a href={site.emailHref} class="btn btn-primary">Ask about classes</a>
+        </div>
+        <div class="card fscta" data-reveal>
+          <h3 class="fscta__h grad-y">Fund a future DJ</h3>
+          <p>Your gift buys equipment and funds free instruction for a girl who couldn’t otherwise start. {site.taxLine}</p>
+          <a href={site.donateUrl} class="btn btn-yellow">Donate to First Spin</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Help us fund the next first spin."
+    sub="Every donation and sponsorship puts gear in a girl’s hands and a headphone on her ear."
+    primaryLabel="Donate"
+    primaryHref={site.donateUrl}
+    secondaryLabel="Sponsor a class"
+    secondaryHref="/sponsors"
+  />
+</Base>
+
+<style>
+  .fs { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .fs__text p { color: var(--muted); max-width: 52ch; }
+  @media (max-width: 840px) { .fs { grid-template-columns: 1fr; } }
+
+  .learn { border-block: 1px solid var(--card-brd); background: linear-gradient(180deg, rgba(117,56,234,0.05), transparent); }
+  .learn__h { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0 0 0.4rem; color: var(--lavender); }
+  .learn__p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+  .fscta { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+  .fscta__h { font-family: var(--display); font-size: 2.2rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0; }
+  .fscta p { color: var(--muted); margin: 0 0 0.6rem; }
+</style>

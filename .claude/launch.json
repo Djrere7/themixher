@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mixher-dev",
+      "runtimeExecutable": "/Users/djrere/.local/node/bin/node",
+      "runtimeArgs": ["node_modules/astro/astro.js", "dev"],
+      "port": 4322
+    }
+  ]
+}

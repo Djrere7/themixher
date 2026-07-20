@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, pillars, stats, press } from '../data/site';
+---
+<Base title="About" description="The MixHer is a Miami-born nonprofit spotlighting female DJs — the story, the mission, and the movement founded by DJ ReRe.">
+  <PageHeader
+    kicker="Our story"
+    title={`A beacon for the women<br/><span class='grad'>setting the tone.</span>`}
+    lead="Founded in Miami in 2023, MixHer shines a spotlight on the phenomenal women behind the decks — and the transformative impact they have on our culture."
+  />
+
+  <!-- Story -->
+  <section class="section-pad">
+    <div class="wrap story">
+      <div class="story__media" data-reveal>
+        <Media label="DJ ReRe" ratio="4 / 5" />
+      </div>
+      <div class="story__text" data-reveal>
+        <p class="kicker">Why MixHer</p>
+        <h2 class="display">More than a ceremony. <span class="grad">A movement.</span></h2>
+        <p>
+          Miami’s rhythm pulses with an infectious energy, fueled by a diverse tapestry of sounds and
+          the talented individuals who spin them. Among these sonic architects, female DJs stand out —
+          weaving cultural threads into electrifying mixes that captivate crowds and leave hearts pounding.
+        </p>
+        <p>
+          MixHer emerges as a beacon: shining a spotlight on these phenomenal women, championing their
+          success, and building a national platform where they can perform, connect, get booked, and be seen.
+          Our starting point is Miami — but we intend to bring The MixHer to cities across the globe.
+        </p>
+        <p class="story__sig serif">“We honor the women who move their communities through their music — and in doing so, we move the world.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="grid grid-4 statgrid">
+        {stats.map((s) => (
+          <div class="statcard" data-reveal>
+            <span class="stat__num grad-y">{s.num}</span>
+            <span class="stat__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section-pad pillars2">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker" data-reveal>What MixHer ignites</p>
+        <h2 class="display" data-reveal>The four pillars of the movement</h2>
+      </div>
+      <div class="grid grid-2">
+        {pillars.map((p, i) => (
+          <div class="card pcard" data-reveal>
+            <span class="pcard__no">0{i + 1}</span>
+            <h3 class="pcard__name grad">{p.key}</h3>
+            <p class="pcard__blurb">{p.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder / leadership -->
+  <section class="section-pad">
+    <div class="wrap story reverse">
+      <div class="story__text" data-reveal>
+        <p class="kicker">The founder</p>
+        <h2 class="display">DJ ReRe</h2>
+        <p>
+          Omaha-born and Miami-based since 2012, DJ ReRe is an international DJ, entrepreneur, and hype
+          girl who has lit up Miami’s most exclusive venues while breaking down gender barriers in the
+          booth. Through her production company <a href={site.remixedUrl} target="_blank" rel="noopener" class="ilink">REmixed Events</a>,
+          she founded MixHer to put women behind the decks on the main stage — no permission required.
+        </p>
+        <p>
+          MixHer Inc. is led alongside co-founder DJ MK and a board dedicated to strengthening Miami’s
+          female DJ community and the culture it moves.
+        </p>
+      </div>
+      <div class="story__media" data-reveal>
+        <Media label="Founder portrait" ratio="4 / 5" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Press -->
+  <section class="section-pad logos">
+    <div class="wrap">
+      <p class="kicker center" data-reveal>As seen in</p>
+      <div class="logos__row" data-reveal>
+        {press.map((name) => <span class="logos__item">{name}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Want to be part of the story?" primaryLabel="Get involved" primaryHref="/contact" secondaryLabel="Meet the community" secondaryHref="/community" />
+</Base>
+
+<style>
+  .story { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .story.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .story__text p { color: var(--muted); max-width: 54ch; }
+  .story__sig { color: var(--lavender); font-size: 1.25rem; margin-top: 1.4rem; }
+  .ilink { color: var(--pink-hot); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .ilink:hover { border-color: var(--pink-hot); }
+  @media (max-width: 840px) {
+    .story, .story.reverse { grid-template-columns: 1fr; }
+    .story__media { order: -1; }
+    .story.reverse .story__media { order: -1; }
+  }
+
+  .statgrid { text-align: center; }
+  .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.5rem 0.5rem; border: 1px solid var(--card-brd); border-radius: var(--radius); background: var(--card); }
+
+  .pillars2 { border-block: 1px solid var(--card-brd); background: linear-gradient(180deg, rgba(117,56,234,0.05), transparent); }
+  .pcard { display: flex; flex-direction: column; gap: 0.4rem; }
+  .pcard__no { font-family: var(--display); letter-spacing: 0.2em; color: var(--dim); }
+  .pcard__name { font-family: var(--display); font-size: 2.2rem; letter-spacing: 0.04em; text-transform: uppercase; margin: 0; }
+  .pcard__blurb { color: var(--muted); margin: 0; }
+
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
+  .logos__item { font-family: var(--display); font-size: clamp(1.1rem, 2.4vw, 1.7rem); letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); }
+  .center { display: flex; justify-content: center; }
+</style>

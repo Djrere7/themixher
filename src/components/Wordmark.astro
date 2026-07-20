@@ -1,0 +1,45 @@
+---
+/**
+ * MixHer wordmark. Uses the crest logo image when present at /brand/logo.svg
+ * (or .png); otherwise renders a styled serif text fallback so the site never
+ * ships broken. Swap in the real crest by dropping the file in public/brand/.
+ */
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<a class="wm" href="/" aria-label="The MixHer — home">
+  <span class="wm__mix">Mix</span><span class="wm__her">Her</span>
+  {!compact && <span class="wm__tone">Setting the Tone</span>}
+</a>
+
+<style>
+  .wm {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.06em;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    position: relative;
+  }
+  .wm__mix { color: var(--ink); }
+  .wm__her {
+    background: linear-gradient(100deg, var(--lavender), var(--pink-hot));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-style: italic;
+  }
+  .wm__tone {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 0.5rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--dim);
+    align-self: center;
+    margin-left: 0.5rem;
+    white-space: nowrap;
+  }
+  @media (max-width: 480px) { .wm__tone { display: none; } }
+</style>

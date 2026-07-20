@@ -1,0 +1,100 @@
+---
+import Wordmark from './Wordmark.astro';
+import { nav, site } from '../data/site';
+const path = Astro.url.pathname;
+const isActive = (href: string) => href !== '/' && path.startsWith(href);
+---
+<header class="nav" data-nav>
+  <div class="wrap nav__row">
+    <Wordmark />
+
+    <nav class="nav__links" aria-label="Primary">
+      {nav.map((item) => (
+        <a href={item.href} class:list={['nav__link', { on: isActive(item.href) }]}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="nav__cta">
+      <a href={site.donateUrl} class="btn btn-yellow nav__donate">Donate</a>
+    </div>
+
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav__mobile" data-mobile hidden>
+    {nav.map((item) => (
+      <a href={item.href} class:list={['nav__mlink', { on: isActive(item.href) }]}>{item.label}</a>
+    ))}
+    <div class="nav__mrow">
+      <a href={site.donateUrl} class="btn btn-yellow">Donate</a>
+      <a href={site.sponsorUrl} class="btn btn-ghost">Sponsor</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.stuck {
+    background: rgba(11, 7, 16, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--card-brd);
+  }
+  .nav__row { display: flex; align-items: center; gap: 1.5rem; min-height: 74px; }
+  .nav__links { display: flex; gap: 1.6rem; margin-left: auto; }
+  .nav__link {
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--muted); position: relative; padding: 0.3rem 0;
+    transition: color 0.2s ease;
+  }
+  .nav__link::after {
+    content: ''; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--pink-hot), var(--purple-lite));
+    transition: width 0.25s ease;
+  }
+  .nav__link:hover, .nav__link.on { color: var(--ink); }
+  .nav__link:hover::after, .nav__link.on::after { width: 100%; }
+  .nav__cta { margin-left: 0.4rem; }
+  .nav__donate { font-size: 0.95rem; padding: 0.6rem 1.3rem 0.5rem; }
+
+  .nav__burger { display: none; background: none; border: 0; cursor: pointer; padding: 0.4rem; margin-left: auto; }
+  .nav__burger span { display: block; width: 26px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: transform 0.25s ease, opacity 0.2s ease; }
+  .nav__burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .nav__burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav__mobile { display: none; flex-direction: column; gap: 0.2rem; padding: 0.5rem var(--gutter) 1.5rem; background: rgba(11,7,16,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--card-brd); }
+  .nav__mlink { padding: 0.85rem 0; font-family: var(--display); font-size: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .nav__mlink.on { color: var(--ink); }
+  .nav__mrow { display: flex; gap: 0.8rem; margin-top: 1.1rem; }
+  .nav__mrow .btn { flex: 1; }
+
+  @media (max-width: 940px) {
+    .nav__links, .nav__cta { display: none; }
+    .nav__burger { display: block; }
+    .nav__mobile[data-open] { display: flex; }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  const onScroll = () => nav?.classList.toggle('stuck', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const burger = document.querySelector('[data-burger]');
+  const mobile = document.querySelector('[data-mobile]') as HTMLElement | null;
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    if (mobile) {
+      if (open) { mobile.removeAttribute('data-open'); mobile.hidden = true; }
+      else { mobile.hidden = false; mobile.setAttribute('data-open', ''); }
+    }
+  });
+</script>

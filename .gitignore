@@ -1,0 +1,40 @@
+# build output
+dist/
+# dependencies
+node_modules/
+# generated types
+.astro/
+# environment
+.env
+.env.production
+# macOS
+.DS_Store
+
+# raw source media (huge originals) — optimized copies live in public/img & public/video
+assets_src/
+
+# stray media files dropped in the project root (not part of the built site)
+/*.mp4
+/*.MP4
+/*.mov
+/*.MOV
+/*.mp3
+/*.wav
+/*.heic
+/*.HEIC
+/*.png
+/*.PNG
+/*.jpg
+/*.jpeg
+/*.JPG
+/*.JPEG
+/*.webp
+
+# logs
+npm-debug.log*
+# editor
+.vscode/
+.idea/
+
+# iCloud placeholder stubs
+*.icloud

@@ -1,0 +1,217 @@
+---
+import Base from '../layouts/Base.astro';
+import Marquee from '../components/Marquee.astro';
+import Media from '../components/Media.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, pillars, offerings, paths, stats, ticker, partners, press } from '../data/site';
+---
+<Base>
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <p class="kicker" data-reveal>The nonprofit platform for female DJs</p>
+      <h1 class="display hero__h" data-reveal>
+        Women behind<br />the decks,<br /><span class="grad">on the main stage.</span>
+      </h1>
+      <p class="hero__lead serif" data-reveal>“{site.mission}”</p>
+      <p class="hero__sub" data-reveal>
+        {site.coreSentence}
+      </p>
+      <div class="hero__btns" data-reveal>
+        <a href={site.sponsorUrl} class="btn btn-primary">Sponsor MixHer</a>
+        <a href="/community" class="btn btn-ghost">Join the DJ community</a>
+      </div>
+      <div class="hero__stats" data-reveal>
+        {stats.map((s) => (
+          <div class="hero__stat">
+            <span class="stat__num grad-y">{s.num}</span>
+            <span class="stat__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= MARQUEE ======================= -->
+  <div class="mq-band"><Marquee items={ticker} /></div>
+
+  <!-- ======================= MORE THAN A PARTY ======================= -->
+  <section class="section-pad">
+    <div class="wrap intro">
+      <div class="intro__text">
+        <p class="kicker" data-reveal>More than a party</p>
+        <h2 class="display" data-reveal>We’re building a <span class="grad">movement</span>, not a moment.</h2>
+        <p data-reveal>
+          MixHer is more than networking events — it’s a celebration. We honor the trailblazers who
+          shatter glass ceilings on turntables, the innovators weaving sonic tapestries that move us,
+          and the role models inspiring the next generation of music makers.
+        </p>
+        <p data-reveal>
+          Through recognition and support, MixHer amplifies women’s voices — creating a platform for
+          their artistry, a network for their growth, and a community that champions their success.
+          We start in Miami, and we’re taking it nationwide.
+        </p>
+        <a href="/about" class="btn btn-ghost" data-reveal>Our story</a>
+      </div>
+      <div class="intro__media" data-reveal>
+        <Media label="MixHer Live" ratio="3 / 4" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= WHAT WE DO ======================= -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker" data-reveal>What we produce</p>
+        <h2 class="display" data-reveal>Culture-forward <span class="grad">experiences</span></h2>
+      </div>
+      <div class="grid grid-3">
+        {offerings.map((o, i) => (
+          <article class:list={['card offer', { [`d${(i % 3) + 1}`]: true }]} data-reveal>
+            <span class="offer__tag">{o.tag}</span>
+            <h3 class="offer__title">{o.title}</h3>
+            <p class="offer__blurb">{o.blurb}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PILLARS ======================= -->
+  <section class="section-pad pillars">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker" data-reveal>What MixHer ignites</p>
+        <h2 class="display" data-reveal>Four ways we move women forward</h2>
+      </div>
+      <div class="grid grid-4">
+        {pillars.map((p, i) => (
+          <div class="pillar" data-reveal>
+            <span class="pillar__no">0{i + 1}</span>
+            <h3 class="pillar__name grad">{p.key}</h3>
+            <p class="pillar__blurb">{p.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= AUDIENCE PATHS (THE HUB) ======================= -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker" data-reveal>Find your lane</p>
+        <h2 class="display" data-reveal>Everyone has a <span class="grad-y">place</span> here</h2>
+      </div>
+      <div class="grid grid-3">
+        {paths.map((p) => (
+          <a href={p.href} class="card path" data-reveal style={`--accent:${p.accent}`}>
+            <h3 class="path__title">{p.title}</h3>
+            <p class="path__blurb">{p.blurb}</p>
+            <span class="path__cta">{p.cta} <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FIRST SPIN TEASER ======================= -->
+  <section class="section-pad">
+    <div class="wrap fs">
+      <div class="fs__media" data-reveal>
+        <Media label="First Spin Bootcamp" ratio="4 / 3" />
+      </div>
+      <div class="fs__text" data-reveal>
+        <p class="kicker">The next generation</p>
+        <h2 class="display">First Spin <span class="grad">DJ Bootcamp</span></h2>
+        <p>
+          Free DJ education for girls ages 7 and up. First Spin teaches the fundamentals of DJing and
+          gifts equipment to aspiring artists — turning event proceeds into a real pipeline for the
+          women who’ll be setting the tone next.
+        </p>
+        <div class="fs__btns">
+          <a href="/first-spin" class="btn btn-primary">About First Spin</a>
+          <a href={site.donateUrl} class="btn btn-ghost">Fund a DJ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PARTNERS / PRESS ======================= -->
+  <section class="section-pad logos">
+    <div class="wrap">
+      <p class="kicker center" data-reveal>Partners &amp; press</p>
+      <div class="logos__row" data-reveal>
+        {[...partners, ...press].map((name) => (
+          <span class="logos__item">{name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  /* Hero */
+  .hero { position: relative; padding-block: clamp(3.5rem, 9vw, 7rem) clamp(2rem, 5vw, 4rem); overflow: hidden; }
+  .hero__glow {
+    position: absolute; top: -12%; right: -6%; width: 60vw; height: 60vw; max-width: 760px; max-height: 760px;
+    background: radial-gradient(circle, rgba(117,56,234,0.35), rgba(255,79,176,0.14) 45%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero__inner { position: relative; z-index: 1; }
+  .hero__h { font-size: clamp(3.4rem, 12vw, 9rem); margin: 0.6rem 0 0; }
+  .hero__lead { font-size: clamp(1.2rem, 2.6vw, 1.7rem); color: var(--lavender); margin: 1.4rem 0 0.6rem; }
+  .hero__sub { color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
+  .hero__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.6rem; }
+  .hero__stats { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 5vw, 3.5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  .hero__stat { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  /* Marquee band */
+  .mq-band { padding-block: 1.4rem; border-block: 1px solid var(--card-brd); background: rgba(0,0,0,0.25); }
+
+  /* Section head */
+  .sec-head { margin-bottom: clamp(1.8rem, 4vw, 3rem); }
+  .sec-head .kicker { margin-bottom: 0.7rem; }
+  .center { justify-content: center; display: flex; }
+
+  /* Intro */
+  .intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .intro__text p { color: var(--muted); max-width: 52ch; }
+  .intro__text .btn { margin-top: 0.8rem; }
+  @media (max-width: 840px) { .intro { grid-template-columns: 1fr; } .intro__media { order: -1; } }
+
+  /* Offerings */
+  .offer { display: flex; flex-direction: column; gap: 0.5rem; }
+  .offer__tag { font-family: var(--display); font-size: 1rem; letter-spacing: 0.2em; color: var(--pink-hot); }
+  .offer__title { font-family: var(--display); font-size: 1.7rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0; }
+  .offer__blurb { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+  /* Pillars */
+  .pillars { border-block: 1px solid var(--card-brd); background: linear-gradient(180deg, rgba(117,56,234,0.05), transparent); }
+  .pillar { padding: 0.4rem 0; }
+  .pillar__no { font-family: var(--display); font-size: 1rem; color: var(--dim); letter-spacing: 0.2em; }
+  .pillar__name { font-family: var(--display); font-size: 2.2rem; letter-spacing: 0.04em; text-transform: uppercase; margin: 0.2rem 0 0.5rem; }
+  .pillar__blurb { color: var(--muted); font-size: 0.92rem; margin: 0; }
+
+  /* Paths */
+  .path { display: flex; flex-direction: column; gap: 0.6rem; border-top: 3px solid var(--accent); }
+  .path__title { font-family: var(--display); font-size: 1.9rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0; }
+  .path__blurb { color: var(--muted); margin: 0; flex: 1; }
+  .path__cta { font-family: var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-size: 1.05rem; }
+  .path:hover .path__cta span { margin-left: 0.3rem; }
+
+  /* First Spin */
+  .fs { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .fs__text p { color: var(--muted); max-width: 52ch; }
+  .fs__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+  @media (max-width: 840px) { .fs { grid-template-columns: 1fr; } }
+
+  /* Logos */
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
+  .logos__item { font-family: var(--display); font-size: clamp(1.1rem, 2.4vw, 1.7rem); letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); transition: color 0.2s ease; }
+  .logos__item:hover { color: var(--lavender); }
+</style>
