@@ -5,35 +5,33 @@ import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 ---
-<Base title="First Spin DJ Bootcamp" description="First Spin DJ Bootcamp — free DJ education for girls ages 7+, plus gifted equipment. MixHer’s pipeline for the next generation of female DJs.">
+<Base title="First Spin — Youth DJ Education" description="First Spin is The MixHer's youth DJ education initiative — developing the next generation of female DJs through education, mentorship, creativity, and access.">
   <PageHeader
-    kicker="First Spin DJ Bootcamp"
-    title={`Every legend<br/>had a <span class='grad'>first spin.</span>`}
-    lead="Free DJ education for girls ages 7 and up. We teach the fundamentals, put hands on real gear, and gift equipment — turning curiosity into the next generation of women behind the decks."
+    kicker="First Spin · Youth DJ Education"
+    title={`Every legend had a<br/><span class='grad'>first spin.</span>`}
+    lead="First Spin is MixHer’s youth DJ education initiative — developing the next generation of female DJs through education, mentorship, creativity, and access."
+    serif={true}
   />
 
   <!-- Intro -->
   <section class="section-pad">
     <div class="wrap fs">
-      <div class="fs__media" data-reveal>
-        <Media label="First Spin class" ratio="4 / 3" />
-      </div>
+      <div class="fs__media" data-reveal><Media label="First Spin class" ratio="4 / 3" /></div>
       <div class="fs__text" data-reveal>
         <p class="kicker">The mission</p>
-        <h2 class="display">Access, not <span class="grad">barriers</span></h2>
+        <h2 class="fancy">Access, not <span class="grad">barriers.</span></h2>
         <p>
-          The biggest thing standing between a young girl and the decks is access — to equipment, to
-          instruction, to someone who looks like her doing it. First Spin removes those barriers. Using
-          proceeds from MixHer events, we fund free classes and gift gear so talent — not budget —
-          decides who gets to play.
+          The biggest thing between a young girl and the decks is access — to equipment, to instruction,
+          and to someone who looks like her doing it. First Spin removes those barriers with free classes
+          and real gear, so talent, not budget, decides who gets to play.
         </p>
-        <p>MixHer teaches the very basics of DJing, 101, for ages 7 and up — the foundation every future headliner starts from.</p>
+        <p>We teach the fundamentals of DJing to the next generation — the foundation every future headliner starts from.</p>
       </div>
     </div>
   </section>
 
   <!-- What they learn -->
-  <section class="section-pad learn">
+  <section class="section-pad tint">
     <div class="wrap">
       <div class="sec-head"><p class="kicker" data-reveal>What students learn</p>
       <h2 class="display" data-reveal>From zero to first mix</h2></div>
@@ -48,27 +46,27 @@ import { site } from '../data/site';
     </div>
   </section>
 
-  <!-- Two CTAs: enroll + fund -->
+  <!-- Enroll + Fund -->
   <section class="section-pad">
     <div class="wrap">
       <div class="grid grid-2">
         <div class="card fscta" data-reveal>
           <h3 class="fscta__h grad">Enroll a student</h3>
-          <p>Know a girl ages 7+ who wants to learn? Reach out and we’ll share upcoming class dates and how to sign up — always free.</p>
-          <a href={site.emailHref} class="btn btn-primary">Ask about classes</a>
+          <p>Know a young girl who wants to learn? Reach out and we’ll share upcoming class dates and how to sign up — always free.</p>
+          <a href={site.emailHref} class="btn btn-purple">Ask about classes</a>
         </div>
         <div class="card fscta" data-reveal>
-          <h3 class="fscta__h grad-y">Fund a future DJ</h3>
+          <h3 class="fscta__h grad-o">Fund a future DJ</h3>
           <p>Your gift buys equipment and funds free instruction for a girl who couldn’t otherwise start. {site.taxLine}</p>
-          <a href={site.donateUrl} class="btn btn-yellow">Donate to First Spin</a>
+          <a href={site.donateUrl} class="btn btn-primary">Donate to First Spin</a>
         </div>
       </div>
     </div>
   </section>
 
   <CtaBand
-    heading="Help us fund the next first spin."
-    sub="Every donation and sponsorship puts gear in a girl’s hands and a headphone on her ear."
+    heading="Help fund the next first spin."
+    sub="Every donation and sponsorship puts gear in a girl’s hands and headphones on her ears."
     primaryLabel="Donate"
     primaryHref={site.donateUrl}
     secondaryLabel="Sponsor a class"
@@ -81,11 +79,11 @@ import { site } from '../data/site';
   .fs__text p { color: var(--muted); max-width: 52ch; }
   @media (max-width: 840px) { .fs { grid-template-columns: 1fr; } }
 
-  .learn { border-block: 1px solid var(--card-brd); background: linear-gradient(180deg, rgba(117,56,234,0.05), transparent); }
-  .learn__h { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0 0 0.4rem; color: var(--lavender); }
+  .sec-head .kicker { margin-bottom: 0.7rem; }
+  .learn__h { font-family: var(--sans); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; margin: 0 0 0.4rem; color: var(--orchid-deep); }
   .learn__p { color: var(--muted); margin: 0; font-size: 0.95rem; }
 
   .fscta { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; }
-  .fscta__h { font-family: var(--display); font-size: 2.2rem; letter-spacing: 0.03em; text-transform: uppercase; margin: 0; }
+  .fscta__h { font-family: var(--sans); font-weight: 800; font-size: 1.9rem; text-transform: uppercase; margin: 0; }
   .fscta p { color: var(--muted); margin: 0 0 0.6rem; }
 </style>

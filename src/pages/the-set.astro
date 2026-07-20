@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const formats = [
+  { title: 'Industry Mixers', blurb: 'Rooms full of DJs, promoters, media, venues, and label execs — where careers get made.' },
+  { title: 'Listening Sessions', blurb: 'Intimate previews and feedback moments connecting artists with tastemakers.' },
+  { title: 'Workshops', blurb: 'Skill-building on booking, branding, production, and the business of DJing.' },
+  { title: 'Fireside Chats', blurb: 'Candid conversations with the women and leaders shaping the industry.' },
+  { title: 'Mentor Meetups', blurb: 'Seasoned DJs and creatives guiding the next wave, one relationship at a time.' },
+  { title: 'Creator Socials', blurb: 'Relaxed spaces for creatives and brands to build genuine connection.' },
+];
+
+const who = ['Female DJs', 'Creatives', 'Brands', 'Venue partners', 'Media professionals', 'Music leaders'];
+---
+<Base title="The Set — Networking Series" description="The Set is The MixHer's signature networking series — intentional spaces where female DJs, brands, venues, media, and music leaders build meaningful relationships.">
+  <PageHeader
+    kicker="The Set · Networking Series"
+    title={`Where connections <span class='grad'>are made.</span>`}
+    lead="The Set is MixHer’s signature networking series — intentional spaces where female DJs, creatives, brands, venue partners, media, and music leaders build meaningful relationships."
+    serif={true}
+  />
+
+  <!-- Who it's for -->
+  <section class="section-pad">
+    <div class="wrap set-intro">
+      <div class="set-intro__text" data-reveal>
+        <p class="kicker">Who’s in the room</p>
+        <h2 class="fancy">Relationships that <span class="grad">move careers.</span></h2>
+        <p>
+          Talent is only half the game — access is the rest. The Set builds the rooms where the right
+          people meet: the DJs with the skill, the brands with the budget, the venues with the stage,
+          and the media that tells the story.
+        </p>
+        <div class="chips">
+          {who.map((w) => <span class="chip on">{w}</span>)}
+        </div>
+      </div>
+      <div class="set-intro__media" data-reveal><Media label="The Set networking" ratio="4 / 5" /></div>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>The formats</p>
+      <h2 class="display" data-reveal>How we connect</h2></div>
+      <div class="grid grid-3">
+        {formats.map((f) => (
+          <div class="card fmt" data-reveal>
+            <h3 class="fmt__title">{f.title}</h3>
+            <p class="fmt__blurb">{f.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Get in the room."
+    sub="Join the community for first access to the next Set — or partner with us to host one."
+    primaryLabel="Join the community"
+    primaryHref={site.communityUrl}
+    secondaryLabel="Partner with us"
+    secondaryHref="/contact"
+  />
+</Base>
+
+<style>
+  .set-intro { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .set-intro__text p { color: var(--muted); max-width: 54ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+  @media (max-width: 840px) { .set-intro { grid-template-columns: 1fr; } .set-intro__media { order: -1; } }
+
+  .sec-head .kicker { margin-bottom: 0.7rem; }
+  .fmt { display: flex; flex-direction: column; gap: 0.4rem; }
+  .fmt__title { font-family: var(--sans); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
+  .fmt__blurb { color: var(--muted); margin: 0; font-size: 0.9rem; }
+</style>

@@ -1,0 +1,119 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, community } from '../data/site';
+
+const formats = [
+  { title: 'Day Parties', blurb: 'Sun-soaked afternoons with all-female lineups in Miami’s best rooms and rooftops.' },
+  { title: 'Club Nights', blurb: 'Prime-time takeovers where women behind the decks run the whole night.' },
+  { title: 'Art Week & Culture', blurb: 'Culture-forward moments during Miami Art Week and beyond.' },
+  { title: 'Takeovers & Activations', blurb: 'Coffee-shop takeovers, hotel activations, launch parties, and brand collaborations.' },
+];
+---
+<Base title="PLY — Music & Culture Series" description="PLY is The MixHer's signature music & culture series — day parties, rooftops, club nights, and activations where female DJs lead the vibe.">
+  <PageHeader
+    kicker="PLY · Music & Culture Series"
+    title={`Press <span class='grad-o'>PLY.</span>`}
+    lead="MixHer’s signature music-first experiences where female DJs lead the vibe. PLY is defined by the experience — not the venue or the format."
+    serif={true}
+  />
+
+  <!-- Intro -->
+  <section class="section-pad">
+    <div class="wrap ply">
+      <div class="ply__media" data-reveal><Media label="PLY experience" ratio="4 / 5" /></div>
+      <div class="ply__text" data-reveal>
+        <p class="kicker">What is PLY</p>
+        <h2 class="fancy">Female DJs <span class="grad">lead the vibe.</span></h2>
+        <p>
+          PLY is where the music comes first. Day parties, rooftop experiences, club nights, coffee-shop
+          takeovers, hotel activations, Art Week events, launch parties — wherever the energy is, PLY
+          brings curated female DJ talent to the front.
+        </p>
+        <p>It’s a party, a platform, and a statement all at once. Powered by women behind the decks.</p>
+        <div class="ply__btns">
+          <a href={site.plylistUrl} class="btn btn-primary">Join the PLYLIST</a>
+          <a href={site.applyUrl} class="btn btn-ghost">Apply to perform</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formats -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>The experiences</p>
+      <h2 class="display" data-reveal>Every PLY is different</h2></div>
+      <div class="grid grid-4">
+        {formats.map((f) => (
+          <div class="card fmt" data-reveal>
+            <h3 class="fmt__title">{f.title}</h3>
+            <p class="fmt__blurb">{f.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLYRS community -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>For the PLYRS</p>
+      <h2 class="fancy" data-reveal>The community behind the decks</h2>
+      <p class="sec-sub" data-reveal>PLYRS are our community of female DJs. The PLYLIST is the insider list. PLYBACK is the recap.</p></div>
+      <div class="grid grid-3">
+        {community.map((c) => (
+          <div class="card feat" data-reveal>
+            <h3 class="feat__title">{c.title}</h3>
+            <p class="feat__blurb">{c.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section-pad tint-lav">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>PLYBACK</p>
+      <h2 class="display" data-reveal>From the floor</h2></div>
+      <div class="gallery">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Media label={`PLY photo ${i + 1}`} ratio="1 / 1" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Come press PLY with us."
+    sub="Get on the PLYLIST for first access to every experience — or apply to perform."
+    primaryLabel="Join the PLYLIST"
+    primaryHref={site.plylistUrl}
+    secondaryLabel="Apply to perform"
+    secondaryHref={site.applyUrl}
+  />
+</Base>
+
+<style>
+  .ply { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .ply__text p { color: var(--muted); max-width: 52ch; }
+  .ply__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.3rem; }
+  @media (max-width: 840px) { .ply { grid-template-columns: 1fr; } .ply__media { order: -1; } }
+
+  .sec-head .kicker { margin-bottom: 0.7rem; }
+  .sec-sub { color: var(--muted); margin: 0.6rem 0 0; }
+
+  .fmt { display: flex; flex-direction: column; gap: 0.4rem; }
+  .fmt__title { font-family: var(--sans); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
+  .fmt__blurb { color: var(--muted); margin: 0; font-size: 0.9rem; }
+
+  .feat { display: flex; flex-direction: column; gap: 0.4rem; }
+  .feat__title { font-family: var(--sans); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
+  .feat__blurb { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.6rem, 1.5vw, 1rem); }
+  @media (max-width: 620px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+</style>

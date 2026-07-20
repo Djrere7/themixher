@@ -14,7 +14,6 @@ const reasons = ['Sponsor / brand partnership', 'Book MixHer / venue programming
 
   <section class="section-pad">
     <div class="wrap contact">
-      <!-- Form -->
       <form class="card cform" action={site.emailHref} method="post" enctype="text/plain" data-reveal>
         <div class="cfield">
           <label for="name">Name</label>
@@ -38,7 +37,6 @@ const reasons = ['Sponsor / brand partnership', 'Book MixHer / venue programming
         <p class="cform__note">Prefer email? Reach us directly at <a href={site.emailHref} class="ilink">{site.email}</a>.</p>
       </form>
 
-      <!-- Direct info + quick actions -->
       <aside class="cside" data-reveal>
         <div class="card">
           <h3 class="cside__h">Reach us</h3>
@@ -50,9 +48,9 @@ const reasons = ['Sponsor / brand partnership', 'Book MixHer / venue programming
         <div class="card">
           <h3 class="cside__h">Take action</h3>
           <div class="cside__btns">
-            <a href={site.donateUrl} class="btn btn-yellow">Donate</a>
+            <a href={site.donateUrl} class="btn btn-primary">Donate</a>
             <a href={site.sponsorUrl} class="btn btn-ghost">Sponsor</a>
-            <a href={site.whatsappUrl} class="btn btn-ghost">Join community</a>
+            <a href={site.communityUrl} class="btn btn-ghost">Join community</a>
             <a href={site.applyUrl} class="btn btn-ghost">Apply to perform</a>
           </div>
         </div>
@@ -77,24 +75,20 @@ const reasons = ['Sponsor / brand partnership', 'Book MixHer / venue programming
 
   .cform { display: flex; flex-direction: column; gap: 1rem; }
   .cfield { display: flex; flex-direction: column; gap: 0.4rem; }
-  .cfield label { font-family: var(--display); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.9rem; color: var(--lavender); }
-  .cform input, .cform select, .cform textarea {
-    width: 100%; padding: 0.85rem 1rem; border-radius: 12px;
-    background: rgba(0,0,0,0.35); border: 1px solid var(--card-brd); color: var(--ink);
-    font-family: var(--body); font-size: 0.95rem; resize: vertical;
-  }
-  .cform input:focus, .cform select:focus, .cform textarea:focus { outline: none; border-color: var(--card-brd-hi); }
+  .cfield label { font-family: var(--sans); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.82rem; color: var(--orchid-deep); }
+  .cform input, .cform select, .cform textarea { width: 100%; padding: 0.85rem 1rem; border-radius: 12px; background: #fff; border: 1px solid var(--card-brd-hi); color: var(--ink); font-family: var(--body); font-size: 0.95rem; resize: vertical; }
+  .cform input:focus, .cform select:focus, .cform textarea:focus { outline: none; border-color: var(--orchid); }
   .cform .btn { align-self: flex-start; margin-top: 0.4rem; }
   .cform__note { color: var(--dim); font-size: 0.85rem; margin: 0; }
-  .ilink { color: var(--pink-hot); }
+  .ilink { color: var(--orchid-deep); font-weight: 600; }
 
   .cside { display: flex; flex-direction: column; gap: 1rem; }
-  .cside__h { font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.8rem; color: var(--ink); }
-  .cside__row { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); color: var(--ink); }
-  .cside__row span { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+  .cside__h { font-family: var(--sans); font-weight: 800; font-size: 1.2rem; text-transform: uppercase; margin: 0 0 0.8rem; }
+  .cside__row { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.5rem 0; border-top: 1px solid var(--card-brd); color: var(--ink); }
+  .cside__row span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
   .cside__btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-  .cside__btns .btn { width: 100%; font-size: 0.9rem; padding: 0.6rem 1rem 0.5rem; }
+  .cside__btns .btn { width: 100%; font-size: 0.85rem; padding: 0.55rem 0.9rem; }
   .cside__socials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .cside__socials a { font-size: 0.85rem; padding: 0.4rem 0.9rem; border: 1px solid var(--card-brd); border-radius: 999px; color: var(--muted); transition: color 0.2s, border-color 0.2s; }
-  .cside__socials a:hover { color: var(--ink); border-color: var(--card-brd-hi); }
+  .cside__socials a:hover { color: var(--ink); border-color: var(--orchid); }
 </style>

@@ -5,8 +5,8 @@ const doubled = [...items, ...items];
 ---
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
-    {doubled.map((it) => (
-      <><span class="marquee__item">{it}</span><span class="marquee__item marquee__star">✦</span></>
+    {doubled.map((it, i) => (
+      <><span class:list={['marquee__item', { hollow: i % 2 === 1 }]}>{it}</span><span class="marquee__item marquee__star">✦</span></>
     ))}
   </div>
 </div>

@@ -1,11 +1,11 @@
 ---
-interface Props { kicker?: string; title: string; lead?: string; }
-const { kicker, title, lead } = Astro.props;
+interface Props { kicker?: string; title: string; lead?: string; serif?: boolean; }
+const { kicker, title, lead, serif = true } = Astro.props;
 ---
 <header class="ph section-pad">
   <div class="wrap narrow">
-    {kicker && <p class="kicker" data-reveal>{kicker}</p>}
-    <h1 class="display" data-reveal set:html={title} />
+    {kicker && <p class="kicker center" data-reveal>{kicker}</p>}
+    <h1 class:list={[serif ? 'fancy' : 'display']} data-reveal set:html={title} />
     {lead && <p class="ph__lead" data-reveal>{lead}</p>}
   </div>
 </header>
@@ -13,5 +13,5 @@ const { kicker, title, lead } = Astro.props;
 <style>
   .ph { padding-bottom: clamp(1.5rem, 4vw, 3rem); text-align: center; }
   .ph .kicker { margin-bottom: 1rem; }
-  .ph__lead { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 60ch; margin: 1.2rem auto 0; }
+  .ph__lead { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.28rem); max-width: 60ch; margin: 1.2rem auto 0; }
 </style>

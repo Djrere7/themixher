@@ -1,192 +1,146 @@
 /**
  * THE MIXHER — single source of truth for site-wide content.
- * Edit copy, links, programs, tiers here. Pages read from this.
+ * MixHer is an independent Miami-founded 501(c)(3) nonprofit.
+ * Edit copy, links, experiences, tiers here. Pages read from this.
  *
- * NOTE: action links marked TODO need real URLs from the client before go-live.
+ * Action links marked TODO need real URLs from the client before go-live.
  */
 
 export const site = {
   name: 'The MixHer',
   legalName: 'MixHer Inc.',
-  tagline: 'Setting the Tone',
-  mission: 'A celebration of female DJs setting the tone in the music industry.',
+  tagline: 'Female DJs lead the vibe. All vibes welcome.',
+  crestTagline: 'Setting the Tone',
   hashtag: '#SettingTheTone',
   founded: '2023',
   city: 'Miami, FL',
-  parentOrg: 'REmixed Events',
   category: 'The nonprofit platform for female DJs',
   coreSentence:
-    'The MixHer is a Miami-born nonprofit putting women behind the decks on the main stage — producing culture-forward events, live DJ showcases, brand activations, and a national community that helps female DJs perform, connect, get booked, and be seen.',
+    'The MixHer is a Miami-founded 501(c)(3) nonprofit spotlighting female DJs through three signature experiences — PLY, our music & culture series; The Set, our networking series; and First Spin, our youth DJ education initiative.',
+  elevatorPitch:
+    'MixHer is a nonprofit organization spotlighting female DJs through three signature experiences: PLY, our signature music and culture series; The Set, our signature networking series; and First Spin, our youth DJ education initiative.',
+  brandVision:
+    'MixHer is a Miami-founded 501(c)(3) nonprofit dedicated to creating opportunities for female DJs through music, culture, networking, and education. Every MixHer experience exists to spotlight female DJs while creating unforgettable experiences that welcome people from every background.',
 
   // Contact
   email: 'themixher@remixedeventsllc.com',
   emailHref: 'mailto:themixher@remixedeventsllc.com',
   phone: '786-910-2799',
   phoneHref: 'tel:+17869102799',
-  address: '1000 5th Street, Suite 200, Miami Beach, FL 33139',
+  address: 'Miami, Florida',
 
   // Nonprofit status
-  nonprofit: 'MixHer Inc. is a registered Florida nonprofit corporation.',
-  // TODO: confirm IRS 501(c)(3) determination + EIN before publishing hard tax-deductible claims.
-  taxLine: 'Donations may be tax-deductible to the fullest extent allowed by law.',
+  nonprofit: 'MixHer Inc. is a Miami-founded 501(c)(3) nonprofit organization.',
+  taxLine: 'Donations are tax-deductible to the fullest extent allowed by law.',
+  // TODO: add EIN for donation receipts before go-live.
 
   // Action links — REPLACE TODOs with real URLs
   donateUrl: '#donate', // TODO: donation platform (Givebutter / Zeffy / PayPal Giving)
   sponsorUrl: '/sponsors',
-  whatsappUrl: '#community', // TODO: WhatsApp community invite link
+  plylistUrl: '#plylist', // TODO: PLYLIST signup (Mailchimp / Beehiiv) — the insider list
+  communityUrl: '#community', // TODO: WhatsApp / community invite link (PLYRS)
   eventsUrl: '#events', // TODO: Eventbrite organizer URL
-  applyUrl: '#apply', // TODO: DJ / performance application form (Google Form / Tally)
-  newsletterAction: '', // TODO: newsletter POST endpoint (Mailchimp / Beehiiv embed)
+  applyUrl: '#apply', // TODO: DJ / performance application form
+  newsletterAction: '', // TODO: newsletter POST endpoint
 
   socials: {
     instagram: 'https://www.instagram.com/themixher',
-    facebook: 'https://www.facebook.com/themixher',
     tiktok: 'https://www.tiktok.com/@themixher',
     youtube: 'https://www.youtube.com/@themixher',
+    facebook: 'https://www.facebook.com/themixher',
   },
-
-  // Related brand
-  remixedUrl: 'https://www.remixedeventsllc.com',
 };
 
 export const nav = [
   { label: 'About', href: '/about' },
-  { label: 'Events', href: '/events' },
-  { label: 'DJ Community', href: '/community' },
+  { label: 'PLY', href: '/ply' },
+  { label: 'The Set', href: '/the-set' },
   { label: 'First Spin', href: '/first-spin' },
   { label: 'Sponsors', href: '/sponsors' },
   { label: 'Contact', href: '/contact' },
 ];
 
-/** The four MixHer mission pillars (from brand guidelines). */
-export const pillars = [
+/** The three signature experiences — MixHer's ecosystem. */
+export const experiences = [
   {
-    key: 'Visibility',
+    key: 'PLY',
+    href: '/ply',
+    label: 'Music & Culture Series',
+    tagline: 'Press PLY.',
     blurb:
-      'Showcasing female DJs on renowned stages and in media — so the industry knows their names and feels the power of their beats.',
+      'MixHer’s signature music-first experiences where female DJs lead the vibe — day parties, rooftops, club nights, Art Week, coffee-shop takeovers, and brand activations. Defined by the experience, not the venue.',
+    accent: 'var(--orange)',
   },
   {
-    key: 'Connection',
+    key: 'The Set',
+    href: '/the-set',
+    label: 'Networking Series',
+    tagline: 'Where connections are made.',
     blurb:
-      'A supportive network of mentors, collaborators, and fellow female DJs — a thriving ecosystem of women in music.',
+      'Intentional spaces where female DJs, creatives, brands, venue partners, media, and music leaders build meaningful relationships — mixers, listening sessions, workshops, fireside chats, and mentor meetups.',
+    accent: 'var(--orchid)',
   },
   {
-    key: 'Development',
+    key: 'First Spin',
+    href: '/first-spin',
+    label: 'Youth DJ Education',
+    tagline: 'The next generation.',
     blurb:
-      'Workshops, masterclasses, mentorship, and industry exposure that propel careers — plus free DJ education through First Spin.',
-  },
-  {
-    key: 'Inspiration',
-    blurb:
-      'Celebrating their achievements and stories — lighting the path for the next generation of female DJs in Miami and beyond.',
+      'MixHer’s youth DJ education initiative — developing the next generation of female DJs through education, mentorship, creativity, and access. Free classes and real gear for girls starting out.',
+    accent: 'var(--purple)',
   },
 ];
 
-/** What MixHer produces. */
-export type Offering = { tag: string; title: string; blurb: string };
-export const offerings: Offering[] = [
-  { tag: '01', title: 'Live DJ Showcases', blurb: 'Curated female DJ sets on real stages — the spotlight women behind the decks deserve.' },
-  { tag: '02', title: 'Networking Mixers', blurb: 'Rooms full of DJs, promoters, media, venues, and label execs — where careers get made.' },
-  { tag: '03', title: 'Brand Activations', blurb: 'Culture-forward experiences that put partner brands inside the energy, not beside it.' },
-  { tag: '04', title: 'Podcast Moments', blurb: 'On-site interviews and content capture that extend each artist’s reach far past the room.' },
-  { tag: '05', title: 'Venue Programming', blurb: 'Recurring female-led nights that give venues a signature, on-brand draw.' },
-  { tag: '06', title: 'First Spin Bootcamp', blurb: 'Free DJ education for girls ages 7+ — the pipeline for the next generation.' },
+/** Mission pillars — what MixHer creates opportunity through. */
+export const pillars = [
+  { key: 'Music', blurb: 'Female DJs on real stages, leading every vibe — the sound of Miami and beyond.' },
+  { key: 'Culture', blurb: 'Culture-forward experiences that welcome people from every background. All vibes welcome.' },
+  { key: 'Networking', blurb: 'Intentional rooms where DJs, brands, venues, media, and music leaders connect.' },
+  { key: 'Education', blurb: 'Access, mentorship, and free DJ education building the next generation of women behind the decks.' },
 ];
 
 /** Audience "paths" — the hub routing block. */
 export const paths = [
-  {
-    key: 'DJs',
-    title: 'For Female DJs',
-    blurb: 'Perform, get booked, join the community, and level up through First Spin and mentorship.',
-    cta: 'Join the community',
-    href: '/community',
-    accent: 'var(--pink-hot)',
-  },
-  {
-    key: 'Sponsors',
-    title: 'For Sponsors & Brands',
-    blurb: 'Reach a culture-forward audience, activate inside the energy, and support women in music — tax-deductibly.',
-    cta: 'Become a sponsor',
-    href: '/sponsors',
-    accent: 'var(--yellow)',
-  },
-  {
-    key: 'Venues',
-    title: 'For Venues & Partners',
-    blurb: 'Program a signature female-led night and tap a network of vetted, professional DJ talent.',
-    cta: 'Partner with us',
-    href: '/contact',
-    accent: 'var(--lavender)',
-  },
+  { key: 'DJs', title: 'For Female DJs', blurb: 'Perform at PLY, connect at The Set, learn through First Spin, and get booked.', cta: 'Join the community', href: '/ply', accent: 'var(--orchid-deep)' },
+  { key: 'Sponsors', title: 'For Sponsors & Brands', blurb: 'Reach a culture-forward audience and support women in music — tax-deductibly.', cta: 'Become a sponsor', href: '/sponsors', accent: 'var(--orange)' },
+  { key: 'Venues', title: 'For Venues & Partners', blurb: 'Program a signature female-led night with vetted, professional DJ talent.', cta: 'Partner with us', href: '/contact', accent: 'var(--purple)' },
 ];
 
-/** Headline stats — real MixHer history. */
+/** Headline stats. */
 export const stats = [
   { num: '25+', label: 'Female DJs at launch' },
   { num: '2023', label: 'Founded in Miami' },
-  { num: '7+', label: 'First Spin ages served' },
-  { num: '1', label: 'Growing national movement' },
+  { num: '3', label: 'Signature experiences' },
+  { num: '501(c)(3)', label: 'Registered nonprofit' },
 ];
 
-/** What MixHer ignites / community offerings. */
+/** PLYRS community offerings (PLY page). */
 export const community = [
-  { title: 'Performance Opportunities', blurb: 'Get slotted for showcases, mixers, and brand activations across South Florida and beyond.' },
-  { title: 'WhatsApp Community', blurb: 'Our group chat for gigs, gear talk, callouts, and real-time support between women behind the decks.' },
-  { title: 'Mentorship', blurb: 'Guidance from seasoned DJs — booking, branding, technical skills, and navigating the industry.' },
-  { title: 'Tips & Resources', blurb: 'Practical know-how on rates, contracts, equipment, and building a bookable DJ career.' },
-  { title: 'Networking', blurb: 'Direct access to promoters, venues, media, and label executives at MixHer events.' },
-  { title: 'First Spin Access', blurb: 'Free DJ classes and equipment support for aspiring DJs starting from scratch.' },
+  { title: 'Perform at PLY', blurb: 'Get slotted for day parties, rooftops, club nights, and brand activations across Miami.' },
+  { title: 'Join the PLYRS', blurb: 'Our community of women behind the decks — support, callouts, and real connection.' },
+  { title: 'The PLYLIST', blurb: 'The insider list: first access to events, opportunities, and drops before anyone else.' },
+  { title: 'Mentorship', blurb: 'Guidance from seasoned DJs on booking, branding, technique, and the business.' },
+  { title: 'Industry Access', blurb: 'Direct connection to promoters, venues, media, and label executives at The Set.' },
+  { title: 'PLYBACK', blurb: 'Recap content and coverage that extends your reach far past the room.' },
 ];
 
 /** Sponsorship tiers (from MixHer sponsorship deck). */
 export const tiers = [
-  {
-    name: 'Basic Blue',
-    price: '$500',
-    accent: 'var(--purple-lite)',
-    perks: [
-      'Recognition in the event program and promotional materials',
-      'Logo placement on event signage',
-    ],
-  },
-  {
-    name: 'Platinum Purple',
-    price: '$1,000',
-    accent: 'var(--pink-hot)',
-    featured: true,
-    perks: [
-      'Everything in Basic Blue',
-      'Verbal acknowledgment during the event',
-      'Logo placement on the MixHer website',
-    ],
-  },
-  {
-    name: 'Deluxe Diamond',
-    price: '$3,000',
-    accent: 'var(--yellow)',
-    perks: [
-      'Everything in Platinum Purple',
-      'Exclusive sponsorship of a signature moment (e.g. the DJ Dinner)',
-      'Social shout-outs before, during & after the event',
-      'On-site display of promotional materials',
-    ],
-  },
+  { name: 'Basic Blue', price: '$500', accent: 'var(--purple)', perks: ['Recognition in the event program and promotional materials', 'Logo placement on event signage'] },
+  { name: 'Platinum Purple', price: '$1,000', accent: 'var(--orchid-deep)', featured: true, perks: ['Everything in Basic Blue', 'Verbal acknowledgment during the event', 'Logo placement on the MixHer website'] },
+  { name: 'Deluxe Diamond', price: '$3,000', accent: 'var(--orange)', perks: ['Everything in Platinum Purple', 'Exclusive sponsorship of a signature moment', 'Social shout-outs before, during & after the event', 'On-site display of promotional materials'] },
 ];
 
 /** Sponsor value props. */
 export const sponsorValue = [
   { title: 'Culture-forward reach', blurb: 'Access an engaged audience of DJs, creatives, and tastemakers at the center of Miami’s music scene.' },
-  { title: 'Activate inside the energy', blurb: 'Custom brand moments, giveaways, and photo experiences built into a live, high-vibe event — not bolted on.' },
-  { title: 'Tax-deductible support', blurb: 'Back a registered nonprofit advancing women in music while meeting your brand and CSR goals.' },
-  { title: 'Content that travels', blurb: 'Social shout-outs, on-site capture, and podcast moments extend your reach well past the room.' },
+  { title: 'Activate inside the energy', blurb: 'Custom brand moments, giveaways, and photo experiences built into a live PLY experience — not bolted on.' },
+  { title: 'Tax-deductible impact', blurb: 'Back a 501(c)(3) nonprofit advancing women in music while meeting your brand and CSR goals.' },
+  { title: 'Content that travels', blurb: 'Social shout-outs, PLYBACK recaps, and on-site capture extend your reach well past the room.' },
 ];
 
 /** Marquee ticker words. */
-export const ticker = ['Setting the Tone', 'Women Behind the Decks', 'Live DJ Showcases', 'Networking Mixers', 'Brand Activations', 'First Spin', 'Miami & Beyond'];
+export const ticker = ['Female DJs lead the vibe', 'All vibes welcome', 'Press PLY', 'The Set', 'First Spin', 'Setting the Tone', 'Miami & beyond'];
 
 /** Press / recognition. */
 export const press = ['Rolling Out', 'Nexus Radio', 'Miami Art Week', 'Gantt Center', 'Nightlife & Culture Press'];
-
-/** Partners shown as logos (placeholder wordmarks until real logos provided). */
-export const partners = ['REmixed Events', 'Moxy South Beach', 'Girls Make Beats', 'Miami Music Week'];
