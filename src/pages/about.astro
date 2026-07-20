@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { offerings, pillars, stats, press } from '../data/site';
+import { pillars, stats, press } from '../data/site';
 ---
 <Base title="About" description="The MixHer is a Miami-founded 501(c)(3) nonprofit spotlighting female DJs through music, culture, networking, and education. Meet the movement.">
   <PageHeader
@@ -43,23 +43,6 @@ import { offerings, pillars, stats, press } from '../data/site';
             <span class="stat__num grad">{s.num}</span>
             <span class="stat__label">{s.label}</span>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- What we do -->
-  <section class="section-pad">
-    <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>What we do</p>
-      <h2 class="fancy" data-reveal>How we spotlight female DJs</h2></div>
-      <div class="grid grid-3">
-        {offerings.map((o) => (
-          <article class="card offer" data-reveal>
-            <span class="offer__tag">{o.tag}</span>
-            <h3 class="offer__title">{o.title}</h3>
-            <p class="offer__blurb">{o.blurb}</p>
-          </article>
         ))}
       </div>
     </div>
@@ -127,12 +110,12 @@ import { offerings, pillars, stats, press } from '../data/site';
 
   .sec-head .kicker { margin-bottom: 0.7rem; }
   .offer { display: flex; flex-direction: column; gap: 0.4rem; }
-  .offer__tag { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; color: var(--orange); }
+  .offer__tag { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--orange); }
   .offer__title { font-family: var(--sans); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; margin: 0; }
   .offer__blurb { color: var(--muted); margin: 0; font-size: 0.95rem; }
 
   .pcard { display: flex; flex-direction: column; gap: 0.4rem; }
-  .pcard__no { font-family: var(--serif); color: var(--dim); }
+  .pcard__no { font-family: var(--display); color: var(--dim); }
   .pcard__name { font-family: var(--sans); font-weight: 800; font-size: 1.9rem; text-transform: uppercase; margin: 0; }
   .pcard__blurb { color: var(--muted); margin: 0; }
 

@@ -69,6 +69,14 @@ export const offerings: Offering[] = [
   { tag: '06', title: 'Media Moments', blurb: 'On-site capture and podcast moments that extend each artist’s reach past the room.' },
 ];
 
+/** Featured DJs (NeoBeat artist grid). Placeholder names/handles — swap for real DJs + photos. */
+export const featuredDJs = [
+  { name: 'Your DJ', handle: '@yourdj', img: '' },
+  { name: 'Your DJ', handle: '@yourdj', img: '' },
+  { name: 'Your DJ', handle: '@yourdj', img: '' },
+  { name: 'Your DJ', handle: '@yourdj', img: '' },
+];
+
 /** Mission pillars. */
 export const pillars = [
   { key: 'Music', blurb: 'Female DJs on real stages, leading every vibe — the sound of Miami and beyond.' },
