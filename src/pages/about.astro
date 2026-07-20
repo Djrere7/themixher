@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { experiences, pillars, stats, press } from '../data/site';
+import { offerings, pillars, stats, press } from '../data/site';
 ---
 <Base title="About" description="The MixHer is a Miami-founded 501(c)(3) nonprofit spotlighting female DJs through music, culture, networking, and education. Meet the movement.">
   <PageHeader
@@ -48,19 +48,18 @@ import { experiences, pillars, stats, press } from '../data/site';
     </div>
   </section>
 
-  <!-- Ecosystem -->
+  <!-- What we do -->
   <section class="section-pad">
     <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>The ecosystem</p>
-      <h2 class="fancy" data-reveal>Three signature experiences</h2></div>
+      <div class="sec-head"><p class="kicker" data-reveal>What we do</p>
+      <h2 class="fancy" data-reveal>How we spotlight female DJs</h2></div>
       <div class="grid grid-3">
-        {experiences.map((e) => (
-          <a href={e.href} class="card exp" data-reveal style={`--accent:${e.accent}`}>
-            <h3 class="exp__name">{e.key}</h3>
-            <span class="exp__label">{e.label}</span>
-            <p class="exp__blurb">{e.blurb}</p>
-            <span class="exp__cta">Explore {e.key} →</span>
-          </a>
+        {offerings.map((o) => (
+          <article class="card offer" data-reveal>
+            <span class="offer__tag">{o.tag}</span>
+            <h3 class="offer__title">{o.title}</h3>
+            <p class="offer__blurb">{o.blurb}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -113,7 +112,7 @@ import { experiences, pillars, stats, press } from '../data/site';
     </div>
   </section>
 
-  <CtaBand heading="Be part of the movement." primaryLabel="Get involved" primaryHref="/contact" secondaryLabel="Explore PLY" secondaryHref="/ply" />
+  <CtaBand heading="Be part of the movement." primaryLabel="Get involved" primaryHref="/contact" secondaryLabel="Join the community" secondaryHref="/community" />
 </Base>
 
 <style>
@@ -127,11 +126,10 @@ import { experiences, pillars, stats, press } from '../data/site';
   .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.5rem 0.5rem; }
 
   .sec-head .kicker { margin-bottom: 0.7rem; }
-  .exp { display: flex; flex-direction: column; gap: 0.35rem; border-top: 4px solid var(--accent); }
-  .exp__name { font-family: var(--sans); font-weight: 800; font-size: 2rem; text-transform: uppercase; margin: 0; }
-  .exp__label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-  .exp__blurb { color: var(--muted); margin: 0.4rem 0; flex: 1; font-size: 0.95rem; }
-  .exp__cta { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
+  .offer { display: flex; flex-direction: column; gap: 0.4rem; }
+  .offer__tag { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; color: var(--orange); }
+  .offer__title { font-family: var(--sans); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; margin: 0; }
+  .offer__blurb { color: var(--muted); margin: 0; font-size: 0.95rem; }
 
   .pcard { display: flex; flex-direction: column; gap: 0.4rem; }
   .pcard__no { font-family: var(--serif); color: var(--dim); }

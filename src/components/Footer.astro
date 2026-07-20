@@ -13,9 +13,9 @@ const socials = [
   <div class="wrap">
     <div class="ft__cta card" data-reveal>
       <div>
-        <p class="kicker">Join the PLYLIST</p>
+        <p class="kicker">Stay in the loop</p>
         <h2 class="fancy">Get on the <span class="grad">list.</span></h2>
-        <p class="ft__lead">New PLY experiences, DJ callouts, and community drops — first, straight to your inbox.</p>
+        <p class="ft__lead">New events, DJ callouts, and community drops — first, straight to your inbox.</p>
       </div>
       <form class="ft__form" data-newsletter>
         <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
@@ -42,7 +42,7 @@ const socials = [
         <a href={site.donateUrl}>Donate</a>
         <a href={site.sponsorUrl}>Sponsor MixHer</a>
         <a href={site.applyUrl}>Apply to perform</a>
-        <a href="/first-spin">First Spin</a>
+        <a href="/events">Events</a>
       </div>
 
       <div class="ft__col">
@@ -89,6 +89,6 @@ const socials = [
   document.querySelector('[data-newsletter]')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
-    form.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;letter-spacing:0.04em;font-size:1.15rem;">YOU’RE ON THE PLYLIST ✦</p>';
+    form.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;letter-spacing:0.04em;font-size:1.15rem;">YOU’RE ON THE LIST ✦</p>';
   });
 </script>

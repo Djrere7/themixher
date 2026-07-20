@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Marquee from '../components/Marquee.astro';
 import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, experiences, pillars, paths, stats, ticker, press } from '../data/site';
+import { site, offerings, pillars, paths, stats, ticker, press } from '../data/site';
 ---
 <Base>
   <!-- ======================= HERO ======================= -->
@@ -19,7 +19,7 @@ import { site, experiences, pillars, paths, stats, ticker, press } from '../data
       <div class="hero__btns" data-reveal>
         <a href={site.donateUrl} class="btn btn-primary">Donate</a>
         <a href={site.sponsorUrl} class="btn btn-purple">Become a sponsor</a>
-        <a href="/ply" class="btn btn-ghost">Join the community</a>
+        <a href="/community" class="btn btn-ghost">Join the community</a>
       </div>
       <div class="hero__stats" data-reveal>
         {stats.map((s) => (
@@ -57,23 +57,21 @@ import { site, experiences, pillars, paths, stats, ticker, press } from '../data
     </div>
   </section>
 
-  <!-- ======================= THE ECOSYSTEM ======================= -->
+  <!-- ======================= WHAT WE DO ======================= -->
   <section class="section-pad tint">
     <div class="wrap">
       <div class="sec-head center-head">
-        <p class="kicker center" data-reveal>The MixHer ecosystem</p>
-        <h2 class="display" data-reveal>Three signature experiences</h2>
-        <p class="sec-sub" data-reveal>One nonprofit platform, three ways we spotlight female DJs.</p>
+        <p class="kicker center" data-reveal>What we do</p>
+        <h2 class="display" data-reveal>Culture-forward experiences</h2>
+        <p class="sec-sub" data-reveal>We produce the moments that put female DJs — and the people who love them — in the same room.</p>
       </div>
       <div class="grid grid-3">
-        {experiences.map((e) => (
-          <a href={e.href} class="card exp" data-reveal style={`--accent:${e.accent}`}>
-            <span class="exp__tagline">{e.tagline}</span>
-            <h3 class="exp__name">{e.key}</h3>
-            <span class="exp__label">{e.label}</span>
-            <p class="exp__blurb">{e.blurb}</p>
-            <span class="exp__cta">Explore {e.key} <span aria-hidden="true">→</span></span>
-          </a>
+        {offerings.map((o) => (
+          <article class="card offer" data-reveal>
+            <span class="offer__tag">{o.tag}</span>
+            <h3 class="offer__title">{o.title}</h3>
+            <p class="offer__blurb">{o.blurb}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -155,14 +153,11 @@ import { site, experiences, pillars, paths, stats, ticker, press } from '../data
   .intro__text .btn { margin-top: 0.8rem; }
   @media (max-width: 840px) { .intro { grid-template-columns: 1fr; } .intro__media { order: -1; } }
 
-  /* Experience cards */
-  .exp { display: flex; flex-direction: column; gap: 0.35rem; border-top: 4px solid var(--accent); }
-  .exp__tagline { font-family: var(--script); font-size: 1.6rem; color: var(--accent); line-height: 0.9; }
-  .exp__name { font-family: var(--sans); font-weight: 800; font-size: 2rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0.1rem 0 0; }
-  .exp__label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-  .exp__blurb { color: var(--muted); margin: 0.5rem 0 0.4rem; flex: 1; font-size: 0.95rem; }
-  .exp__cta { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
-  .exp:hover .exp__cta span { margin-left: 0.3rem; }
+  /* Offering cards */
+  .offer { display: flex; flex-direction: column; gap: 0.4rem; }
+  .offer__tag { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; color: var(--orange); }
+  .offer__title { font-family: var(--sans); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
+  .offer__blurb { color: var(--muted); margin: 0; font-size: 0.95rem; }
 
   .pillar { padding: 0.4rem 0; }
   .pillar__no { font-family: var(--serif); font-size: 1.1rem; color: var(--dim); }
