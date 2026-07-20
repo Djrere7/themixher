@@ -18,7 +18,7 @@ export const site = {
   city: 'Miami, FL',
   category: 'The nonprofit platform for female DJs',
   coreSentence:
-    'The MixHer is a Miami-founded 501(c)(3) nonprofit spotlighting female DJs — producing culture-forward events, live showcases, and a national community that helps women behind the decks perform, connect, get booked, and be seen.',
+    'A Miami-born nonprofit and community putting female DJs at the front of the party — real events, real bookings, real opportunities.',
   brandVision:
     'MixHer is a Miami-founded 501(c)(3) nonprofit dedicated to creating opportunities for female DJs through music, culture, networking, and education. Every MixHer experience exists to spotlight female DJs while creating unforgettable experiences that welcome people from every background.',
 
@@ -61,12 +61,12 @@ export const nav = [
 /** What MixHer does — general, no sub-label names. */
 export type Offering = { tag: string; title: string; blurb: string };
 export const offerings: Offering[] = [
-  { tag: '01', title: 'Live DJ Showcases', blurb: 'Curated female DJ sets on real stages — the spotlight women behind the decks deserve.' },
-  { tag: '02', title: 'Networking Mixers', blurb: 'Rooms full of DJs, promoters, media, venues, and label execs — where careers get made.' },
-  { tag: '03', title: 'Culture-Forward Events', blurb: 'Day parties, rooftops, and experiences that welcome people from every background.' },
-  { tag: '04', title: 'Brand Activations', blurb: 'High-vibe experiences that put partner brands inside the energy, not beside it.' },
-  { tag: '05', title: 'Community & Mentorship', blurb: 'A national network of women behind the decks — support, guidance, and real connection.' },
-  { tag: '06', title: 'Media Moments', blurb: 'On-site capture and podcast moments that extend each artist’s reach past the room.' },
+  { tag: '01', title: 'Live DJ Showcases', blurb: 'Female DJs on real stages.' },
+  { tag: '02', title: 'Networking Mixers', blurb: 'Where careers get made.' },
+  { tag: '03', title: 'Day Parties & Rooftops', blurb: 'High-vibe, all vibes welcome.' },
+  { tag: '04', title: 'Brand Activations', blurb: 'Your brand inside the energy.' },
+  { tag: '05', title: 'Community & Mentorship', blurb: 'Support that gets you booked.' },
+  { tag: '06', title: 'Real Opportunities', blurb: 'Gigs, connections, exposure.' },
 ];
 
 /** Featured DJs (NeoBeat artist grid). Placeholder names/handles — swap for real DJs + photos. */
@@ -85,11 +85,10 @@ export const pillars = [
   { key: 'Community', blurb: 'A supportive network that champions women behind the decks and lifts the next generation.' },
 ];
 
-/** Audience "paths" — the hub routing block. */
+/** Audience paths — dual audience: DJs + venues/brands. */
 export const paths = [
-  { key: 'DJs', title: 'For Female DJs', blurb: 'Perform, get booked, and join a community that has your back.', cta: 'Join the community', href: '/community', accent: 'var(--orchid-deep)' },
-  { key: 'Sponsors', title: 'For Sponsors & Brands', blurb: 'Reach a culture-forward audience and support women in music — tax-deductibly.', cta: 'Become a sponsor', href: '/sponsors', accent: 'var(--orange)' },
-  { key: 'Venues', title: 'For Venues & Partners', blurb: 'Program a signature female-led night with vetted, professional DJ talent.', cta: 'Partner with us', href: '/contact', accent: 'var(--purple)' },
+  { key: 'DJs', title: 'For Female DJs', blurb: 'You’re not alone. Join a community that books you, backs you, and puts you on stage.', cta: 'Join the community', href: '/community', accent: 'var(--orchid-deep)' },
+  { key: 'Venues', title: 'For Venues & Brands', blurb: 'Tap a ready-made community and put female DJs at the forefront of your next event.', cta: 'Partner with us', href: '/sponsors', accent: 'var(--orange)' },
 ];
 
 /** Headline stats. */

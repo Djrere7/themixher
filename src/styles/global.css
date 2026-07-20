@@ -4,6 +4,13 @@
    Fonts (self-hosted, brand-only): Monument Extended + Gistesy
    ============================================================ */
 
+/* Kelin Eator — brand serif (logo / elegant headings) */
+@font-face {
+  font-family: 'Kelin Eator';
+  src: url('/fonts/kelin-eator.woff2') format('woff2'), url('/fonts/kelin-eator.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+/* Monument Extended — brand bold sans (poster headlines / labels) */
 @font-face {
   font-family: 'Monument';
   src: url('/fonts/MonumentExtended-Regular.otf') format('opentype');
@@ -14,6 +21,13 @@
   src: url('/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
   font-weight: 800; font-style: normal; font-display: swap;
 }
+/* Poppins — brand body / UI (readable) */
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('/fonts/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+/* Gistesy — brand script accent */
 @font-face {
   font-family: 'Gistesy';
   src: url('/fonts/gistesy-regular.ttf') format('truetype');
@@ -43,9 +57,10 @@
   --dim: #9a8a9c;
 
   /* Type — brand fonts only */
-  --display: 'Monument', 'Arial Narrow', sans-serif;
-  --sans: 'Monument', system-ui, sans-serif;
-  --script: 'Gistesy', cursive;
+  --display: 'Monument', 'Arial Narrow', sans-serif;   /* bold poster headlines, labels, buttons */
+  --serif: 'Kelin Eator', Georgia, serif;              /* elegant brand serif (logo feel) */
+  --sans: 'Poppins', system-ui, sans-serif;            /* readable body / UI */
+  --script: 'Gistesy', cursive;                        /* script accent */
   --body: var(--sans);
 
   /* Layout */
@@ -73,9 +88,9 @@ body {
   color: var(--ink);
   font-family: var(--body);
   font-weight: 400;
-  line-height: 1.7;
-  font-size: 0.98rem;
-  letter-spacing: -0.01em;
+  line-height: 1.65;
+  font-size: 1.02rem;
+  letter-spacing: 0;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -104,9 +119,10 @@ h1, h2, h3 { margin: 0 0 0.4em; line-height: 1.0; }
 }
 h1.display { font-size: clamp(2.6rem, 8.5vw, 6.6rem); }
 h2.display { font-size: clamp(1.9rem, 5.5vw, 4.2rem); }
-.fancy { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: 0.96; letter-spacing: -0.02em; }
-h1.fancy { font-size: clamp(2.6rem, 8.5vw, 6.6rem); }
-h2.fancy { font-size: clamp(1.9rem, 5.5vw, 4.2rem); }
+/* Kelin Eator elegant serif display */
+.fancy { font-family: var(--serif); font-weight: 400; text-transform: none; line-height: 1.0; letter-spacing: -0.005em; }
+h1.fancy { font-size: clamp(3rem, 9.5vw, 7.4rem); }
+h2.fancy { font-size: clamp(2.2rem, 6vw, 4.8rem); }
 
 /* Gistesy script accent */
 .script { font-family: var(--script); font-weight: 400; text-transform: none; line-height: 0.8; letter-spacing: 0; }
