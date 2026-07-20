@@ -8,6 +8,8 @@ import { site } from '../data/site';
 // Wire real dates/Eventbrite links here as they're confirmed.
 const upcoming: { title: string; date: string; venue: string; blurb: string; href: string }[] = [];
 
+const gallery = ['/img/dj-spin.jpg', '/img/fan.jpg', '/img/laugh.jpg', '/img/group1.jpg', '/img/group2.jpg', '/img/booth.jpg'];
+
 const formats = [
   { title: 'Live DJ Showcases', blurb: 'Curated female DJ sets on real stages — the spotlight women behind the decks deserve.' },
   { title: 'Networking Mixers', blurb: 'Rooms full of DJs, promoters, media, venues, and label execs — where careers get made.' },
@@ -83,7 +85,7 @@ const formats = [
         </p>
         <p>It set the standard for every MixHer experience since: real stages, real industry, real community.</p>
       </div>
-      <div class="sig__media" data-reveal><Media label="Setting the Tone 2023" ratio="4 / 3" /></div>
+      <div class="sig__media" data-reveal><Media src="/img/group1.jpg" alt="MixHer community at an event" ratio="4 / 3" /></div>
     </div>
   </section>
 
@@ -93,8 +95,8 @@ const formats = [
       <div class="sec-head"><p class="kicker" data-reveal>From the floor</p>
       <h2 class="display" data-reveal>The energy</h2></div>
       <div class="gallery">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <Media label={`Event photo ${i + 1}`} ratio="1 / 1" />
+        {gallery.map((src) => (
+          <Media src={src} alt="A MixHer event moment" ratio="1 / 1" />
         ))}
       </div>
     </div>

@@ -69,12 +69,12 @@ export const offerings: Offering[] = [
   { tag: '06', title: 'Real Opportunities', blurb: 'Gigs, connections, exposure.' },
 ];
 
-/** Featured DJs (NeoBeat artist grid). Placeholder names/handles — swap for real DJs + photos. */
+/** "Inside the vibe" — real MixHer event photos. */
 export const featuredDJs = [
-  { name: 'Your DJ', handle: '@yourdj', img: '' },
-  { name: 'Your DJ', handle: '@yourdj', img: '' },
-  { name: 'Your DJ', handle: '@yourdj', img: '' },
-  { name: 'Your DJ', handle: '@yourdj', img: '' },
+  { name: 'Live sets', handle: '', img: '/img/dj-spin.jpg' },
+  { name: 'Real connections', handle: '', img: '/img/laugh.jpg' },
+  { name: 'The whole crew', handle: '', img: '/img/booth2.jpg' },
+  { name: 'Every vibe', handle: '', img: '/img/fan.jpg' },
 ];
 
 /** Mission pillars. */

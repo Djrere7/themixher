@@ -26,7 +26,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
         </div>
       </div>
       <div class="hero__art" data-reveal>
-        <div class="hero__disc"><Media label="MixHer" className="circle" ratio="1 / 1" /></div>
+        <div class="hero__disc"><Media src="/img/dj-spin.jpg" alt="A female DJ spinning at a MixHer event" className="circle" ratio="1 / 1" /></div>
         <span class="hero__badge">Est. 2023 · Miami</span>
       </div>
     </div>
@@ -75,15 +75,14 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   <section class="section-pad">
     <div class="wrap">
       <div class="sec-head sec-head--row">
-        <div><p class="spaced" data-reveal>The talent</p><h2 class="display" data-reveal>Women behind the decks</h2></div>
-        <a href="/community" class="btn btn-ghost hide-sm" data-reveal>Join the roster</a>
+        <div><p class="spaced" data-reveal>Inside the vibe</p><h2 class="display" data-reveal>This is the community</h2></div>
+        <a href="/community" class="btn btn-ghost hide-sm" data-reveal>Join us</a>
       </div>
       <div class="grid grid-4 djs">
         {featuredDJs.map((dj) => (
           <a href="/community" class="dj" data-reveal>
-            <div class="dj__disc"><Media src={dj.img || undefined} label="DJ" className="circle" ratio="1 / 1" /></div>
+            <div class="dj__disc"><Media src={dj.img || undefined} alt={dj.name} label="MixHer" className="circle" ratio="1 / 1" /></div>
             <h3 class="dj__name">{dj.name}</h3>
-            <span class="dj__handle">{dj.handle}</span>
           </a>
         ))}
       </div>
@@ -102,7 +101,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
           <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">See the vibe</a>
         </div>
       </div>
-      <div class="upcoming__art" data-reveal><Media label="Next event" ratio="4 / 5" /></div>
+      <div class="upcoming__art" data-reveal><Media src="/img/booth.jpg" alt="A MixHer event booth" ratio="4 / 5" /></div>
     </div>
   </section>
 
@@ -148,9 +147,10 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   .hero__follow a { font-weight: 600; color: var(--orchid-deep); border-bottom: 2px solid transparent; transition: border-color 0.2s; }
   .hero__follow a:hover { border-color: var(--orchid); }
   .hero__art { position: relative; }
-  .hero__disc { animation: spin 40s linear infinite; }
+  .hero__disc { position: relative; border-radius: 50%; }
+  .hero__disc::after { content: ''; position: absolute; inset: -10px; border-radius: 50%; border: 2px dashed var(--lavender); animation: spin 30s linear infinite; pointer-events: none; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { .hero__disc { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .hero__disc::after { animation: none; } }
   .hero__badge { position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; white-space: nowrap; }
   @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 360px; margin: 0 auto; } }
 
