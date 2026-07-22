@@ -34,16 +34,17 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
 
   <div class="mq-band"><Marquee items={ticker} /></div>
 
-  <!-- ======================= DUAL AUDIENCE (the point) ======================= -->
-  <section class="section-pad">
-    <div class="wrap">
+  <!-- ======================= DUAL AUDIENCE (bold purple band) ======================= -->
+  <section class="section-pad band-purple">
+    <div class="watercolor" aria-hidden="true"></div>
+    <div class="wrap band-inner">
       <div class="sec-head center">
         <p class="spaced" data-reveal>There’s a community out there</p>
-        <h2 class="fancy" data-reveal>Real community. <span class="grad">Real opportunities.</span></h2>
+        <h2 class="fancy" data-reveal>Real community.<br />Real opportunities.</h2>
       </div>
       <div class="grid grid-2">
         {paths.map((p) => (
-          <a href={p.href} class="card path" data-reveal style={`--accent:${p.accent}`}>
+          <a href={p.href} class="card band-glass path" data-reveal style={`--accent:${p.accent}`}>
             <span class="path__k">{p.key === 'DJs' ? 'For DJs' : 'For Venues & Brands'}</span>
             <h3 class="path__title">{p.title}</h3>
             <p class="path__blurb">{p.blurb}</p>
@@ -81,7 +82,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
       <div class="grid grid-4 djs">
         {featuredDJs.map((dj) => (
           <a href="/community" class="dj" data-reveal>
-            <div class="dj__disc"><Media src={dj.img || undefined} alt={dj.name} label="MixHer" className="circle" ratio="1 / 1" /></div>
+            <div class="dj__disc"><Media src={dj.img || undefined} alt={dj.name} label="MixHer" className="circle duo" ratio="1 / 1" /></div>
             <h3 class="dj__name">{dj.name}</h3>
           </a>
         ))}
@@ -101,7 +102,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
           <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">See the vibe</a>
         </div>
       </div>
-      <div class="upcoming__art" data-reveal><Media src="/img/booth.jpg" alt="A MixHer event booth" ratio="4 / 5" /></div>
+      <div class="upcoming__art" data-reveal><Media src="/img/djl-networking.jpg" alt="Connecting at a MixHer event" ratio="4 / 5" /></div>
     </div>
   </section>
 
@@ -168,6 +169,14 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   .path__blurb { color: var(--muted); margin: 0; flex: 1; }
   .path__cta { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
   .path:hover .path__cta span { margin-left: 0.3rem; }
+
+  /* purple band overrides */
+  .band-inner { position: relative; z-index: 1; }
+  .band-purple .path { border-top-color: rgba(255,255,255,0.65); }
+  .band-purple .path__title { color: #fff; }
+  .band-purple .path__k { color: rgba(255,255,255,0.72); }
+  .band-purple .path__blurb { color: rgba(255,255,255,0.9); }
+  .band-purple .path__cta { color: #ffe08a; }
 
   .offer { display: flex; flex-direction: column; gap: 0.3rem; }
   .offer__tag { font-family: var(--display); font-weight: 800; font-size: 0.9rem; color: var(--orange); letter-spacing: 0.1em; }

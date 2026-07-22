@@ -43,13 +43,13 @@
   --lavender: #e4a8f3;
   --purple: #7538ea;
 
-  /* Warm-cream canvas (NeoBeat-flavored, brand-tinted) */
-  --bg: #faf3ef;
-  --bg-2: #f5e9e3;
-  --bg-lav: #f1e7fb;
+  /* Crisp white canvas + cool brand tints (brand board) */
+  --bg: #ffffff;
+  --bg-2: #f6edfc;
+  --bg-lav: #eee1fb;
   --card: #ffffff;
-  --card-brd: #ecdfd8;
-  --card-brd-hi: #dcb8ef;
+  --card-brd: #eadff5;
+  --card-brd-hi: #d4a9ee;
 
   /* Ink */
   --ink: #241226;
@@ -99,12 +99,33 @@ body::before {
   content: '';
   position: fixed; inset: 0; z-index: -2;
   background:
-    radial-gradient(56vw 56vw at 86% -12%, rgba(203, 108, 230, 0.14), transparent 60%),
-    radial-gradient(46vw 46vw at 4% 2%, rgba(254, 154, 0, 0.10), transparent 58%),
-    radial-gradient(50vw 42vw at 50% 114%, rgba(228, 168, 243, 0.16), transparent 62%),
+    radial-gradient(50vw 50vw at 88% -10%, rgba(203, 108, 230, 0.22), transparent 60%),
+    radial-gradient(42vw 42vw at 2% 4%, rgba(254, 154, 0, 0.16), transparent 58%),
+    radial-gradient(48vw 40vw at 50% 116%, rgba(228, 168, 243, 0.22), transparent 62%),
     var(--bg);
 }
 .grain { display: none; }
+
+/* ---- Watercolor texture (brand board wash) ---- */
+.watercolor { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.watercolor::before, .watercolor::after {
+  content: ''; position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55;
+}
+.watercolor::before { width: 46vw; height: 46vw; top: -12%; right: -6%; background: radial-gradient(circle, var(--orchid), transparent 68%); }
+.watercolor::after { width: 40vw; height: 40vw; bottom: -16%; left: -8%; background: radial-gradient(circle, var(--orange), transparent 66%); opacity: 0.4; }
+
+/* ---- Bold color-blocked section (kills the beige) ---- */
+.band-purple { position: relative; overflow: hidden; color: #fff; background: linear-gradient(135deg, var(--purple) 0%, var(--orchid-deep) 55%, var(--orange) 135%); }
+.band-purple .kicker, .band-purple .spaced { color: rgba(255,255,255,0.85); }
+.band-purple .kicker::before, .band-purple .spaced::before { background: linear-gradient(90deg, #fff, transparent); }
+.band-purple .grad, .band-purple .grad-o { background: none; -webkit-text-fill-color: #fff; color: #fff; }
+.band-purple .sec-sub, .band-purple p { color: rgba(255,255,255,0.9); }
+.card.band-glass { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32); backdrop-filter: blur(6px); box-shadow: none; color: #fff; }
+.card.band-glass:hover { border-color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.2); box-shadow: 0 24px 50px -24px rgba(0,0,0,0.35); }
+
+/* ---- Duotone media (brand purple→orange) ---- */
+.media.duo { background: linear-gradient(140deg, var(--purple), var(--orange)); }
+.media.duo img { filter: grayscale(1) contrast(1.06) brightness(1.06); mix-blend-mode: lighten; }
 
 /* ---- Headings ---- */
 h1, h2, h3 { margin: 0 0 0.4em; line-height: 1.0; }

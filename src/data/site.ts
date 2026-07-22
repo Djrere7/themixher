@@ -69,12 +69,12 @@ export const offerings: Offering[] = [
   { tag: '06', title: 'Real Opportunities', blurb: 'Gigs, connections, exposure.' },
 ];
 
-/** "Inside the vibe" — real MixHer event photos. */
+/** "Inside the vibe" — real MixHer event photos (duotone). */
 export const featuredDJs = [
-  { name: 'Live sets', handle: '', img: '/img/dj-spin.jpg' },
-  { name: 'Real connections', handle: '', img: '/img/laugh.jpg' },
-  { name: 'The whole crew', handle: '', img: '/img/booth2.jpg' },
-  { name: 'Every vibe', handle: '', img: '/img/fan.jpg' },
+  { name: 'Live sets', handle: '', img: '/img/djl-decks.jpg' },
+  { name: 'Real connections', handle: '', img: '/img/djl-smile.jpg' },
+  { name: 'On the mic', handle: '', img: '/img/djl-speaker.jpg' },
+  { name: 'Every vibe', handle: '', img: '/img/djl-mic.jpg' },
 ];
 
 /** Mission pillars. */
