@@ -76,11 +76,11 @@ export const paths = [
   { key: 'Venues', title: 'For Venues & Brands', blurb: 'Tap a ready-made community and put female DJs at the forefront of your next event.', cta: 'Partner with us', href: '/sponsors', accent: 'var(--orange)' },
 ];
 
-/** Headline stats — real, from the deck. */
+/** Headline stats — real, from the deck. (More real stats to come from client.) */
 export const stats = [
   { num: '20+', label: 'Female DJs booked' },
-  { num: 'Hundreds', label: 'At our events' },
   { num: '70%', label: 'Make an industry connection' },
+  { num: '30K+', label: 'Monthly Instagram reach' },
   { num: '501(c)(3)', label: 'Registered nonprofit' },
 ];
 
@@ -122,12 +122,11 @@ export const ticker = ['Female DJs lead the vibe', 'All vibes welcome', 'Real ne
 /** Real brand partners (deck). */
 export const partners = ['Vilon Liquor', 'Raising Cane’s', 'Smartwater', 'DJ City', 'Moxy Hotels'];
 
-/** "Inside the vibe" — real MixHer DJ Linkup photos (shown clearly, no duotone). */
+/** "Inside the vibe" — female DJs behind the decks (clear, no duotone). */
 export const featuredDJs = [
-  { name: 'Live sets', img: '/img/djl-decks.jpg' },
-  { name: 'On the mic', img: '/img/djl-speaker.jpg' },
-  { name: 'Real connections', img: '/img/djl-smile.jpg' },
-  { name: 'In the mix', img: '/img/djl-mic.jpg' },
+  { name: 'Behind the decks', img: '/img/dj-flowers.jpg' },
+  { name: 'On the mic', img: '/img/djl-decks.jpg' },
+  { name: 'In the mix', img: '/img/fan.jpg' },
 ];
 
 /** Upcoming events — real. */
@@ -141,17 +140,6 @@ export const events = [
     city: 'Atlantic City, NJ',
     blurb: 'An all-female DJ lineup kicks off PLY — our signature party series — presented with BASSBOSS.',
     img: '/img/event-ply.jpg',
-    href: '#tickets', // TODO: ticket link
-  },
-  {
-    name: 'The Set',
-    series: 'Signature Networking Series debut · Labor Day Pool Party',
-    date: 'Sat · Sep 6',
-    time: 'TBA',
-    venue: 'Location TBA',
-    city: '',
-    blurb: 'We debut The Set — our networking series built to lift up-and-coming female DJs — at a Labor Day pool party.',
-    img: '/img/event-pool.jpg',
     href: '#tickets', // TODO: ticket link
   },
 ];

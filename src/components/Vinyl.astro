@@ -1,30 +1,52 @@
 ---
-/** Decorative spinning vinyl record (DJ element). */
+/** Realistic vinyl record — matches the MixHer/PLY deck (black disc, fine grooves,
+ *  gradient label with a play mark, neon glow). */
 interface Props { size?: number; className?: string; }
-const { size = 140, className = '' } = Astro.props;
+const { size = 150, className = '' } = Astro.props;
 ---
 <div class:list={['vinyl', className]} style={`--v:${size}px`} aria-hidden="true">
-  <svg viewBox="0 0 200 200" class="vinyl__disc">
+  <svg viewBox="0 0 200 200">
     <defs>
-      <radialGradient id="vg" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#2a1226" />
-        <stop offset="100%" stop-color="#0e0512" />
+      <radialGradient id="vdisc" cx="42%" cy="38%" r="70%">
+        <stop offset="0%" stop-color="#2b2b30" />
+        <stop offset="18%" stop-color="#141416" />
+        <stop offset="100%" stop-color="#050506" />
       </radialGradient>
+      <linearGradient id="vlabel" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="var(--orange)" />
+        <stop offset="55%" stop-color="var(--orchid)" />
+        <stop offset="100%" stop-color="var(--purple)" />
+      </linearGradient>
+      <linearGradient id="vsheen" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.34)" />
+        <stop offset="30%" stop-color="rgba(255,255,255,0)" />
+        <stop offset="70%" stop-color="rgba(255,255,255,0)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0.12)" />
+      </linearGradient>
     </defs>
-    <circle cx="100" cy="100" r="98" fill="url(#vg)" />
-    {[92, 84, 76, 68, 60, 52].map((r) => (
-      <circle cx="100" cy="100" r={r} fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
-    ))}
-    <circle cx="100" cy="100" r="34" fill="var(--orchid)" />
-    <circle cx="100" cy="100" r="34" fill="none" stroke="var(--orange)" stroke-width="2" />
-    <circle cx="100" cy="100" r="6" fill="#0e0512" />
-    <path d="M100 66 a34 34 0 0 1 0 68" fill="none" stroke="var(--orange)" stroke-width="3" opacity="0.7" />
+    <!-- disc -->
+    <circle cx="100" cy="100" r="98" fill="url(#vdisc)" />
+    <!-- fine grooves -->
+    <g fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.6">
+      {Array.from({ length: 22 }).map((_, i) => (
+        <circle cx="100" cy="100" r={40 + i * 2.6} />
+      ))}
+    </g>
+    <!-- sheen sweep -->
+    <circle cx="100" cy="100" r="98" fill="url(#vsheen)" />
+    <!-- center label -->
+    <circle cx="100" cy="100" r="36" fill="url(#vlabel)" />
+    <circle cx="100" cy="100" r="36" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
+    <!-- play mark -->
+    <path d="M92 88 L114 100 L92 112 Z" fill="#fff" opacity="0.95" />
+    <!-- spindle -->
+    <circle cx="100" cy="100" r="4" fill="#0a0a0c" />
   </svg>
 </div>
 
 <style>
-  .vinyl { width: var(--v); height: var(--v); }
-  .vinyl__disc { width: 100%; height: 100%; animation: vspin 8s linear infinite; }
+  .vinyl { width: var(--v); height: var(--v); line-height: 0; }
+  .vinyl svg { width: 100%; height: 100%; display: block; border-radius: 50%; box-shadow: 0 0 34px rgba(203,108,230,0.5), 0 12px 26px rgba(0,0,0,0.35); animation: vspin 6s linear infinite; }
   @keyframes vspin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { .vinyl__disc { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .vinyl svg { animation: none; } }
 </style>

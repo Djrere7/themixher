@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Marquee from '../components/Marquee.astro';
 import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
-import Flower from '../components/Flower.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, offerings, paths, featuredDJs, stats, ticker, partners, events } from '../data/site';
 const nextEvent = events[0];
@@ -29,9 +28,8 @@ const nextEvent = events[0];
         </div>
       </div>
       <div class="hero__art" data-reveal>
-        <Flower size={110} color="var(--lavender)" spin={true} className="hero__flower" />
         <div class="hero__frame"><Media src="/img/group1.jpg" alt="The MixHer community together at an event" ratio="4 / 3" /></div>
-        <Vinyl size={120} className="hero__vinyl" />
+        <Vinyl size={124} className="hero__vinyl" />
         <span class="hero__badge">Est. 2023 · Nationwide</span>
       </div>
     </div>
@@ -42,8 +40,6 @@ const nextEvent = events[0];
   <!-- ======================= DUAL AUDIENCE (bold purple band) ======================= -->
   <section class="section-pad band-purple">
     <div class="watercolor" aria-hidden="true"></div>
-    <Flower size={130} color="var(--orchid)" className="band-flower band-flower--1" />
-    <Flower size={90} color="var(--orange)" className="band-flower band-flower--2" />
     <div class="wrap band-inner">
       <div class="sec-head center">
         <p class="spaced" data-reveal>There’s a community out there</p>
@@ -84,10 +80,10 @@ const nextEvent = events[0];
   <section class="section-pad tint">
     <div class="wrap">
       <div class="sec-head sec-head--row">
-        <div><p class="spaced" data-reveal>Inside the vibe</p><h2 class="display" data-reveal>This is the community</h2></div>
+        <div><p class="spaced" data-reveal>Inside the vibe</p><h2 class="display" data-reveal>Women behind the decks</h2></div>
         <a href="/community" class="btn btn-ghost hide-sm" data-reveal>Join us</a>
       </div>
-      <div class="grid grid-4 djs">
+      <div class="grid grid-3 djs">
         {featuredDJs.map((dj) => (
           <a href="/community" class="dj" data-reveal>
             <div class="dj__pic"><Media src={dj.img} alt={dj.name} ratio="1 / 1" /></div>
@@ -171,12 +167,7 @@ const nextEvent = events[0];
   .hero__art { position: relative; }
   .hero__frame { position: relative; }
   .hero__frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; border-radius: var(--radius-lg); border: 2px dashed var(--lavender); pointer-events: none; z-index: -1; }
-  .hero__vinyl { position: absolute; bottom: -34px; left: -34px; z-index: 2; filter: drop-shadow(0 12px 24px rgba(117,56,234,0.4)); }
-  .hero__flower { position: absolute; top: -46px; right: -22px; z-index: 3; }
-  .band-flower { position: absolute; z-index: 0; }
-  .band-flower--1 { top: -34px; right: 5%; }
-  .band-flower--2 { bottom: 6%; left: 4%; }
-  @media (max-width: 620px) { .band-flower { display: none; } }
+  .hero__vinyl { position: absolute; bottom: -34px; left: -34px; z-index: 2; }
   .hero__badge { position: absolute; top: -14px; right: 8%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; white-space: nowrap; }
   @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 380px; margin: 1rem auto 0; } }
 
