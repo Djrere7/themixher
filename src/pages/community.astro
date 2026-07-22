@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
 import { site, community } from '../data/site';
 ---
 <Base title="Community" description="The MixHer community for female DJs — join the group, find performance opportunities, mentorship, resources, and a network that has your back.">
@@ -15,18 +16,19 @@ import { site, community } from '../data/site';
   <section class="section-pad">
     <div class="wrap">
       <div class="join card" data-reveal>
-        <div>
+        <div class="join__content">
           <p class="kicker">Start here</p>
           <h2 class="fancy">Join the <span class="grad">community.</span></h2>
           <p class="join__p">
             Our group chat is where the movement lives day to day — gig callouts, gear talk, advice,
             hype, and real-time support between women who get it. Free to join.
           </p>
+          <div class="join__btns">
+            <a href={site.communityUrl} class="btn btn-primary">Join the community</a>
+            <a href={site.applyUrl} class="btn btn-ghost">Apply to perform</a>
+          </div>
         </div>
-        <div class="join__btns">
-          <a href={site.communityUrl} class="btn btn-primary">Join the community</a>
-          <a href={site.applyUrl} class="btn btn-ghost">Apply to perform</a>
-        </div>
+        <div class="join__media"><Media src="/img/dj-spin.jpg" alt="A female DJ spinning at a MixHer event" ratio="1 / 1" /></div>
       </div>
     </div>
   </section>
@@ -49,8 +51,21 @@ import { site, community } from '../data/site';
     </div>
   </section>
 
-  <!-- Steps -->
+  <!-- Community photo strip -->
   <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker" data-reveal>The vibe</p>
+      <h2 class="fancy" data-reveal>You belong here</h2></div>
+      <div class="grid grid-3 strip">
+        <Media src="/img/laugh.jpg" alt="Friends laughing at a MixHer event" ratio="1 / 1" />
+        <Media src="/img/group2.jpg" alt="The MixHer community" ratio="1 / 1" />
+        <Media src="/img/booth2.jpg" alt="MixHer members together" ratio="1 / 1" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="section-pad tint">
     <div class="wrap">
       <div class="sec-head"><p class="kicker" data-reveal>How it works</p>
       <h2 class="fancy" data-reveal>From curious to booked</h2></div>
@@ -74,12 +89,14 @@ import { site, community } from '../data/site';
 </Base>
 
 <style>
-  .join { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; background: linear-gradient(120deg, var(--bg-lav), #fff); border-color: var(--card-brd-hi); }
+  .join { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; background: linear-gradient(120deg, var(--bg-lav), #fff); border-color: var(--card-brd-hi); }
   .join h2 { margin: 0.2rem 0; }
-  .join__p { color: var(--muted); margin: 0; max-width: 48ch; }
-  .join__btns { display: flex; flex-direction: column; gap: 0.7rem; }
-  .join__btns .btn { width: 100%; }
-  @media (max-width: 780px) { .join { grid-template-columns: 1fr; } }
+  .join__p { color: var(--muted); margin: 0 0 1.2rem; max-width: 46ch; }
+  .join__btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  .join__media { border-radius: var(--radius); overflow: hidden; }
+  @media (max-width: 780px) { .join { grid-template-columns: 1fr; } .join__media { order: -1; max-width: 320px; } }
+
+  .strip { margin-top: 0.5rem; }
 
   .sec-head .kicker { margin-bottom: 0.7rem; }
   .feat { display: flex; flex-direction: column; gap: 0.4rem; }

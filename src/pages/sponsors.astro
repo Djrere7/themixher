@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Media from '../components/Media.astro';
 import { site, tiers, sponsorValue } from '../data/site';
 ---
 <Base title="Sponsors & Brands" description="Sponsor The MixHer — reach a culture-forward audience, activate inside live experiences, and support women in music. Tax-deductible sponsorship from $500.">
@@ -22,6 +23,13 @@ import { site, tiers, sponsorValue } from '../data/site';
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- Energy band -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="spband" data-reveal><Media src="/img/group1.jpg" alt="A packed MixHer event" ratio="21 / 9" /></div>
     </div>
   </section>
 
@@ -88,6 +96,7 @@ import { site, tiers, sponsorValue } from '../data/site';
 </Base>
 
 <style>
+  .spband { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--card-brd); }
   .val { display: flex; flex-direction: column; gap: 0.5rem; }
   .val__title { font-family: var(--sans); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
   .val__blurb { color: var(--muted); margin: 0; }
