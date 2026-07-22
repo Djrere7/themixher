@@ -3,131 +3,91 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site } from '../data/site';
+import { site, events } from '../data/site';
 
-// Wire real dates/Eventbrite links here as they're confirmed.
-const upcoming: { title: string; date: string; venue: string; blurb: string; href: string }[] = [];
-
-const gallery = ['/img/fan.jpg', '/img/toast.jpg', '/img/duo-decks.jpg', '/img/dj-decks.jpg', '/img/booth.jpg', '/img/djl-speaker.jpg'];
-
-const formats = [
-  { title: 'Live DJ Showcases', blurb: 'Curated female DJ sets on real stages — the spotlight women behind the decks deserve.' },
-  { title: 'Networking Mixers', blurb: 'Rooms full of DJs, promoters, media, venues, and label execs — where careers get made.' },
-  { title: 'Day Parties & Rooftops', blurb: 'Sun-soaked, high-vibe experiences with all-female lineups in Miami’s best rooms.' },
-  { title: 'Brand Activations', blurb: 'Sponsor-powered moments — giveaways, photo experiences, and content built into the night.' },
-];
+const gallery = ['/img/djl-decks.jpg', '/img/djl-smile.jpg', '/img/djl-speaker.jpg', '/img/fan.jpg', '/img/group2.jpg', '/img/toast.jpg'];
 ---
-<Base title="Events" description="MixHer events — live female DJ showcases, networking mixers, and culture-forward experiences across Miami and beyond. See what's coming up.">
+<Base title="Events" description="MixHer events — high-vibe nights of live female DJ sets, networking, and culture, in cities across the country. See what's coming up.">
   <PageHeader
     kicker="Events"
     title={`Where the movement<br/><span class='grad'>comes alive.</span>`}
-    lead="From our Art Week debut to networking mixers and rooftop showcases, MixHer events are high-vibe rooms where female DJs perform and the industry connects."
+    lead="High-vibe nights of live female DJ sets, real networking, and culture — in music-forward cities across the country."
   />
 
   <!-- Upcoming -->
   <section class="section-pad">
     <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>Upcoming</p>
-      <h2 class="fancy" data-reveal>Next up</h2></div>
-
-      {upcoming.length > 0 ? (
-        <div class="grid grid-2">
-          {upcoming.map((e) => (
-            <article class="card ev" data-reveal>
-              <span class="ev__date">{e.date}</span>
-              <h3 class="ev__title">{e.title}</h3>
-              <p class="ev__venue">{e.venue}</p>
+      <div class="sec-head"><p class="spaced" data-reveal>Upcoming events</p>
+      <h2 class="display" data-reveal>Next up</h2></div>
+      <div class="ev-list">
+        {events.map((e) => (
+          <article class="ev card" data-reveal>
+            <div class="ev__art"><Media src={e.img} alt={`${e.name} flyer`} ratio="4 / 5" /></div>
+            <div class="ev__body">
+              <span class="ev__series">{e.series}</span>
+              <h3 class="ev__name">{e.name}</h3>
               <p class="ev__blurb">{e.blurb}</p>
+              <ul class="ev__meta">
+                <li><b>When</b>{e.date}{e.time ? ` · ${e.time}` : ''}</li>
+                <li><b>Where</b>{e.venue}{e.city ? ` · ${e.city}` : ''}</li>
+              </ul>
               <a href={e.href} class="btn btn-primary">Get tickets</a>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div class="card empty" data-reveal>
-          <h3 class="empty__h">New dates dropping soon ✦</h3>
-          <p>The next MixHer experiences are being locked in. Join the community or our newsletter to be first to know — and follow <a href={site.socials.instagram} target="_blank" rel="noopener" class="ilink">@themixher</a> for announcements.</p>
-          <div class="empty__btns">
-            <a href="/community" class="btn btn-primary">Join the community</a>
-            <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">Follow on Instagram</a>
-          </div>
-        </div>
-      )}
-    </div>
-  </section>
-
-  <!-- Formats -->
-  <section class="section-pad tint">
-    <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>What to expect</p>
-      <h2 class="display" data-reveal>Our event formats</h2></div>
-      <div class="grid grid-4">
-        {formats.map((f) => (
-          <div class="card fmt" data-reveal>
-            <h3 class="fmt__title">{f.title}</h3>
-            <p class="fmt__blurb">{f.blurb}</p>
-          </div>
+            </div>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
   <!-- Signature debut -->
-  <section class="section-pad">
+  <section class="section-pad tint">
     <div class="wrap sig">
       <div class="sig__text" data-reveal>
-        <p class="kicker">A signature debut</p>
-        <h2 class="fancy">Setting the Tone, <span class="grad">2023</span></h2>
+        <p class="spaced">Where it started</p>
+        <h2 class="fancy">Our Art Basel <span class="grad">debut.</span></h2>
         <p>
-          MixHer debuted during Art Week in Miami with a public DJ brunch — 25+ female DJs and radio
-          personalities, hundreds in attendance, and an exclusive listening experience with a
-          Grammy-winning artist. On-site Q&amp;As with label executives and a room full of connection made
-          in real time.
+          MixHer debuted during Miami Art Basel with Grammy-winning artists and national radio stations
+          in attendance — a room full of DJs, tastemakers, and culture, connecting in real time.
         </p>
-        <p>It set the standard for every MixHer experience since: real stages, real industry, real community.</p>
+        <p>It set the standard for every MixHer night since: real stages, real industry, real community.</p>
       </div>
-      <div class="sig__media" data-reveal><Media src="/img/group2.jpg" alt="MixHer community at an event" ratio="4 / 3" /></div>
+      <div class="sig__media" data-reveal><Media src="/img/group1.jpg" alt="MixHer community at an event" ratio="4 / 3" /></div>
     </div>
   </section>
 
   <!-- Gallery -->
-  <section class="section-pad tint-lav">
+  <section class="section-pad">
     <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>From the floor</p>
+      <div class="sec-head"><p class="spaced" data-reveal>From the floor</p>
       <h2 class="display" data-reveal>The energy</h2></div>
       <div class="gallery">
-        {gallery.map((src) => (
-          <Media src={src} alt="A MixHer event moment" ratio="1 / 1" />
-        ))}
+        {gallery.map((src) => <Media src={src} alt="A MixHer event moment" ratio="1 / 1" />)}
       </div>
     </div>
   </section>
 
   <CtaBand
-    heading="Want your brand at the next one?"
-    primaryLabel="Become a sponsor"
-    primaryHref="/sponsors"
-    secondaryLabel="Perform with us"
-    secondaryHref={site.applyUrl}
+    heading="Be there next time."
+    sub="Join the community and follow along so you never miss a MixHer night."
+    primaryLabel="Join the community"
+    primaryHref="/community"
+    secondaryLabel="Follow @themixher"
+    secondaryHref={site.socials.instagram}
   />
 </Base>
 
 <style>
-  .sec-head .kicker { margin-bottom: 0.7rem; }
-  .ev { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-  .ev__date { font-family: var(--sans); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--orange); }
-  .ev__title { font-family: var(--sans); font-weight: 800; font-size: 1.6rem; text-transform: uppercase; margin: 0; }
-  .ev__venue { color: var(--orchid-deep); margin: 0; font-weight: 600; }
-  .ev__blurb { color: var(--muted); margin: 0.3rem 0 1rem; }
-
-  .empty { text-align: center; }
-  .empty__h { font-family: var(--sans); font-weight: 800; font-size: 1.8rem; text-transform: uppercase; margin: 0 0 0.6rem; }
-  .empty p { color: var(--muted); max-width: 54ch; margin: 0 auto 1.4rem; }
-  .empty__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
-  .ilink { color: var(--orchid-deep); font-weight: 600; }
-
-  .fmt { display: flex; flex-direction: column; gap: 0.4rem; }
-  .fmt__title { font-family: var(--sans); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
-  .fmt__blurb { color: var(--muted); margin: 0; font-size: 0.9rem; }
+  .sec-head .spaced { display: block; margin-bottom: 0.8rem; }
+  .ev-list { display: flex; flex-direction: column; gap: clamp(1.2rem, 3vw, 2rem); }
+  .ev { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; padding: clamp(1.2rem, 3vw, 2rem); }
+  .ev__art { border-radius: var(--radius); overflow: hidden; max-width: 320px; }
+  .ev__series { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+  .ev__name { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; margin: 0.2rem 0 0.5rem; }
+  .ev__blurb { color: var(--muted); margin: 0 0 1rem; max-width: 48ch; }
+  .ev__meta { list-style: none; margin: 0 0 1.2rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .ev__meta li { color: var(--ink); font-size: 0.95rem; }
+  .ev__meta b { font-family: var(--display); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orchid-deep); margin-right: 0.6rem; }
+  @media (max-width: 720px) { .ev { grid-template-columns: 1fr; } .ev__art { max-width: 260px; } }
 
   .sig { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   .sig__text p { color: var(--muted); max-width: 54ch; }

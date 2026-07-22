@@ -3,23 +3,35 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Media from '../components/Media.astro';
-import { site, tiers, sponsorValue } from '../data/site';
+import { site, impact, sponsorBrands, sponsorVenues, partners } from '../data/site';
 ---
-<Base title="Sponsors & Brands" description="Sponsor The MixHer — reach a culture-forward audience, activate inside live experiences, and support women in music. Tax-deductible sponsorship from $500.">
+<Base title="Sponsors & Brands" description="Partner with The MixHer — align with music-forward audiences, activate inside high-energy events, and support women in music. Tax-deductible.">
   <PageHeader
-    kicker="Sponsors & brands"
+    kicker="Sponsors & partners"
     title={`Put your brand<br/>inside the <span class='grad-o'>vibe.</span>`}
-    lead="MixHer connects forward-thinking brands with a passionate community of female DJs, creatives, and tastemakers at the center of Miami’s music scene — while advancing women in music."
+    lead="The MixHer connects forward-thinking brands with a passionate community of female DJs, creatives, and tastemakers — while advancing women in music."
   />
 
-  <!-- Value props -->
+  <!-- What makes us different -->
   <section class="section-pad">
+    <div class="wrap narrow" style="text-align:center">
+      <p class="spaced center" data-reveal>Why partner</p>
+      <h2 class="fancy" data-reveal>Relevance &amp; reach, with real impact.</h2>
+      <p class="why__lead" data-reveal>
+        We’re building talent, not just booking it — shifting the culture while creating dope vibes.
+        For brands, that’s relevance and reach. For venues, it’s guaranteed energy, content, and revenue.
+      </p>
+    </div>
+  </section>
+
+  <!-- Impact stats -->
+  <section class="section-pad tint">
     <div class="wrap">
-      <div class="grid grid-2">
-        {sponsorValue.map((v) => (
-          <div class="card val" data-reveal>
-            <h3 class="val__title">{v.title}</h3>
-            <p class="val__blurb">{v.blurb}</p>
+      <div class="grid grid-4 impact">
+        {impact.map((s) => (
+          <div class="istat" data-reveal>
+            <span class="istat__num grad">{s.num}</span>
+            <span class="istat__label">{s.label}</span>
           </div>
         ))}
       </div>
@@ -33,88 +45,66 @@ import { site, tiers, sponsorValue } from '../data/site';
     </div>
   </section>
 
-  <!-- Why it matters -->
-  <section class="section-pad tint-lav why">
-    <div class="wrap narrow" style="text-align:center">
-      <p class="kicker center" data-reveal>Why it matters</p>
-      <h2 class="fancy" data-reveal>Only a fraction of DJ bookings go to women.</h2>
-      <p class="why__lead" data-reveal>
-        Your sponsorship directly funds the stages, showcases, and education that change that — putting
-        women behind the decks in front of the audiences, brands, and industry that book them next.
-      </p>
+  <!-- For brands / venues -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="grid grid-2">
+        <div class="card audience" data-reveal>
+          <h3 class="audience__h grad">For Brands</h3>
+          <ul class="audience__list">
+            {sponsorBrands.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+        <div class="card audience" data-reveal>
+          <h3 class="audience__h grad-o">For Venues &amp; Media</h3>
+          <ul class="audience__list">
+            {sponsorVenues.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+      </div>
+      <p class="tax" data-reveal>The MixHer is a minority woman-founded 501(c)(3) nonprofit. {site.taxLine}</p>
     </div>
   </section>
 
-  <!-- Tiers -->
-  <section class="section-pad" id="tiers">
+  <!-- Partners -->
+  <section class="section-pad tint logos">
     <div class="wrap">
-      <div class="sec-head" style="text-align:center">
-        <p class="kicker center" data-reveal>Sponsorship packages</p>
-        <h2 class="display" data-reveal>Choose your level</h2>
-      </div>
-      <div class="grid grid-3">
-        {tiers.map((t) => (
-          <div class:list={['card tier', { featured: t.featured }]} data-reveal style={`--accent:${t.accent}`}>
-            {t.featured && <span class="tier__flag">Most popular</span>}
-            <h3 class="tier__name">{t.name}</h3>
-            <p class="tier__price grad">{t.price}</p>
-            <ul class="tier__perks">
-              {t.perks.map((p) => <li>{p}</li>)}
-            </ul>
-            <a href={site.emailHref} class:list={['btn', t.featured ? 'btn-primary' : 'btn-ghost']}>Sponsor this tier</a>
-          </div>
-        ))}
-      </div>
-      <p class="tier__note" data-reveal>
-        Brand partnerships, collaborations, and custom activations available upon request.
-        {' '}<span class="tier__tax">{site.taxLine}</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- What sponsors power -->
-  <section class="section-pad tint power">
-    <div class="wrap">
-      <div class="sec-head"><p class="kicker" data-reveal>Your support powers</p>
-      <h2 class="fancy" data-reveal>Real experiences, real impact</h2></div>
-      <div class="grid grid-3">
-        <div class="card" data-reveal><h3 class="power__h">Live showcases</h3><p class="power__p">Sound, stages, and food + drinks for female DJs to perform and be seen.</p></div>
-        <div class="card" data-reveal><h3 class="power__h">Networking</h3><p class="power__p">Rooms that connect DJs with brands, venues, media, and mentors.</p></div>
-        <div class="card" data-reveal><h3 class="power__h">Community</h3><p class="power__p">A national network that champions women behind the decks and lifts the next generation.</p></div>
+      <p class="spaced center" data-reveal>In good company</p>
+      <div class="logos__row" data-reveal>
+        {partners.map((name) => <span class="logos__item">{name}</span>)}
       </div>
     </div>
   </section>
 
   <CtaBand
     heading="Let’s build something custom."
-    sub="Tell us your brand goals and we’ll tailor a sponsorship that fits — from logo placement to a fully branded activation."
+    sub="Tell us your goals and we’ll tailor a partnership that fits — from gifting bags to a fully branded activation."
     primaryLabel="Email the team"
     primaryHref={site.emailHref}
-    secondaryLabel="Call us"
-    secondaryHref={site.phoneHref}
+    secondaryLabel="See our events"
+    secondaryHref="/events"
   />
 </Base>
 
 <style>
-  .spband { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--card-brd); }
-  .val { display: flex; flex-direction: column; gap: 0.5rem; }
-  .val__title { font-family: var(--sans); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
-  .val__blurb { color: var(--muted); margin: 0; }
-
-  .why__lead { color: var(--muted); font-size: 1.12rem; max-width: 60ch; margin: 1.2rem auto 0; }
+  .why__lead { color: var(--muted); font-size: 1.12rem; max-width: 62ch; margin: 1.2rem auto 0; }
   .center { display: inline-flex; justify-content: center; }
+  .sec-head .spaced { display: block; }
 
-  .tier { display: flex; flex-direction: column; gap: 0.5rem; border-top: 4px solid var(--accent); position: relative; }
-  .tier.featured { border-color: var(--orange); box-shadow: var(--shadow-hi); }
-  .tier__flag { position: absolute; top: 0; right: 1.4rem; transform: translateY(-50%); background: var(--orange); color: #3a2411; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 999px; }
-  .tier__name { font-family: var(--sans); font-weight: 800; font-size: 1.7rem; text-transform: uppercase; margin: 0.4rem 0 0; }
-  .tier__price { font-family: var(--display); font-weight: 700; font-size: 2.8rem; line-height: 1; margin: 0 0 0.6rem; }
-  .tier__perks { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
-  .tier__perks li { color: var(--muted); font-size: 0.92rem; padding-left: 1.4rem; position: relative; }
-  .tier__perks li::before { content: '✦'; position: absolute; left: 0; color: var(--accent); }
-  .tier__note { text-align: center; color: var(--dim); margin-top: 1.6rem; font-size: 0.9rem; }
-  .tier__tax { display: block; margin-top: 0.3rem; }
+  .impact { text-align: center; }
+  .istat { display: flex; flex-direction: column; gap: 0.4rem; padding: 1rem 0.5rem; }
+  .istat__num { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1; }
+  .istat__label { color: var(--muted); font-size: 0.85rem; }
 
-  .power__h { font-family: var(--sans); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; margin: 0 0 0.4rem; color: var(--orchid-deep); }
-  .power__p { color: var(--muted); margin: 0; }
+  .spband { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--card-brd); }
+
+  .audience { display: flex; flex-direction: column; gap: 0.8rem; }
+  .audience__h { font-family: var(--display); font-weight: 800; font-size: 1.8rem; text-transform: uppercase; margin: 0; }
+  .audience__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .audience__list li { color: var(--muted); font-size: 0.95rem; padding-left: 1.4rem; position: relative; }
+  .audience__list li::before { content: '✦'; position: absolute; left: 0; color: var(--orange); }
+  .tax { text-align: center; color: var(--dim); margin-top: 1.6rem; font-size: 0.9rem; }
+
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
+  .logos__item { font-family: var(--display); font-weight: 800; font-size: clamp(1rem, 2.2vw, 1.5rem); text-transform: uppercase; color: var(--dim); }
 </style>

@@ -13,8 +13,8 @@ const socials = [
   <div class="wrap">
     <div class="ft__cta card" id="join-list" data-reveal>
       <div>
-        <p class="kicker">Stay in the loop</p>
-        <h2 class="fancy">Get on the <span class="grad">list.</span></h2>
+        <p class="kicker">The newsletter</p>
+        <h2 class="fancy">Never miss a <span class="grad">moment.</span></h2>
         <p class="ft__lead">New events, DJ callouts, and community drops — first, straight to your inbox.</p>
       </div>
       <form class="ft__form" data-newsletter>
@@ -48,8 +48,7 @@ const socials = [
       <div class="ft__col">
         <h3 class="ft__h">Contact</h3>
         <a href={site.emailHref}>{site.email}</a>
-        <a href={site.phoneHref}>{site.phone}</a>
-        <span class="ft__addr">{site.address}</span>
+        <span class="ft__addr">{site.location}</span>
       </div>
     </div>
 
@@ -89,6 +88,6 @@ const socials = [
   document.querySelector('[data-newsletter]')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
-    form.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;letter-spacing:0.04em;font-size:1.15rem;">YOU’RE ON THE LIST ✦</p>';
+    form.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;letter-spacing:0.04em;font-size:1.15rem;">YOU’RE IN ✦</p>';
   });
 </script>

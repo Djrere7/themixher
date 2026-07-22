@@ -2,8 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Marquee from '../components/Marquee.astro';
 import Media from '../components/Media.astro';
+import Vinyl from '../components/Vinyl.astro';
+import Flower from '../components/Flower.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site';
+import { site, offerings, paths, featuredDJs, stats, ticker, partners, events } from '../data/site';
+const nextEvent = events[0];
 ---
 <Base>
   <!-- ======================= HERO ======================= -->
@@ -11,7 +14,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
     <div class="wc" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="spaced" data-reveal>Nonprofit · Female DJ community · Miami</p>
+        <p class="spaced" data-reveal>Nonprofit · Female DJ community · Nationwide</p>
         <h1 class="display hero__h" data-reveal>Female DJs<br />lead the <span class="grad-o">vibe.</span></h1>
         <p class="hero__script script" data-reveal>All vibes welcome.</p>
         <p class="hero__sub" data-reveal>{site.coreSentence}</p>
@@ -26,8 +29,10 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
         </div>
       </div>
       <div class="hero__art" data-reveal>
+        <Flower size={110} color="var(--lavender)" spin={true} className="hero__flower" />
         <div class="hero__frame"><Media src="/img/group1.jpg" alt="The MixHer community together at an event" ratio="4 / 3" /></div>
-        <span class="hero__badge">Est. 2023 · Miami</span>
+        <Vinyl size={120} className="hero__vinyl" />
+        <span class="hero__badge">Est. 2023 · Nationwide</span>
       </div>
     </div>
   </section>
@@ -37,15 +42,16 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   <!-- ======================= DUAL AUDIENCE (bold purple band) ======================= -->
   <section class="section-pad band-purple">
     <div class="watercolor" aria-hidden="true"></div>
+    <Flower size={130} color="var(--orchid)" className="band-flower band-flower--1" />
+    <Flower size={90} color="var(--orange)" className="band-flower band-flower--2" />
     <div class="wrap band-inner">
       <div class="sec-head center">
         <p class="spaced" data-reveal>There’s a community out there</p>
-        <h2 class="fancy" data-reveal>Real community.<br />Real opportunities.</h2>
+        <h2 class="fancy" data-reveal>Real community.<br />Real connections.</h2>
       </div>
       <div class="grid grid-2">
         {paths.map((p) => (
           <a href={p.href} class="card band-glass path" data-reveal style={`--accent:${p.accent}`}>
-            <span class="path__k">{p.key === 'DJs' ? 'For DJs' : 'For Venues & Brands'}</span>
             <h3 class="path__title">{p.title}</h3>
             <p class="path__blurb">{p.blurb}</p>
             <span class="path__cta">{p.cta} <span aria-hidden="true">→</span></span>
@@ -56,15 +62,17 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   </section>
 
   <!-- ======================= WHAT WE DO ======================= -->
-  <section class="section-pad tint">
+  <section class="section-pad">
     <div class="wrap">
-      <div class="sec-head"><p class="spaced" data-reveal>What we do</p>
-      <h2 class="display" data-reveal>The experiences</h2></div>
+      <div class="sec-head sec-head--row">
+        <div><p class="spaced" data-reveal>What we do</p><h2 class="display" data-reveal>More than a party</h2></div>
+        <Vinyl size={92} className="hide-sm" />
+      </div>
       <div class="grid grid-3">
         {offerings.map((o) => (
           <article class="card offer" data-reveal>
             <span class="offer__tag">{o.tag}</span>
-            <h3 class="offer__title">{o.title}</h3>
+            <h3 class="offer__title" set:html={o.title} />
             <p class="offer__blurb">{o.blurb}</p>
           </article>
         ))}
@@ -72,8 +80,8 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
     </div>
   </section>
 
-  <!-- ======================= FEATURED DJs ======================= -->
-  <section class="section-pad">
+  <!-- ======================= INSIDE THE VIBE (clear photos) ======================= -->
+  <section class="section-pad tint">
     <div class="wrap">
       <div class="sec-head sec-head--row">
         <div><p class="spaced" data-reveal>Inside the vibe</p><h2 class="display" data-reveal>This is the community</h2></div>
@@ -82,7 +90,7 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
       <div class="grid grid-4 djs">
         {featuredDJs.map((dj) => (
           <a href="/community" class="dj" data-reveal>
-            <div class="dj__disc"><Media src={dj.img || undefined} alt={dj.name} label="MixHer" className="circle duo" ratio="1 / 1" /></div>
+            <div class="dj__pic"><Media src={dj.img} alt={dj.name} ratio="1 / 1" /></div>
             <h3 class="dj__name">{dj.name}</h3>
           </a>
         ))}
@@ -90,19 +98,33 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
     </div>
   </section>
 
-  <!-- ======================= TICKETS / EVENTS ======================= -->
-  <section class="section-pad tint-lav">
+  <!-- ======================= NEXT EVENT (real graphic) ======================= -->
+  <section class="section-pad">
     <div class="wrap upcoming">
       <div class="upcoming__text" data-reveal>
-        <p class="spaced">Upcoming</p>
-        <h2 class="fancy">Come to a <span class="grad">party.</span></h2>
-        <p>Real events. Real energy. Grab tickets and see what the community feels like.</p>
+        <p class="spaced">Upcoming events</p>
+        <h2 class="fancy">{nextEvent.name} <span class="grad">is next.</span></h2>
+        <p class="upcoming__series">{nextEvent.series}</p>
+        <ul class="upcoming__meta">
+          <li>📅 {nextEvent.date}</li>
+          <li>📍 {nextEvent.venue} · {nextEvent.city}</li>
+        </ul>
         <div class="upcoming__btns">
-          <a href="/events" class="btn btn-primary">Get tickets</a>
-          <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">See the vibe</a>
+          <a href="/events" class="btn btn-primary">See all events</a>
+          <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">Follow for drops</a>
         </div>
       </div>
-      <div class="upcoming__art" data-reveal><Media src="/img/djl-networking.jpg" alt="Connecting at a MixHer event" ratio="4 / 5" /></div>
+      <div class="upcoming__art" data-reveal><Media src={nextEvent.img} alt={`${nextEvent.name} event flyer`} ratio="2 / 3" /></div>
+    </div>
+  </section>
+
+  <!-- ======================= PARTNERS ======================= -->
+  <section class="section-pad logos">
+    <div class="wrap">
+      <p class="spaced center" data-reveal>Brand partners</p>
+      <div class="logos__row" data-reveal>
+        {partners.map((name) => <span class="logos__item">{name}</span>)}
+      </div>
     </div>
   </section>
 
@@ -120,28 +142,27 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   </section>
 
   <CtaBand
-    heading="Get on the list."
-    sub="Newsletter first: tickets, events, and real opportunities — before anyone else."
-    primaryLabel="Join the newsletter"
-    primaryHref="#join-list"
-    secondaryLabel="Get tickets"
-    secondaryHref="/events"
+    heading="See you on the floor."
+    sub="Grab tickets to the next MixHer event, or join the community and never spin alone."
+    primaryLabel="Get tickets"
+    primaryHref="/events"
+    secondaryLabel="Join the community"
+    secondaryHref="/community"
   />
 </Base>
 
 <style>
-  /* watercolor brand-board wash */
   .wc { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.9;
     background:
-      radial-gradient(40vw 40vw at 78% 20%, rgba(203,108,230,0.22), transparent 60%),
-      radial-gradient(32vw 32vw at 92% 60%, rgba(254,154,0,0.16), transparent 60%),
-      radial-gradient(30vw 30vw at 64% 4%, rgba(228,168,243,0.20), transparent 62%); }
+      radial-gradient(40vw 40vw at 78% 20%, rgba(203,108,230,0.24), transparent 60%),
+      radial-gradient(32vw 32vw at 92% 60%, rgba(254,154,0,0.18), transparent 60%),
+      radial-gradient(30vw 30vw at 64% 4%, rgba(228,168,243,0.22), transparent 62%); }
 
   .hero { position: relative; padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem); overflow: hidden; }
   .hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   .hero__h { font-size: clamp(3rem, 10vw, 7rem); margin: 0.5rem 0 0; }
   .hero__script { font-family: var(--script); font-size: clamp(2.6rem, 6.5vw, 5rem); color: var(--orchid-deep); line-height: 0.7; margin: 0.2rem 0 0.9rem; }
-  .hero__sub { color: var(--muted); max-width: 42ch; font-size: 1.05rem; }
+  .hero__sub { color: var(--muted); max-width: 44ch; font-size: 1.05rem; }
   .hero__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
   .hero__follow { display: flex; align-items: center; gap: 1rem; margin-top: 1.4rem; font-size: 0.85rem; flex-wrap: wrap; }
   .hero__follow span { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
@@ -150,8 +171,14 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   .hero__art { position: relative; }
   .hero__frame { position: relative; }
   .hero__frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; border-radius: var(--radius-lg); border: 2px dashed var(--lavender); pointer-events: none; z-index: -1; }
-  .hero__badge { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; white-space: nowrap; }
-  @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 360px; margin: 0 auto; } }
+  .hero__vinyl { position: absolute; bottom: -34px; left: -34px; z-index: 2; filter: drop-shadow(0 12px 24px rgba(117,56,234,0.4)); }
+  .hero__flower { position: absolute; top: -46px; right: -22px; z-index: 3; }
+  .band-flower { position: absolute; z-index: 0; }
+  .band-flower--1 { top: -34px; right: 5%; }
+  .band-flower--2 { bottom: 6%; left: 4%; }
+  @media (max-width: 620px) { .band-flower { display: none; } }
+  .hero__badge { position: absolute; top: -14px; right: 8%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; white-space: nowrap; }
+  @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 380px; margin: 1rem auto 0; } }
 
   .mq-band { padding-block: 1.4rem; border-block: 1px solid var(--card-brd); background: #fff; }
 
@@ -162,38 +189,40 @@ import { site, offerings, paths, featuredDJs, stats, ticker } from '../data/site
   .sec-head--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
   .center { display: block; text-align: center; }
 
-  /* Dual-audience paths */
+  /* purple band overrides */
+  .band-inner { position: relative; z-index: 1; }
   .path { display: flex; flex-direction: column; gap: 0.5rem; border-top: 5px solid var(--accent); }
-  .path__k { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
   .path__title { font-family: var(--display); font-weight: 800; font-size: 1.7rem; text-transform: uppercase; margin: 0; letter-spacing: -0.01em; }
   .path__blurb { color: var(--muted); margin: 0; flex: 1; }
   .path__cta { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
   .path:hover .path__cta span { margin-left: 0.3rem; }
-
-  /* purple band overrides */
-  .band-inner { position: relative; z-index: 1; }
   .band-purple .path { border-top-color: rgba(255,255,255,0.65); }
   .band-purple .path__title { color: #fff; }
-  .band-purple .path__k { color: rgba(255,255,255,0.72); }
   .band-purple .path__blurb { color: rgba(255,255,255,0.9); }
   .band-purple .path__cta { color: #ffe08a; }
 
   .offer { display: flex; flex-direction: column; gap: 0.3rem; }
   .offer__tag { font-family: var(--display); font-weight: 800; font-size: 0.9rem; color: var(--orange); letter-spacing: 0.1em; }
-  .offer__title { font-family: var(--display); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
+  .offer__title { font-family: var(--display); font-weight: 800; font-size: 1.25rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
   .offer__blurb { color: var(--muted); margin: 0; font-size: 0.92rem; }
 
   .djs { margin-top: 0.5rem; }
-  .dj { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
-  .dj__disc { width: 100%; transition: transform 0.25s ease; }
-  .dj:hover .dj__disc { transform: translateY(-6px); }
-  .dj__name { font-family: var(--display); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; margin: 0.3rem 0 0; }
-  .dj__handle { color: var(--orchid-deep); font-size: 0.82rem; }
+  .dj { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
+  .dj__pic { width: 100%; border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.25s ease; box-shadow: var(--shadow); }
+  .dj:hover .dj__pic { transform: translateY(-6px); box-shadow: var(--shadow-hi); }
+  .dj__name { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; margin: 0.3rem 0 0; }
 
-  .upcoming { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .upcoming__text p { color: var(--muted); max-width: 42ch; }
-  .upcoming__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
-  @media (max-width: 860px) { .upcoming { grid-template-columns: 1fr; } .upcoming__art { max-width: 380px; } }
+  .upcoming { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .upcoming__text p, .upcoming__series { color: var(--muted); max-width: 44ch; }
+  .upcoming__series { color: var(--orchid-deep); font-weight: 600; margin: 0.2rem 0 0.8rem; }
+  .upcoming__meta { list-style: none; margin: 0 0 1.2rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; color: var(--ink); font-weight: 500; }
+  .upcoming__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .upcoming__art { max-width: 440px; margin-inline: auto; }
+  @media (max-width: 860px) { .upcoming { grid-template-columns: 1fr; } .upcoming__art { order: -1; max-width: 340px; } }
+
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
+  .logos__item { font-family: var(--display); font-weight: 800; font-size: clamp(1rem, 2.2vw, 1.5rem); text-transform: uppercase; color: var(--dim); transition: color 0.2s ease; }
+  .logos__item:hover { color: var(--orchid-deep); }
 
   .follow__sub { color: var(--muted); max-width: 46ch; margin: 0.8rem auto 1.6rem; }
   .follow__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
