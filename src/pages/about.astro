@@ -3,59 +3,48 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { pillars, stats, partners } from '../data/site';
+import { site, founder, proofBar } from '../data/site';
 ---
-<Base title="About" description="The MixHer is a national 501(c)(3) nonprofit event series celebrating women in music — more than a party, a cultural shift.">
+<Base
+  title="About"
+  fullTitle="About MixHer | National Female DJ Nonprofit Founded in Miami"
+  description="MixHer is a national 501(c)(3) nonprofit event series and DJ network founded in Miami by DJ ReRe — building stages, industry access, and community for female DJs."
+>
   <PageHeader
-    kicker="Our story"
-    title={`More than a party.<br/><span class='grad'>A cultural shift.</span>`}
-    lead="The MixHer is a national 501(c)(3) nonprofit event series celebrating women in music — with a focus on rising and established female DJs."
+    kicker="About MixHer"
+    title={`Setting the tone for<br/>female DJs <span class='grad'>nationwide.</span>`}
+    lead="MixHer is a national 501(c)(3) nonprofit event series and DJ network — more than a party, a cultural shift where women lead, headline, and shine."
   />
 
-  <!-- Story -->
+  <!-- Mission -->
   <section class="section-pad">
-    <div class="wrap story">
-      <div class="story__media" data-reveal><Media src="/img/djl-decks.jpg" alt="A female DJ at a MixHer event" ratio="4 / 5" /></div>
-      <div class="story__text" data-reveal>
-        <p class="kicker">Why we exist</p>
-        <h2 class="fancy">Women don’t just participate.<br /><span class="grad">They lead.</span></h2>
-        <p>
-          Rooted in community, culture, and creativity, MixHer hosts high-vibe events in cities all over —
-          bringing together DJs, music lovers, brands, and tastemakers for unforgettable nights of live
-          music, connection, and culture.
-        </p>
-        <p>We create space where women lead, headline, and shine — and shift the culture behind the decks.</p>
-        <p class="story__line">Female DJs lead the vibe. All vibes welcome.</p>
+    <div class="wrap narrow" style="text-align:center">
+      <p class="spaced center" data-reveal>Our mission</p>
+      <h2 class="fancy" data-reveal>Why MixHer exists.</h2>
+      <p class="mission" data-reveal>{site.mission}</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section-pad tint">
+    <div class="wrap split">
+      <div class="split__media" data-reveal><Media src="/img/dj-flowers.jpg" alt="Female DJ performing behind the decks at a MixHer event" ratio="4 / 5" /></div>
+      <div class="split__text" data-reveal>
+        <p class="spaced">The story</p>
+        <h2 class="fancy">Built for the culture, <span class="grad">by the culture.</span></h2>
+        <p>MixHer produces culture-forward events through PLY, creates industry networking through The Set, builds a national community through the DJ Network, and funds youth education through First Spin DJ Bootcamp.</p>
+        <p>Founded in Miami and built nationwide, MixHer is the go-to platform for female DJs, brands, venues, artists, and music lovers who want to be part of what is next in DJ culture.</p>
+        <p class="story__line">{site.vibeline}</p>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="section-pad tint">
+  <!-- Proof -->
+  <section class="section-pad">
     <div class="wrap">
       <div class="grid grid-4 statgrid">
-        {stats.map((s) => (
-          <div class="statcard" data-reveal>
-            <span class="stat__num grad">{s.num}</span>
-            <span class="stat__label">{s.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Pillars (concise) -->
-  <section class="section-pad">
-    <div class="wrap">
-      <div class="sec-head"><p class="spaced" data-reveal>What we stand for</p>
-      <h2 class="display" data-reveal>Elevate · Connect · Champion</h2></div>
-      <div class="grid grid-4">
-        {pillars.map((p, i) => (
-          <div class="pcard card" data-reveal>
-            <span class="pcard__no">0{i + 1}</span>
-            <h3 class="pcard__name grad">{p.key}</h3>
-            <p class="pcard__blurb">{p.blurb}</p>
-          </div>
+        {proofBar.slice(0, 4).map((s) => (
+          <div class="statcard" data-reveal><span class="statcard__n grad">{s.num}</span><span class="statcard__l">{s.label}</span></div>
         ))}
       </div>
     </div>
@@ -63,50 +52,30 @@ import { pillars, stats, partners } from '../data/site';
 
   <!-- Founder -->
   <section class="section-pad tint">
-    <div class="wrap story reverse">
-      <div class="story__text" data-reveal>
-        <p class="kicker">The founder</p>
-        <h2 class="fancy">DJ ReRe</h2>
-        <p>
-          An international DJ, entrepreneur, and advocate for women in music, DJ ReRe founded MixHer to
-          put women behind the decks at the front of the party — no permission required.
-        </p>
-        <p>Today MixHer is a registered 501(c)(3) nonprofit powered by a team dedicated to women in music.</p>
+    <div class="wrap split reverse">
+      <div class="split__text" data-reveal>
+        <p class="spaced">The founder</p>
+        <h2 class="fancy">Founded by <span class="grad">DJ ReRe.</span></h2>
+        {founder.bio.map((p) => <p>{p}</p>)}
       </div>
-      <div class="story__media" data-reveal><Media label="DJ ReRe" ratio="4 / 5" /></div>
+      <div class="split__media" data-reveal><Media label="DJ ReRe" alt="DJ ReRe, founder of MixHer, behind the decks" ratio="4 / 5" /></div>
     </div>
   </section>
 
-  <!-- Partners -->
-  <section class="section-pad logos">
-    <div class="wrap">
-      <p class="spaced center" data-reveal>Brand partners</p>
-      <div class="logos__row" data-reveal>
-        {partners.map((name) => <span class="logos__item">{name}</span>)}
-      </div>
-    </div>
-  </section>
-
-  <CtaBand heading="Be part of the movement." primaryLabel="Get involved" primaryHref="/contact" secondaryLabel="Join the community" secondaryHref="/community" />
+  <CtaBand heading="Be part of the movement." primaryLabel="Join the DJ Network" primaryHref={site.joinUrl} secondaryLabel="Sponsor MixHer" secondaryHref={site.sponsorUrl} />
 </Base>
 
 <style>
-  .story { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .story.reverse { grid-template-columns: 1.1fr 0.9fr; }
-  .story__text p { color: var(--muted); max-width: 54ch; }
-  .story__line { font-family: var(--script); font-size: 1.9rem; color: var(--orchid-deep); margin-top: 1.2rem; line-height: 1; }
-  @media (max-width: 840px) { .story, .story.reverse { grid-template-columns: 1fr; } .story__media { order: -1; } }
-
+  .center { display: block; text-align: center; }
+  .mission { color: var(--muted); font-size: 1.2rem; max-width: 62ch; margin: 1.1rem auto 0; }
+  .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .split.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .split__text p { color: var(--muted); max-width: 54ch; }
+  .story__line { font-family: var(--script); font-size: 1.9rem; color: var(--orchid-deep); margin-top: 1.1rem; line-height: 1; }
+  @media (max-width: 840px) { .split, .split.reverse { grid-template-columns: 1fr; } .split__media { order: -1; } }
   .statgrid { text-align: center; }
-  .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.5rem 0.5rem; }
-
-  .sec-head .spaced { display: block; margin-bottom: 0.8rem; }
-  .pcard { display: flex; flex-direction: column; gap: 0.3rem; }
-  .pcard__no { font-family: var(--display); color: var(--dim); }
-  .pcard__name { font-family: var(--display); font-weight: 800; font-size: 1.6rem; text-transform: uppercase; margin: 0; }
-  .pcard__blurb { color: var(--muted); margin: 0; font-size: 0.92rem; }
-
-  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
-  .logos__item { font-family: var(--display); font-weight: 800; font-size: clamp(1rem, 2.2vw, 1.5rem); text-transform: uppercase; color: var(--dim); }
-  .center { display: inline-flex; justify-content: center; }
+  .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.4rem 0.4rem; }
+  .statcard__n { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); line-height: 1; }
+  .statcard__l { color: var(--muted); font-size: 0.8rem; }
+  .spaced.center, .split .spaced { display: inline-block; }
 </style>

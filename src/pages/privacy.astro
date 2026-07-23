@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site';
+---
+<Base title="Privacy Policy" description="How MixHer collects, uses, and protects your information.">
+  <PageHeader kicker="Legal" title="Privacy Policy" />
+  <section class="section-pad"><div class="wrap narrow legal">
+    <p>MixHer Inc. (“MixHer,” “we,” “us”) respects your privacy. This policy explains what we collect and how we use it.</p>
+    <h2>What we collect</h2>
+    <p>When you submit a form (DJ Network request, sponsor inquiry, newsletter signup, contact, or press request), we collect the information you provide — such as your name, email, and message — to respond and, where you opt in, to send you updates.</p>
+    <h2>How we use it</h2>
+    <p>We use your information only to communicate with you about MixHer, our events, sponsorships, the DJ Network, and First Spin DJ Bootcamp. We do not sell your personal information.</p>
+    <h2>Your choices</h2>
+    <p>You can unsubscribe from emails at any time, or request that we delete your information, by contacting <a href={site.emailHref}>{site.email}</a>.</p>
+    <p class="legal__note">This is a general policy. Consult counsel to tailor it before launch.</p>
+  </div></section>
+</Base>
+<style>
+  .legal { color: var(--muted); line-height: 1.75; }
+  .legal h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.3rem; color: var(--ink); margin: 1.6rem 0 0.4rem; }
+  .legal a { color: var(--orchid-deep); }
+  .legal__note { font-size: 0.85rem; color: var(--dim); margin-top: 2rem; }
+</style>

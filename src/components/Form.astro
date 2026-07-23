@@ -1,0 +1,69 @@
+---
+import { site } from '../data/site';
+/**
+ * Reusable conversion form. Emails the MixHer team via the visitor's mail client
+ * (mailto) by default; set site.formEndpoint to a Formspree/Tally URL to POST instead.
+ */
+export type Field = { name: string; label: string; type?: string; required?: boolean; options?: string[]; placeholder?: string; full?: boolean };
+interface Props { formName: string; fields: Field[]; submit?: string; note?: string; }
+const { formName, fields, submit = 'Submit', note } = Astro.props;
+const endpoint = site.formEndpoint;
+---
+<form class="mform" data-form data-name={formName} action={endpoint || site.emailHref} method={endpoint ? 'post' : 'get'}>
+  <input type="hidden" name="_form" value={formName} />
+  <div class="mform__grid">
+    {fields.map((f) => (
+      <div class:list={['mfield', { full: f.full || f.type === 'textarea' || f.type === 'select' }]}>
+        <label for={`f-${f.name}`}>{f.label}{f.required && <span class="req">*</span>}</label>
+        {f.type === 'textarea' ? (
+          <textarea id={`f-${f.name}`} name={f.name} rows="5" required={f.required} placeholder={f.placeholder}></textarea>
+        ) : f.type === 'select' ? (
+          <select id={`f-${f.name}`} name={f.name} required={f.required}>
+            <option value="" disabled selected>Choose one…</option>
+            {f.options?.map((o) => <option value={o}>{o}</option>)}
+          </select>
+        ) : (
+          <input id={`f-${f.name}`} name={f.name} type={f.type || 'text'} required={f.required} placeholder={f.placeholder} />
+        )}
+      </div>
+    ))}
+  </div>
+  <button type="submit" class="btn btn-primary">{submit}</button>
+  {note && <p class="mform__note">{note}</p>}
+</form>
+
+<style>
+  .mform { display: flex; flex-direction: column; gap: 1.1rem; }
+  .mform__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .mfield { display: flex; flex-direction: column; gap: 0.4rem; }
+  .mfield.full { grid-column: 1 / -1; }
+  .mfield label { font-family: var(--display); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.72rem; color: var(--orchid-deep); }
+  .req { color: var(--orange); margin-left: 0.15rem; }
+  .mform input, .mform select, .mform textarea { width: 100%; padding: 0.85rem 1rem; border-radius: 12px; background: #fff; border: 1px solid var(--card-brd-hi); color: var(--ink); font-family: var(--body); font-size: 0.95rem; resize: vertical; }
+  .mform input:focus, .mform select:focus, .mform textarea:focus { outline: none; border-color: var(--orchid); }
+  .mform .btn { align-self: flex-start; }
+  .mform__note { color: var(--dim); font-size: 0.85rem; margin: 0; }
+  @media (max-width: 560px) { .mform__grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const TEAM = 'info@themixher.org';
+  document.querySelectorAll('[data-form]').forEach((form) => {
+    const f = form as HTMLFormElement;
+    if (f.getAttribute('action') && f.getAttribute('method') === 'post') return; // real endpoint handles it
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = f.dataset.name || 'Website form';
+      const data = new FormData(f);
+      const lines: string[] = [];
+      for (const [k, v] of data.entries()) { if (k === '_form' || !String(v).trim()) continue; lines.push(`${k}: ${v}`); }
+      const subject = encodeURIComponent(`[MixHer] ${name}`);
+      const body = encodeURIComponent(lines.join('\n'));
+      window.location.href = `mailto:${TEAM}?subject=${subject}&body=${body}`;
+      const done = document.createElement('p');
+      done.style.cssText = 'margin:0.6rem 0 0;color:var(--orchid-deep);font-family:var(--sans);font-weight:700;';
+      done.textContent = 'Opening your email to send — thank you! ✦';
+      f.appendChild(done);
+    });
+  });
+</script>

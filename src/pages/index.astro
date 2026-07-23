@@ -3,220 +3,284 @@ import Base from '../layouts/Base.astro';
 import Marquee from '../components/Marquee.astro';
 import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
-import CtaBand from '../components/CtaBand.astro';
-import { site, offerings, paths, featuredDJs, stats, ticker, partners, events } from '../data/site';
-const nextEvent = events[0];
+import { site, proofBar, pillars, founder, sponsors, ticker, events } from '../data/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is MixHer?', acceptedAnswer: { '@type': 'Answer', text: site.whatIs } },
+    { '@type': 'Question', name: 'Is MixHer a nonprofit?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. MixHer is a registered 501(c)(3) nonprofit event series and DJ network founded in Miami by DJ ReRe.' } },
+    { '@type': 'Question', name: 'How do female DJs join MixHer?', acceptedAnswer: { '@type': 'Answer', text: 'Female DJs can request to join the MixHer DJ Network to access stages, gig-sharing, industry connections, and brand opportunities.' } },
+  ],
+};
 ---
-<Base>
-  <!-- ======================= HERO ======================= -->
+<Base schema={[faqSchema]}>
+  <!-- 1 · HERO -->
   <section class="hero">
     <div class="wc" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="spaced" data-reveal>Nonprofit · Female DJ community · Nationwide</p>
-        <h1 class="display hero__h" data-reveal>Female DJs<br />lead the <span class="grad-o">vibe.</span></h1>
-        <p class="hero__script script" data-reveal>All vibes welcome.</p>
-        <p class="hero__sub" data-reveal>{site.coreSentence}</p>
+        <p class="spaced" data-reveal>National nonprofit · Female DJ network</p>
+        <h1 class="display hero__h" data-reveal>Setting The Tone<br />for female DJs <span class="grad-o">nationwide.</span></h1>
+        <p class="hero__sub" data-reveal>{site.hero}</p>
         <div class="hero__btns" data-reveal>
-          <a href="/events" class="btn btn-primary">Get tickets</a>
-          <a href="#join-list" class="btn btn-ghost">Join the newsletter</a>
-        </div>
-        <div class="hero__follow" data-reveal>
-          <span>Follow the movement</span>
-          <a href={site.socials.instagram} target="_blank" rel="noopener">Instagram</a>
-          <a href={site.socials.tiktok} target="_blank" rel="noopener">TikTok</a>
+          <a href={site.sponsorUrl} class="btn btn-primary">Sponsor MixHer</a>
+          <a href={site.joinUrl} class="btn btn-purple">Join the DJ Network</a>
+          <a href={site.bringUrl} class="btn btn-ghost">Bring MixHer to Your City</a>
         </div>
       </div>
       <div class="hero__art" data-reveal>
-        <div class="hero__frame"><Media src="/img/group1.jpg" alt="The MixHer community together at an event" ratio="4 / 3" /></div>
+        <div class="hero__frame"><Media src="/img/group1.jpg" alt="Female DJs and community at a MixHer event" ratio="4 / 3" /></div>
         <Vinyl size={124} className="hero__vinyl" />
         <span class="hero__badge">Est. 2023 · Nationwide</span>
       </div>
     </div>
   </section>
 
+  <!-- 2 · PROOF BAR -->
+  <section class="proof">
+    <div class="wrap proof__grid">
+      {proofBar.map((s) => (
+        <div class="proof__item" data-reveal>
+          <span class="proof__num grad">{s.num}</span>
+          <span class="proof__label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <div class="mq-band"><Marquee items={ticker} /></div>
 
-  <!-- ======================= DUAL AUDIENCE (bold purple band) ======================= -->
-  <section class="section-pad band-purple">
-    <div class="watercolor" aria-hidden="true"></div>
-    <div class="wrap band-inner">
-      <div class="sec-head center">
-        <p class="spaced" data-reveal>There’s a community out there</p>
-        <h2 class="fancy" data-reveal>Real community.<br />Real connections.</h2>
-      </div>
-      <div class="grid grid-2">
-        {paths.map((p) => (
-          <a href={p.href} class="card band-glass path" data-reveal style={`--accent:${p.accent}`}>
-            <h3 class="path__title">{p.title}</h3>
-            <p class="path__blurb">{p.blurb}</p>
-            <span class="path__cta">{p.cta} <span aria-hidden="true">→</span></span>
+  <!-- 3 · WHAT IS MIXHER -->
+  <section class="section-pad">
+    <div class="wrap narrow" style="text-align:center">
+      <p class="spaced center" data-reveal>What is MixHer?</p>
+      <h2 class="fancy" data-reveal>The hub for <span class="grad">what’s next</span> in DJ culture.</h2>
+      <p class="lead" data-reveal>{site.whatIs}</p>
+    </div>
+  </section>
+
+  <!-- 4 · PILLARS -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>The MixHer ecosystem</p>
+      <h2 class="display" data-reveal>Four ways we move the culture</h2></div>
+      <div class="grid grid-4">
+        {pillars.map((p) => (
+          <a href={p.href} class="card pillar" data-reveal style={`--accent:${p.accent}`}>
+            <h3 class="pillar__t">{p.title}</h3>
+            <span class="pillar__s">{p.sub}</span>
+            <p class="pillar__b">{p.blurb}</p>
+            <span class="pillar__cta">Explore <span aria-hidden="true">→</span></span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ======================= WHAT WE DO ======================= -->
+  <!-- 5 · FOR FEMALE DJs -->
+  <section class="section-pad">
+    <div class="wrap split">
+      <div class="split__media" data-reveal><Media src="/img/dj-flowers.jpg" alt="Female DJ performing behind the decks at a MixHer event" ratio="4 / 5" /></div>
+      <div class="split__text" data-reveal>
+        <p class="spaced">For female DJs</p>
+        <h2 class="fancy">Built for the DJs <span class="grad">Setting The Tone.</span></h2>
+        <p>Join a national network created for female DJs looking for more stages, stronger industry connections, gig-sharing, resources, brand opportunities, and a community that moves together.</p>
+        <a href={site.joinUrl} class="btn btn-primary">Join the DJ Network</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · FOR BRANDS -->
+  <section class="section-pad band-purple">
+    <div class="watercolor" aria-hidden="true"></div>
+    <div class="wrap band-inner split reverse">
+      <div class="split__text" data-reveal>
+        <p class="spaced">For brands &amp; sponsors</p>
+        <h2 class="fancy">Put your brand where culture is being heard first.</h2>
+        <p>MixHer connects brands with music-forward audiences through curated events, DJ collaborations, gifting moments, social content, live activations, and nonprofit-aligned visibility.</p>
+        <a href={site.sponsorKitUrl} class="btn btn-primary">Request the Sponsor Kit</a>
+      </div>
+      <div class="split__media" data-reveal><Media src="/img/group1.jpg" alt="Brand activation and crowd at a MixHer female DJ event" ratio="4 / 5" /></div>
+    </div>
+  </section>
+
+  <!-- 7 · PLY -->
+  <section class="section-pad">
+    <div class="wrap split">
+      <div class="split__media" data-reveal><Media src="/img/event-ply.jpg" alt="MixHer PLY party series flyer with an all-female DJ lineup" ratio="4 / 5" /></div>
+      <div class="split__text" data-reveal>
+        <p class="spaced c-orange">PLY · The Party Series</p>
+        <h2 class="fancy">PLY: the <span class="grad-o">party series.</span></h2>
+        <p>PLY is MixHer’s high-energy party series built around female DJs, packed rooms, culture-forward music, surprise moments, brand activations, and content-ready nightlife experiences.</p>
+        <a href="/ply-party-series" class="btn btn-primary">Explore PLY</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · THE SET -->
+  <section class="section-pad tint">
+    <div class="wrap split reverse">
+      <div class="split__text" data-reveal>
+        <p class="spaced">The Set · The Networking Series</p>
+        <h2 class="fancy">The Set: the <span class="grad">networking series.</span></h2>
+        <p>The Set brings DJs, creatives, executives, brands, venues, and tastemakers into the same room for curated conversations, real introductions, and industry access.</p>
+        <a href="/the-set-networking-series" class="btn btn-primary">Explore The Set</a>
+      </div>
+      <div class="split__media" data-reveal><Media src="/img/djl-decks.jpg" alt="Female DJs networking at The Set by MixHer" ratio="4 / 5" /></div>
+    </div>
+  </section>
+
+  <!-- 9 · FIRST SPIN -->
+  <section class="section-pad">
+    <div class="wrap split">
+      <div class="split__media" data-reveal><Media src="/img/booth2.jpg" alt="First Spin DJ Bootcamp — youth learning to DJ" ratio="4 / 5" /></div>
+      <div class="split__text" data-reveal>
+        <p class="spaced">First Spin DJ Bootcamp</p>
+        <h2 class="fancy">Every Set fuels the next <span class="grad">First Spin.</span></h2>
+        <p>First Spin DJ Bootcamp provides no-cost DJ education for youth in underserved communities — introducing students to DJ equipment, music programming, technical skills, creativity, mentorship, and entrepreneurship.</p>
+        <a href="/first-spin-dj-bootcamp" class="btn btn-primary">Sponsor First Spin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · FOUNDER -->
+  <section class="section-pad tint">
+    <div class="wrap split reverse">
+      <div class="split__text" data-reveal>
+        <p class="spaced">The founder</p>
+        <h2 class="fancy">Founded by <span class="grad">DJ ReRe.</span></h2>
+        {founder.bio.map((p) => <p>{p}</p>)}
+        <a href="/about" class="btn btn-ghost">Read the full story</a>
+      </div>
+      <div class="split__media" data-reveal><Media label="DJ ReRe" alt="DJ ReRe, founder of MixHer, behind the decks" ratio="4 / 5" /></div>
+    </div>
+  </section>
+
+  <!-- SPONSOR LOGOS -->
+  <section class="section-pad logos">
+    <div class="wrap">
+      <p class="spaced center" data-reveal>Trusted by brands &amp; partners</p>
+      <div class="logos__row" data-reveal>
+        {sponsors.map((s) => (
+          s.img
+            ? <img class="logos__img" src={s.img} alt={`${s.name} — MixHer sponsor`} loading="lazy" />
+            : <span class="logos__word">{s.name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · EVENTS PREVIEW -->
   <section class="section-pad">
     <div class="wrap">
       <div class="sec-head sec-head--row">
-        <div><p class="spaced" data-reveal>What we do</p><h2 class="display" data-reveal>More than a party</h2></div>
-        <Vinyl size={92} className="hide-sm" />
+        <div><p class="spaced" data-reveal>Upcoming</p><h2 class="display" data-reveal>Events preview</h2></div>
+        <a href="/events" class="btn btn-ghost hide-sm" data-reveal>All events</a>
       </div>
-      <div class="grid grid-3">
-        {offerings.map((o) => (
-          <article class="card offer" data-reveal>
-            <span class="offer__tag">{o.tag}</span>
-            <h3 class="offer__title" set:html={o.title} />
-            <p class="offer__blurb">{o.blurb}</p>
+      <div class="ev-grid">
+        {events.map((e) => (
+          <article class="card evc" data-reveal>
+            <div class="evc__art"><Media src={e.img} alt={`${e.name} — ${e.city} female DJ event by MixHer`} ratio="3 / 4" /></div>
+            <div class="evc__body">
+              <span class="evc__series">{e.series}</span>
+              <h3 class="evc__name">{e.name}</h3>
+              <p class="evc__meta">{e.date} · {e.city}<br />{e.venue}</p>
+              <p class="evc__djs">{e.djs}</p>
+              <a href="/events" class="btn btn-primary">Get tickets</a>
+            </div>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ======================= INSIDE THE VIBE (clear photos) ======================= -->
-  <section class="section-pad tint">
-    <div class="wrap">
-      <div class="sec-head sec-head--row">
-        <div><p class="spaced" data-reveal>Inside the vibe</p><h2 class="display" data-reveal>Women behind the decks</h2></div>
-        <a href="/community" class="btn btn-ghost hide-sm" data-reveal>Join us</a>
-      </div>
-      <div class="grid grid-3 djs">
-        {featuredDJs.map((dj) => (
-          <a href="/community" class="dj" data-reveal>
-            <div class="dj__pic"><Media src={dj.img} alt={dj.name} ratio="1 / 1" /></div>
-            <h3 class="dj__name">{dj.name}</h3>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= NEXT EVENT (real graphic) ======================= -->
+  <!-- 12 · FINAL CTA -->
   <section class="section-pad">
-    <div class="wrap upcoming">
-      <div class="upcoming__text" data-reveal>
-        <p class="spaced">Upcoming events</p>
-        <h2 class="fancy">{nextEvent.name} <span class="grad">is next.</span></h2>
-        <p class="upcoming__series">{nextEvent.series}</p>
-        <ul class="upcoming__meta">
-          <li>📅 {nextEvent.date}</li>
-          <li>📍 {nextEvent.venue} · {nextEvent.city}</li>
-        </ul>
-        <div class="upcoming__btns">
-          <a href="/events" class="btn btn-primary">See all events</a>
-          <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-ghost">Follow for drops</a>
+    <div class="wrap">
+      <div class="final" data-reveal>
+        <div class="watercolor" aria-hidden="true"></div>
+        <h2 class="fancy final__h">Ready to set the tone with us?</h2>
+        <div class="final__btns">
+          <a href={site.sponsorUrl} class="btn btn-primary">Sponsor MixHer</a>
+          <a href={site.joinUrl} class="btn btn-ghost band-glass-btn">Join the DJ Network</a>
+          <a href={site.bringUrl} class="btn btn-ghost band-glass-btn">Bring MixHer to Your City</a>
         </div>
       </div>
-      <div class="upcoming__art" data-reveal><Media src={nextEvent.img} alt={`${nextEvent.name} event flyer`} ratio="2 / 3" /></div>
     </div>
   </section>
-
-  <!-- ======================= PARTNERS ======================= -->
-  <section class="section-pad logos">
-    <div class="wrap">
-      <p class="spaced center" data-reveal>Brand partners</p>
-      <div class="logos__row" data-reveal>
-        {partners.map((name) => <span class="logos__item">{name}</span>)}
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= FOLLOW ======================= -->
-  <section class="section-pad follow">
-    <div class="wrap narrow" style="text-align:center">
-      <p class="spaced center" data-reveal>Don’t miss a beat</p>
-      <h2 class="display" data-reveal>Follow @themixher</h2>
-      <p class="follow__sub" data-reveal>Events, drops, and behind-the-decks — first on Instagram &amp; TikTok.</p>
-      <div class="follow__btns" data-reveal>
-        <a href={site.socials.instagram} target="_blank" rel="noopener" class="btn btn-purple">Instagram</a>
-        <a href={site.socials.tiktok} target="_blank" rel="noopener" class="btn btn-ghost">TikTok</a>
-      </div>
-    </div>
-  </section>
-
-  <CtaBand
-    heading="See you on the floor."
-    sub="Grab tickets to the next MixHer event, or join the community and never spin alone."
-    primaryLabel="Get tickets"
-    primaryHref="/events"
-    secondaryLabel="Join the community"
-    secondaryHref="/community"
-  />
 </Base>
 
 <style>
-  .wc { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.9;
-    background:
-      radial-gradient(40vw 40vw at 78% 20%, rgba(203,108,230,0.24), transparent 60%),
-      radial-gradient(32vw 32vw at 92% 60%, rgba(254,154,0,0.18), transparent 60%),
-      radial-gradient(30vw 30vw at 64% 4%, rgba(228,168,243,0.22), transparent 62%); }
+  .wc { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(40vw 40vw at 80% 18%, rgba(203,108,230,0.22), transparent 60%),
+      radial-gradient(30vw 30vw at 94% 60%, rgba(254,154,0,0.18), transparent 60%),
+      radial-gradient(28vw 28vw at 64% 2%, rgba(228,168,243,0.22), transparent 62%); }
 
   .hero { position: relative; padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem); overflow: hidden; }
   .hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .hero__h { font-size: clamp(3rem, 10vw, 7rem); margin: 0.5rem 0 0; }
-  .hero__script { font-family: var(--script); font-size: clamp(2.6rem, 6.5vw, 5rem); color: var(--orchid-deep); line-height: 0.7; margin: 0.2rem 0 0.9rem; }
-  .hero__sub { color: var(--muted); max-width: 44ch; font-size: 1.05rem; }
-  .hero__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
-  .hero__follow { display: flex; align-items: center; gap: 1rem; margin-top: 1.4rem; font-size: 0.85rem; flex-wrap: wrap; }
-  .hero__follow span { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
-  .hero__follow a { font-weight: 600; color: var(--orchid-deep); border-bottom: 2px solid transparent; transition: border-color 0.2s; }
-  .hero__follow a:hover { border-color: var(--orchid); }
+  .hero__h { font-size: clamp(2.7rem, 8.5vw, 6.4rem); margin: 0.5rem 0 0; }
+  .hero__sub { color: var(--muted); max-width: 48ch; font-size: 1.05rem; margin-top: 1rem; }
+  .hero__btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.6rem; }
   .hero__art { position: relative; }
   .hero__frame { position: relative; }
   .hero__frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; border-radius: var(--radius-lg); border: 2px dashed var(--lavender); pointer-events: none; z-index: -1; }
   .hero__vinyl { position: absolute; bottom: -34px; left: -34px; z-index: 2; }
-  .hero__badge { position: absolute; top: -14px; right: 8%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; white-space: nowrap; }
+  .hero__badge { position: absolute; top: -14px; right: 8%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; }
   @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 380px; margin: 1rem auto 0; } }
 
-  .mq-band { padding-block: 1.4rem; border-block: 1px solid var(--card-brd); background: #fff; }
+  .proof { border-block: 1px solid var(--card-brd); background: var(--bg-2); }
+  .proof__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; padding-block: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
+  .proof__num { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1; }
+  .proof__label { display: block; color: var(--muted); font-size: 0.76rem; margin-top: 0.4rem; }
+  @media (max-width: 820px) { .proof__grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; } }
 
-  .sec-head { margin-bottom: clamp(1.8rem, 4vw, 3rem); }
-  .sec-head .spaced { display: block; margin-bottom: 0.8rem; }
-  .sec-head.center { text-align: center; }
-  .sec-head.center .spaced { display: inline-block; }
-  .sec-head--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+  .mq-band { padding-block: 1.3rem; border-bottom: 1px solid var(--card-brd); background: #fff; }
+
+  .lead { color: var(--muted); font-size: 1.12rem; max-width: 60ch; margin: 1.1rem auto 0; }
   .center { display: block; text-align: center; }
+  .sec-head { margin-bottom: clamp(1.8rem, 4vw, 3rem); }
+  .sec-head.center { text-align: center; }
+  .sec-head .spaced { display: inline-block; margin-bottom: 0.7rem; }
+  .sec-head--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
 
-  /* purple band overrides */
+  .pillar { display: flex; flex-direction: column; gap: 0.25rem; border-top: 5px solid var(--accent); }
+  .pillar__t { font-family: var(--display); font-weight: 800; font-size: 1.7rem; text-transform: uppercase; margin: 0; }
+  .pillar__s { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .pillar__b { color: var(--muted); font-size: 0.92rem; margin: 0.5rem 0 0.6rem; flex: 1; }
+  .pillar__cta { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .pillar:hover .pillar__cta span { margin-left: 0.3rem; }
+
+  .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .split.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .split__text p { color: var(--muted); max-width: 52ch; }
+  .split__text .btn { margin-top: 0.6rem; }
+  .split__text h2 { margin-bottom: 0.5rem; }
+  @media (max-width: 840px) { .split, .split.reverse { grid-template-columns: 1fr; } .split__media { order: -1; max-width: 420px; } }
+
   .band-inner { position: relative; z-index: 1; }
-  .path { display: flex; flex-direction: column; gap: 0.5rem; border-top: 5px solid var(--accent); }
-  .path__title { font-family: var(--display); font-weight: 800; font-size: 1.7rem; text-transform: uppercase; margin: 0; letter-spacing: -0.01em; }
-  .path__blurb { color: var(--muted); margin: 0; flex: 1; }
-  .path__cta { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
-  .path:hover .path__cta span { margin-left: 0.3rem; }
-  .band-purple .path { border-top-color: rgba(255,255,255,0.65); }
-  .band-purple .path__title { color: #fff; }
-  .band-purple .path__blurb { color: rgba(255,255,255,0.9); }
-  .band-purple .path__cta { color: #ffe08a; }
+  .band-purple .split__text p { color: rgba(255,255,255,0.9); }
 
-  .offer { display: flex; flex-direction: column; gap: 0.3rem; }
-  .offer__tag { font-family: var(--display); font-weight: 800; font-size: 0.9rem; color: var(--orange); letter-spacing: 0.1em; }
-  .offer__title { font-family: var(--display); font-weight: 800; font-size: 1.25rem; text-transform: uppercase; letter-spacing: -0.01em; margin: 0; }
-  .offer__blurb { color: var(--muted); margin: 0; font-size: 0.92rem; }
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.4rem 2.6rem; margin-top: 1.6rem; }
+  .logos__img { height: 34px; width: auto; object-fit: contain; opacity: 0.75; filter: grayscale(0.2); transition: opacity 0.2s; }
+  .logos__img:hover { opacity: 1; }
+  .logos__word { font-family: var(--display); font-weight: 800; font-size: clamp(0.95rem, 2vw, 1.3rem); text-transform: uppercase; color: var(--dim); letter-spacing: 0.02em; }
 
-  .djs { margin-top: 0.5rem; }
-  .dj { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
-  .dj__pic { width: 100%; border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.25s ease; box-shadow: var(--shadow); }
-  .dj:hover .dj__pic { transform: translateY(-6px); box-shadow: var(--shadow-hi); }
-  .dj__name { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; margin: 0.3rem 0 0; }
+  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: clamp(1rem, 2.5vw, 1.6rem); }
+  .evc { display: flex; flex-direction: column; gap: 0.5rem; padding: 0; overflow: hidden; }
+  .evc__art { }
+  .evc__body { padding: 1.2rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+  .evc__series { font-family: var(--display); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+  .evc__name { font-family: var(--display); font-weight: 800; font-size: 1.8rem; text-transform: uppercase; margin: 0; }
+  .evc__meta { color: var(--muted); font-size: 0.88rem; margin: 0.2rem 0; }
+  .evc__djs { color: var(--orchid-deep); font-weight: 600; font-size: 0.88rem; margin: 0 0 0.6rem; }
 
-  .upcoming { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .upcoming__text p, .upcoming__series { color: var(--muted); max-width: 44ch; }
-  .upcoming__series { color: var(--orchid-deep); font-weight: 600; margin: 0.2rem 0 0.8rem; }
-  .upcoming__meta { list-style: none; margin: 0 0 1.2rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; color: var(--ink); font-weight: 500; }
-  .upcoming__btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-  .upcoming__art { max-width: 440px; margin-inline: auto; }
-  @media (max-width: 860px) { .upcoming { grid-template-columns: 1fr; } .upcoming__art { order: -1; max-width: 340px; } }
-
-  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2.4rem; margin-top: 1.6rem; }
-  .logos__item { font-family: var(--display); font-weight: 800; font-size: clamp(1rem, 2.2vw, 1.5rem); text-transform: uppercase; color: var(--dim); transition: color 0.2s ease; }
-  .logos__item:hover { color: var(--orchid-deep); }
-
-  .follow__sub { color: var(--muted); max-width: 46ch; margin: 0.8rem auto 1.6rem; }
-  .follow__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .final { position: relative; overflow: hidden; text-align: center; border-radius: var(--radius-lg); padding: clamp(2.5rem, 7vw, 5rem) var(--gutter); color: #fff; background: linear-gradient(135deg, var(--purple), var(--orchid-deep) 55%, var(--orange) 135%); }
+  .final__h { font-size: clamp(2rem, 6vw, 4rem); color: #fff; position: relative; }
+  .final__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; position: relative; margin-top: 1.4rem; }
+  .band-glass-btn { color: #fff; border-color: rgba(255,255,255,0.7); }
+  .band-glass-btn:hover { border-color: #fff; background: rgba(255,255,255,0.14); color: #fff; }
 
   @media (max-width: 620px) { .hide-sm { display: none; } }
 </style>

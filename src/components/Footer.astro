@@ -2,12 +2,6 @@
 import Wordmark from './Wordmark.astro';
 import { site, nav } from '../data/site';
 const year = new Date().getFullYear();
-const socials = [
-  { label: 'Instagram', href: site.socials.instagram },
-  { label: 'TikTok', href: site.socials.tiktok },
-  { label: 'YouTube', href: site.socials.youtube },
-  { label: 'Facebook', href: site.socials.facebook },
-];
 ---
 <footer class="ft">
   <div class="wrap">
@@ -15,47 +9,53 @@ const socials = [
       <div>
         <p class="kicker">The newsletter</p>
         <h2 class="fancy">Never miss a <span class="grad">moment.</span></h2>
-        <p class="ft__lead">New events, DJ callouts, and community drops — first, straight to your inbox.</p>
+        <p class="ft__lead">New events, DJ callouts, and MixHer moments — first, straight to your inbox.</p>
       </div>
-      <form class="ft__form" data-newsletter>
+      <form class="ft__form" data-newsletter action={site.newsletterAction || site.emailHref} method={site.newsletterAction ? 'post' : 'get'}>
         <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        <button type="submit" class="btn btn-primary">Join</button>
       </form>
     </div>
 
     <div class="ft__grid">
       <div class="ft__brand">
         <Wordmark height={64} />
-        <p class="ft__mission">{site.tagline}</p>
+        <p class="ft__mission">The national hub for female DJs — events, networking, community, and education.</p>
         <div class="ft__socials">
-          {socials.map((s) => <a href={s.href} target="_blank" rel="noopener" class="ft__social">{s.label}</a>)}
+          <a href={site.socials.instagram} target="_blank" rel="noopener" class="ft__social">Instagram</a>
+          <a href={site.socials.tiktok} target="_blank" rel="noopener" class="ft__social">TikTok</a>
+          <a href={site.socials.youtube} target="_blank" rel="noopener" class="ft__social">YouTube</a>
         </div>
       </div>
 
-      <nav class="ft__col" aria-label="Footer">
+      <nav class="ft__col" aria-label="Explore">
         <h3 class="ft__h">Explore</h3>
-        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+        {nav.filter((n) => !n.children).map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href="/ply-party-series">PLY</a>
+        <a href="/the-set-networking-series">The Set</a>
+        <a href="/first-spin-dj-bootcamp">First Spin</a>
       </nav>
 
       <div class="ft__col">
-        <h3 class="ft__h">Get involved</h3>
-        <a href={site.donateUrl}>Donate</a>
+        <h3 class="ft__h">Take action</h3>
+        <a href={site.joinUrl}>Join the DJ Network</a>
         <a href={site.sponsorUrl}>Sponsor MixHer</a>
-        <a href={site.applyUrl}>Apply to perform</a>
-        <a href="/events">Events</a>
+        <a href={site.donateUrl}>Fund First Spin</a>
+        <a href={site.bringUrl}>Bring MixHer to Your City</a>
       </div>
 
       <div class="ft__col">
         <h3 class="ft__h">Contact</h3>
         <a href={site.emailHref}>{site.email}</a>
-        <span class="ft__addr">{site.location}</span>
+        <a href="/press">Press kit</a>
+        <span class="ft__addr">Miami Beach, FL · Nationwide</span>
       </div>
     </div>
 
     <hr class="rule" />
     <div class="ft__base">
-      <p>© {year} {site.legalName}. All rights reserved.</p>
-      <p class="ft__np">{site.nonprofit}</p>
+      <p>© {year} {site.legalName}. All rights reserved. · {site.nonprofit}</p>
+      <p class="ft__legal"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a></p>
     </div>
   </div>
 </footer>
@@ -70,24 +70,29 @@ const socials = [
   .ft__form input:focus { outline: none; border-color: var(--orchid); }
 
   .ft__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 2rem; }
-  .ft__mission { color: var(--muted); margin: 1rem 0 1.2rem; max-width: 30ch; font-weight: 500; }
+  .ft__mission { color: var(--muted); margin: 1rem 0 1.2rem; max-width: 32ch; font-weight: 500; }
   .ft__socials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .ft__social { font-size: 0.82rem; padding: 0.4rem 0.8rem; border: 1px solid var(--card-brd); border-radius: 999px; color: var(--muted); transition: color 0.2s, border-color 0.2s; }
   .ft__social:hover { color: var(--ink); border-color: var(--orchid); }
   .ft__col { display: flex; flex-direction: column; gap: 0.55rem; }
-  .ft__h { font-family: var(--sans); font-weight: 800; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orchid-deep); margin: 0 0 0.4rem; }
+  .ft__h { font-family: var(--display); font-weight: 800; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orchid-deep); margin: 0 0 0.4rem; }
   .ft__col a, .ft__addr { color: var(--muted); font-size: 0.9rem; transition: color 0.2s ease; }
   .ft__col a:hover { color: var(--ink); }
   .ft__base { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.4rem; color: var(--dim); font-size: 0.8rem; }
+  .ft__legal a { color: var(--dim); } .ft__legal a:hover { color: var(--ink); }
 
   @media (max-width: 860px) { .ft__cta { grid-template-columns: 1fr; } .ft__grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .ft__grid { grid-template-columns: 1fr; } .ft__form { flex-direction: column; } }
 </style>
 
 <script>
-  document.querySelector('[data-newsletter]')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
-    form.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;letter-spacing:0.04em;font-size:1.15rem;">YOU’RE IN ✦</p>';
-  });
+  const f = document.querySelector('[data-newsletter]') as HTMLFormElement | null;
+  if (f && f.getAttribute('method') !== 'post') {
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (f.querySelector('input') as HTMLInputElement)?.value || '';
+      window.location.href = `mailto:info@themixher.org?subject=${encodeURIComponent('[MixHer] Newsletter signup')}&body=${encodeURIComponent('Please add me: ' + email)}`;
+      f.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;">YOU’RE IN ✦</p>';
+    });
+  }
 </script>

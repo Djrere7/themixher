@@ -5,47 +5,57 @@ import Media from '../components/Media.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, events } from '../data/site';
 
-const gallery = ['/img/djl-decks.jpg', '/img/djl-smile.jpg', '/img/djl-speaker.jpg', '/img/fan.jpg', '/img/group2.jpg', '/img/toast.jpg'];
+const gallery = ['/img/dj-flowers.jpg', '/img/djl-decks.jpg', '/img/fan.jpg', '/img/group2.jpg', '/img/laugh.jpg', '/img/crowd.jpg'];
+const eventSchema = events.map((e) => ({
+  '@context': 'https://schema.org', '@type': 'Event', name: `MixHer ${e.name} — ${e.city}`,
+  startDate: '2026-08-11', eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: { '@type': 'Place', name: e.venue, address: e.city },
+  organizer: { '@type': 'Organization', name: 'MixHer', url: site.url },
+  description: e.blurb,
+}));
 ---
-<Base title="Events" description="MixHer events — high-vibe nights of live female DJ sets, networking, and culture, in cities across the country. See what's coming up.">
+<Base
+  title="Events"
+  fullTitle="MixHer Events | Female DJ Events, PLY Parties and The Set Networking"
+  description="MixHer events — female DJ parties through PLY, industry networking through The Set, and culture-forward nights in cities across the country. See what's next."
+  schema={eventSchema}
+>
   <PageHeader
     kicker="Events"
-    title={`Where the movement<br/><span class='grad'>comes alive.</span>`}
-    lead="High-vibe nights of live female DJ sets, real networking, and culture — in music-forward cities across the country."
+    title={`Female DJ events,<br/><span class='grad'>nationwide.</span>`}
+    lead="PLY parties, The Set networking, and culture-forward MixHer nights in music-forward cities across the country."
   />
 
-  <!-- Signature debut (leads the page) -->
+  <!-- Debut leads -->
   <section class="section-pad">
     <div class="wrap sig">
       <div class="sig__text" data-reveal>
         <p class="spaced">Where it started</p>
         <h2 class="fancy">Our Art Basel <span class="grad">debut.</span></h2>
-        <p>
-          MixHer debuted during Miami Art Basel with Grammy-winning artists and national radio stations
-          in attendance — a room full of DJs, tastemakers, and culture, connecting in real time.
-        </p>
-        <p>It set the standard for every MixHer night since: real stages, real industry, real community.</p>
+        <p>MixHer debuted during Miami Art Basel with Grammy-winning artists and national radio stations in attendance — setting the standard for every MixHer night since: real stages, real industry, real community.</p>
       </div>
-      <div class="sig__media" data-reveal><Media src="/img/group1.jpg" alt="MixHer community at an event" ratio="4 / 3" /></div>
+      <div class="sig__media" data-reveal><Media src="/img/group1.jpg" alt="MixHer Miami Art Basel debut with female DJs and industry guests" ratio="4 / 3" /></div>
     </div>
   </section>
 
   <!-- Upcoming -->
   <section class="section-pad tint">
     <div class="wrap">
-      <div class="sec-head"><p class="spaced" data-reveal>Upcoming events</p>
-      <h2 class="display" data-reveal>Next up</h2></div>
+      <div class="sec-head"><p class="spaced" data-reveal>Upcoming events</p><h2 class="display" data-reveal>Next up</h2></div>
       <div class="ev-list">
         {events.map((e) => (
           <article class="ev card" data-reveal>
-            <div class="ev__art"><Media src={e.img} alt={`${e.name} flyer`} ratio="2 / 3" /></div>
+            <div class="ev__art"><Media src={e.img} alt={`${e.name} ${e.series} flyer — ${e.city}`} ratio="2 / 3" /></div>
             <div class="ev__body">
-              <span class="ev__series">{e.series}</span>
+              <span class="ev__series">{e.seriesLabel}</span>
               <h3 class="ev__name">{e.name}</h3>
               <p class="ev__blurb">{e.blurb}</p>
               <ul class="ev__meta">
-                <li><b>When</b>{e.date}{e.time ? ` · ${e.time}` : ''}</li>
-                <li><b>Where</b>{e.venue}{e.city ? ` · ${e.city}` : ''}</li>
+                <li><b>Series</b>{e.series}</li>
+                <li><b>When</b>{e.date} · {e.time}</li>
+                <li><b>Where</b>{e.venue} · {e.city}</li>
+                <li><b>Lineup</b>{e.djs}</li>
               </ul>
               <a href={e.href} class="btn btn-primary">Get tickets</a>
             </div>
@@ -58,41 +68,29 @@ const gallery = ['/img/djl-decks.jpg', '/img/djl-smile.jpg', '/img/djl-speaker.j
   <!-- Gallery -->
   <section class="section-pad">
     <div class="wrap">
-      <div class="sec-head"><p class="spaced" data-reveal>From the floor</p>
-      <h2 class="display" data-reveal>The energy</h2></div>
-      <div class="gallery">
-        {gallery.map((src) => <Media src={src} alt="A MixHer event moment" ratio="1 / 1" />)}
-      </div>
+      <div class="sec-head"><p class="spaced" data-reveal>From the floor</p><h2 class="display" data-reveal>Recaps &amp; energy</h2></div>
+      <div class="gallery">{gallery.map((src) => <Media src={src} alt="MixHer female DJ event moment" ratio="1 / 1" />)}</div>
     </div>
   </section>
 
-  <CtaBand
-    heading="Be there next time."
-    sub="Join the community and follow along so you never miss a MixHer night."
-    primaryLabel="Join the community"
-    primaryHref="/community"
-    secondaryLabel="Follow @themixher"
-    secondaryHref={site.socials.instagram}
-  />
+  <CtaBand heading="Bring MixHer to your city." primaryLabel="Bring MixHer to Your City" primaryHref={site.bringUrl} secondaryLabel="Sponsor MixHer" secondaryHref={site.sponsorUrl} />
 </Base>
 
 <style>
-  .sec-head .spaced { display: block; margin-bottom: 0.8rem; }
-  .ev-list { display: flex; flex-direction: column; gap: clamp(1.2rem, 3vw, 2rem); }
-  .ev { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; padding: clamp(1.2rem, 3vw, 2rem); }
-  .ev__art { border-radius: var(--radius); overflow: hidden; max-width: 320px; }
-  .ev__series { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+  .sec-head .spaced { display: inline-block; margin-bottom: 0.7rem; }
+  .sig { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .sig__text p { color: var(--muted); max-width: 54ch; }
+  @media (max-width: 840px) { .sig { grid-template-columns: 1fr; } .sig__media { order: -1; } }
+  .ev-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .ev { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  .ev__art { border-radius: var(--radius); overflow: hidden; max-width: 300px; }
+  .ev__series { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
   .ev__name { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; margin: 0.2rem 0 0.5rem; }
   .ev__blurb { color: var(--muted); margin: 0 0 1rem; max-width: 48ch; }
   .ev__meta { list-style: none; margin: 0 0 1.2rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
   .ev__meta li { color: var(--ink); font-size: 0.95rem; }
-  .ev__meta b { font-family: var(--display); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orchid-deep); margin-right: 0.6rem; }
-  @media (max-width: 720px) { .ev { grid-template-columns: 1fr; } .ev__art { max-width: 260px; } }
-
-  .sig { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .sig__text p { color: var(--muted); max-width: 54ch; }
-  @media (max-width: 840px) { .sig { grid-template-columns: 1fr; } .sig__media { order: -1; } }
-
+  .ev__meta b { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orchid-deep); margin-right: 0.6rem; display: inline-block; min-width: 3.4rem; }
+  @media (max-width: 720px) { .ev { grid-template-columns: 1fr; } .ev__art { max-width: 240px; } }
   .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.6rem, 1.5vw, 1rem); }
   @media (max-width: 620px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
 </style>

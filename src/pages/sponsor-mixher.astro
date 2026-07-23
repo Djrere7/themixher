@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import Form from '../components/Form.astro';
+import { site, sponsorValue, sponsorTypes, sponsors, proofBar } from '../data/site';
+---
+<Base
+  title="Sponsor MixHer"
+  fullTitle="Sponsor MixHer | Brand Partnerships With Female DJ Events"
+  description="Sponsor MixHer — align your brand with music-forward audiences through female DJ events, PLY parties, The Set networking, and First Spin. Tax-deductible. Request the sponsor kit."
+>
+  <PageHeader
+    kicker="Sponsors & partners"
+    title={`Put your brand where<br/>culture is heard <span class='grad-o'>first.</span>`}
+    lead="MixHer connects brands with music-forward audiences through curated events, DJ collaborations, gifting moments, social content, live activations, and nonprofit-aligned visibility."
+  />
+
+  <!-- Value -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="grid grid-4">
+        {sponsorValue.map((v) => (
+          <div class="card val" data-reveal><h3 class="val__t">{v.title}</h3><p class="val__b">{v.blurb}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reach / proof -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>Audience &amp; reach</p><h2 class="display" data-reveal>Real numbers, real impact</h2></div>
+      <div class="grid grid-4 statgrid">
+        {proofBar.slice(0, 4).map((s) => (
+          <div class="statcard" data-reveal><span class="statcard__n grad">{s.num}</span><span class="statcard__l">{s.label}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Energy band -->
+  <section class="section-pad"><div class="wrap"><div class="band" data-reveal><Media src="/img/group1.jpg" alt="Brand activation at a packed MixHer female DJ event" ratio="21 / 9" /></div></div></section>
+
+  <!-- Opportunities -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head"><p class="spaced" data-reveal>Ways to partner</p><h2 class="display" data-reveal>Sponsorship opportunities</h2></div>
+      <div class="opps">
+        {sponsorTypes.map((t) => <span class="opp" data-reveal>{t}</span>)}
+      </div>
+      <p class="tax" data-reveal>MixHer is a minority woman-founded 501(c)(3) nonprofit. {site.taxLine}</p>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section class="section-pad tint logos">
+    <div class="wrap">
+      <p class="spaced center" data-reveal>In good company</p>
+      <div class="logos__row" data-reveal>
+        {sponsors.map((s) => (
+          s.img ? <img class="logos__img" src={s.img} alt={`${s.name} — MixHer sponsor`} loading="lazy" /> : <span class="logos__word">{s.name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Request kit / inquiry -->
+  <section class="section-pad" id="request-kit">
+    <div class="wrap narrow">
+      <div class="sec-head center"><p class="spaced" data-reveal>Let’s partner</p>
+      <h2 class="fancy" data-reveal>Request the sponsor kit</h2>
+      <p class="center-sub" data-reveal>Tell us your goals and we’ll send the full MixHer sponsor kit and tailor a partnership that fits.</p></div>
+      <div class="card formcard" data-reveal>
+        <Form
+          formName="Sponsor inquiry / kit request"
+          submit="Request the Sponsor Kit"
+          note="We’ll reply by email with the sponsor kit and next steps."
+          fields={[
+            { name: 'company', label: 'Company / brand', required: true },
+            { name: 'name', label: 'Your name', required: true },
+            { name: 'email', label: 'Work email', type: 'email', required: true },
+            { name: 'interest', label: 'Partnership interest', type: 'select', options: sponsorTypes },
+            { name: 'budget', label: 'Estimated budget (optional)' },
+            { name: 'message', label: 'What are your goals?', type: 'textarea', full: true },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sec-head .spaced { display: inline-block; margin-bottom: 0.7rem; }
+  .sec-head.center { text-align: center; }
+  .center { display: block; text-align: center; }
+  .center-sub { color: var(--muted); max-width: 54ch; margin: 0.6rem auto 0; }
+  .val { display: flex; flex-direction: column; gap: 0.4rem; }
+  .val__t { font-family: var(--display); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
+  .val__b { color: var(--muted); margin: 0; font-size: 0.92rem; }
+  .statgrid { text-align: center; }
+  .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.2rem 0.4rem; }
+  .statcard__n { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1; }
+  .statcard__l { color: var(--muted); font-size: 0.78rem; }
+  .band { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--card-brd); }
+  .opps { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .opp { font-family: var(--display); font-weight: 800; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.7rem 1.2rem; border: 1px solid var(--card-brd-hi); border-radius: 999px; color: var(--ink); background: #fff; }
+  .tax { text-align: center; color: var(--dim); margin-top: 1.6rem; font-size: 0.9rem; }
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.4rem 2.6rem; margin-top: 1.6rem; }
+  .logos__img { height: 36px; width: auto; object-fit: contain; opacity: 0.8; }
+  .logos__word { font-family: var(--display); font-weight: 800; font-size: clamp(0.95rem, 2vw, 1.3rem); text-transform: uppercase; color: var(--dim); }
+  .formcard { padding: clamp(1.5rem, 4vw, 2.5rem); }
+</style>

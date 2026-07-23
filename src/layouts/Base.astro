@@ -5,18 +5,52 @@ import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
 
 interface Props {
-  title?: string;
+  title?: string;        // page name → "<title> | MixHer"
+  fullTitle?: string;    // exact <title> override (SEO)
   description?: string;
   image?: string;
+  schema?: object[];     // extra JSON-LD for the page
+  keywords?: string;
 }
 const {
   title,
-  description = site.coreSentence,
-  image = '/og.jpg',
+  fullTitle,
+  description = 'MixHer is a national 501(c)(3) nonprofit event series and DJ network creating stages, industry access, brand partnerships, and First Spin DJ Bootcamp opportunities for female DJs and youth.',
+  image = '/img/event-ply.jpg',
+  schema = [],
+  keywords = 'female DJs, women DJs, female DJ network, DJ nonprofit, DJ events Miami, Miami female DJs, national DJ event series, women behind the decks, DJ bootcamp, youth DJ lessons, DJ mentorship, music nonprofit, female DJ community, DJ networking event, female DJ party series',
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.name}` : `The MixHer · ${site.tagline} — The Nonprofit Platform for Female DJs`;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.themixher.org').href;
+const pageTitle = fullTitle ?? (title ? `${title} | ${site.name}` : 'MixHer | Female DJ Network, Events & Nonprofit DJ Bootcamp');
+const origin = 'https://www.themixher.org';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? origin).href;
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NonprofitOrganization',
+  name: 'MixHer',
+  alternateName: ['The MixHer', 'MixHer Inc.'],
+  description: 'A national 501(c)(3) nonprofit event series and DJ network for female DJs — producing PLY parties, The Set networking, and First Spin DJ Bootcamp.',
+  url: origin,
+  email: site.email,
+  logo: `${origin}/brand/mixher-logo.png`,
+  slogan: 'Setting The Tone',
+  foundingDate: '2023',
+  founder: { '@type': 'Person', name: 'DJ ReRe' },
+  nonprofitStatus: 'Nonprofit501c3',
+  address: { '@type': 'PostalAddress', addressLocality: 'Miami Beach', addressRegion: 'FL', addressCountry: 'US' },
+  areaServed: 'United States',
+  sameAs: Object.values(site.socials),
+};
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'DJ ReRe',
+  jobTitle: 'Founder, MixHer · International DJ',
+  worksFor: { '@type': 'Organization', name: 'MixHer' },
+  description: 'International DJ with 20+ years of experience, founder of MixHer, and owner of REmixed Events.',
+};
+const allSchema = [orgSchema, personSchema, ...schema];
 ---
 <!doctype html>
 <html lang="en">
@@ -25,12 +59,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.themixh
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon-180.png" />
-    <meta name="generator" content="The MixHer" />
+    <meta name="generator" content="MixHer" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="female DJs, women DJs, female DJ nonprofit, Miami female DJs, women in music, DJ community, female DJ events Miami, MixHer, Setting the Tone, brand activations Miami, DJ showcase" />
+    <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#fffdfb" />
+    <meta name="theme-color" content="#ffffff" />
     <script is:inline>document.documentElement.classList.add('js');</script>
 
     <meta property="og:type" content="website" />
@@ -38,7 +72,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.themixh
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(image, Astro.site ?? 'https://www.themixher.org').href} />
+    <meta property="og:image" content={new URL(image, Astro.site ?? origin).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
@@ -47,31 +81,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.themixh
     <link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="/fonts/kelin-eator.woff2" as="font" type="font/woff2" crossorigin />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'NGO',
-      name: 'The MixHer',
-      alternateName: 'MixHer Inc.',
-      description: site.coreSentence,
-      url: 'https://www.themixher.org',
-      email: site.email,
-      telephone: '+1-786-910-2799',
-      slogan: 'Setting the Tone',
-      foundingDate: '2023',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '1000 5th Street, Suite 200',
-        addressLocality: 'Miami Beach',
-        addressRegion: 'FL',
-        postalCode: '33139',
-        addressCountry: 'US',
-      },
-      areaServed: ['Miami', 'South Florida', 'United States'],
-      sameAs: Object.values(site.socials),
-    })} />
+    {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
-    <div class="grain" aria-hidden="true"></div>
     <a href="#main" class="sr-only">Skip to content</a>
     <Nav />
     <main id="main">
@@ -83,34 +95,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.themixh
       const els = Array.from(document.querySelectorAll('[data-reveal]'));
       const reveal = (el: Element) => el.classList.add('in');
       const revealAll = () => els.forEach(reveal);
-
-      // Fail-safe: if there is no working viewport height (some embedded/preview
-      // contexts report 0) or no IntersectionObserver, show everything so content
-      // can never get stuck hidden. Real browsers keep the scroll-in effect below.
       if (!('IntersectionObserver' in window) || !window.innerHeight) {
         revealAll();
       } else {
         const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
-            }
-          },
+          (entries) => { for (const e of entries) { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } } },
           { threshold: 0.1, rootMargin: '0px 0px -5% 0px' },
         );
-        // Reveal anything already in/above the viewport (deep links, restored
-        // scroll), observe the rest for the effect.
-        els.forEach((el) => {
-          if (el.getBoundingClientRect().top < window.innerHeight) reveal(el);
-          else io.observe(el);
-        });
-        // Last-resort safety net: on first user scroll, reveal anything on screen
-        // that the observer somehow missed.
-        const sweep = () => {
-          els.forEach((el) => {
-            if (!el.classList.contains('in') && el.getBoundingClientRect().top < window.innerHeight) reveal(el);
-          });
-        };
+        els.forEach((el) => { if (el.getBoundingClientRect().top < window.innerHeight) reveal(el); else io.observe(el); });
+        const sweep = () => { els.forEach((el) => { if (!el.classList.contains('in') && el.getBoundingClientRect().top < window.innerHeight) reveal(el); }); };
         window.addEventListener('scroll', sweep, { passive: true, once: true });
       }
     </script>
