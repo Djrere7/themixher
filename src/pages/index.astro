@@ -17,9 +17,9 @@ const faqSchema = {
 };
 const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key === 'Network' ? '#djs' : '#events');
 const galleryImgs = [
-  '/img/gallery/party.jpg', '/img/gallery/dj-ic3.jpg', '/img/gallery/decks.jpg',
-  '/img/gallery/network.jpg', '/img/gallery/sponsor.jpg', '/img/gallery/crowd.jpg',
-  '/img/gallery/market.jpg',
+  '/img/gallery/dj-ic3.jpg', '/img/gallery/decks.jpg', '/img/dj-spin.jpg',
+  '/img/djl-decks.jpg', '/img/dj-decks.jpg', '/img/gallery/party.jpg',
+  '/img/gallery/crowd.jpg',
 ];
 ---
 <Base schema={[faqSchema]}>
@@ -90,20 +90,7 @@ const galleryImgs = [
         <h2 class="fancy">Built for the DJs <span class="grad">Setting The Tone.</span></h2>
         <p>Join a national network for more stages, stronger industry connections, gig-sharing, resources, brand opportunities, and a community that moves together.</p>
         <p class="gate"><b>By request only.</b> We review every applicant to keep the community — and our private group — real. Approved DJs get the invite by email. No one is auto-added.</p>
-        <div class="joinform card">
-          <Form
-            formName="Join the DJ Network"
-            submit="Request to join"
-            note="You’ll hear from us by email once you’re approved."
-            fields={[
-              { name: 'name', label: 'Name / DJ name', required: true },
-              { name: 'email', label: 'Email', type: 'email', required: true },
-              { name: 'city', label: 'City' },
-              { name: 'instagram', label: 'Instagram' },
-              { name: 'about', label: 'Tell us about you & what you spin', type: 'textarea', full: true },
-            ]}
-          />
-        </div>
+        <a href="#contact" class="btn btn-primary djs__cta">Request to join &rarr;</a>
       </div>
     </div>
   </section>
@@ -131,7 +118,7 @@ const galleryImgs = [
       <div class="ev-grid">
         {events.map((e) => (
           <article class="card evc" data-reveal>
-            <div class="evc__art"><Media src={e.img} alt={`${e.name} PLY party flyer — female DJs in ${e.city}`} ratio="2 / 3" /></div>
+            <div class="evc__art"><Media src={e.img} alt={`${e.name} PLY party flyer — female DJs in ${e.city}`} ratio="3 / 4" /></div>
             <div class="evc__body">
               <span class="evc__series">{e.seriesLabel}</span>
               <h3 class="evc__name">{e.name}</h3>
@@ -141,16 +128,33 @@ const galleryImgs = [
             </div>
           </article>
         ))}
-        <div class="card evc evc--set" data-reveal>
-          <div class="evc__art"><Media src="/img/mh-theset.jpg" alt="Chauvet DJ welcomes The MixHer — The Set networking series" ratio="4 / 3" /></div>
+
+        <article class="card evc" data-reveal>
+          <div class="evc__ph evc__ph--set">
+            <span class="evc__phkicker">The Set · Networking</span>
+            <span class="evc__phbig">Next date<br />coming soon</span>
+            <span class="evc__phnote">As seen: Chauvet DJ welcomes The MixHer</span>
+          </div>
           <div class="evc__body">
             <span class="evc__series">The Set · Networking Series</span>
             <h3 class="evc__name">The Set</h3>
-            <p class="evc__meta">New dates dropping in music-forward cities nationwide.</p>
+            <p class="evc__meta">Intimate rooms in music-forward cities nationwide.</p>
             <p class="evc__djs">DJs · execs · brands · venues · tastemakers</p>
             <a href="#contact" class="btn btn-ghost">Request an invite</a>
           </div>
-        </div>
+        </article>
+
+        <article class="card evc" data-reveal>
+          <div class="evc__ph evc__ph--city">
+            <span class="evc__phbig evc__phbig--city">Bring MixHer to your city</span>
+          </div>
+          <div class="evc__body">
+            <span class="evc__series">Host · Partner</span>
+            <h3 class="evc__name">Your City</h3>
+            <p class="evc__meta">Want PLY or The Set where you are? Let’s make it happen — venues, promoters, and partners welcome.</p>
+            <a href="#contact" class="btn btn-primary">Bring MixHer to Your City</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -327,18 +331,30 @@ const galleryImgs = [
   .band-glass-btn { color: #fff; border-color: rgba(255,255,255,0.7); }
   .band-glass-btn:hover { border-color: #fff; background: rgba(255,255,255,0.14); color: #fff; }
 
-  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: clamp(1rem, 2.5vw, 1.6rem); }
-  .evc { display: flex; flex-direction: column; gap: 0.5rem; padding: 0; overflow: hidden; }
-  .evc--set { justify-content: center; background: linear-gradient(140deg, var(--bg-lav), #fff); }
-  .evc__body { padding: 1.2rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+  .ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); align-items: stretch; }
+  @media (max-width: 880px) { .ev-grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+  .evc { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .evc__body { padding: 1.2rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.3rem; align-items: flex-start; flex: 1; }
+  .evc__body .btn { margin-top: auto; }
+  /* placeholder art areas */
+  .evc__ph { aspect-ratio: 3 / 4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 0.7rem; padding: 1.5rem; color: #fff; }
+  .evc__ph--set { background: linear-gradient(150deg, var(--orchid-deep), var(--purple)); }
+  .evc__ph--city { background: linear-gradient(150deg, var(--orange), var(--orchid-deep)); }
+  .evc__phkicker { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+  .evc__phbig { font-family: var(--serif); font-size: 2rem; line-height: 1.05; }
+  .evc__phbig--city { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.9rem; line-height: 0.95; }
+  .evc__phnote { font-size: 0.76rem; color: rgba(255,255,255,0.8); max-width: 22ch; }
   .evc__series { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
   .evc__name { font-family: var(--display); font-weight: 800; font-size: 1.8rem; text-transform: uppercase; margin: 0; }
   .evc__meta { color: var(--muted); font-size: 0.88rem; margin: 0.2rem 0; }
   .evc__djs { color: var(--orchid-deep); font-weight: 600; font-size: 0.86rem; margin: 0 0 0.7rem; }
 
-  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.4rem 2.6rem; margin-top: 1.6rem; }
-  .logos__img { height: 34px; width: auto; object-fit: contain; opacity: 0.8; }
-  .logos__word { font-family: var(--display); font-weight: 800; font-size: clamp(0.95rem, 2vw, 1.3rem); text-transform: uppercase; color: var(--dim); }
+  .logos__row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.8rem 3.2rem; margin-top: 1.8rem; }
+  .logos__img { height: 46px; width: auto; max-width: 170px; object-fit: contain; opacity: 0.85; transition: transform 0.22s ease, opacity 0.22s ease; }
+  .logos__img:hover { transform: scale(1.14); opacity: 1; }
+  .logos__word { font-family: var(--display); font-weight: 800; font-size: clamp(1.1rem, 2.2vw, 1.5rem); text-transform: uppercase; color: var(--dim); transition: color 0.2s ease, transform 0.22s ease; }
+  .logos__word:hover { color: var(--orchid-deep); transform: scale(1.08); }
+  @media (max-width: 620px) { .logos__img { height: 38px; } }
 
   .contact__intro { color: var(--muted); max-width: 56ch; margin: 0.8rem auto 0; }
   .contact { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(1.2rem, 3vw, 2rem); align-items: stretch; }
