@@ -30,11 +30,12 @@ export const site = {
   taxLine: 'Sponsorships and donations are tax-deductible.',
 
   // Action links — TODO: wire real endpoints/URLs before go-live
-  joinUrl: '/female-dj-network#join', // request to join the DJ Network (form)
+  joinUrl: '/#djs', // request to join the DJ Network (form on landing)
   sponsorUrl: '/sponsor-mixher',
   sponsorKitUrl: '/sponsor-mixher#request-kit',
-  bringUrl: '/contact?reason=bring-mixher',
-  donateUrl: '#donate', // TODO: donation platform (First Spin)
+  firstSpinUrl: 'https://firstspindjbootcamp.carrd.co/', // external First Spin site
+  bringUrl: '/#contact',
+  donateUrl: 'https://firstspindjbootcamp.carrd.co/', // funding flows to First Spin
   newsletterAction: '', // TODO: newsletter POST endpoint
   formEndpoint: '', // TODO: form service (Formspree/Tally) — falls back to mailto
   // WhatsApp is gated: never link publicly. Access is granted after a request is approved.
@@ -49,23 +50,14 @@ export const site = {
   },
 };
 
-/** Primary nav. `children` renders a dropdown. */
+/** Primary nav — simple, landing anchors + Sponsor page + external First Spin. */
 export const nav = [
-  { label: 'About', href: '/about' },
-  { label: 'DJ Network', href: '/female-dj-network' },
-  {
-    label: 'Programs',
-    href: '/events',
-    children: [
-      { label: 'MixHer Events', href: '/events' },
-      { label: 'PLY · Party Series', href: '/ply-party-series' },
-      { label: 'The Set · Networking', href: '/the-set-networking-series' },
-      { label: 'First Spin Bootcamp', href: '/first-spin-dj-bootcamp' },
-    ],
-  },
+  { label: 'What We Do', href: '/#what' },
+  { label: 'DJ Network', href: '/#djs' },
+  { label: 'Events', href: '/#events' },
   { label: 'Sponsor', href: '/sponsor-mixher' },
-  { label: 'Press', href: '/press' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'First Spin', href: 'https://firstspindjbootcamp.carrd.co/', external: true },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 /** Proof-bar credibility stats. */

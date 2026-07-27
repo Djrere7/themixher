@@ -30,24 +30,22 @@ const year = new Date().getFullYear();
 
       <nav class="ft__col" aria-label="Explore">
         <h3 class="ft__h">Explore</h3>
-        {nav.filter((n) => !n.children).map((item) => <a href={item.href}>{item.label}</a>)}
-        <a href="/ply-party-series">PLY</a>
-        <a href="/the-set-networking-series">The Set</a>
-        <a href="/first-spin-dj-bootcamp">First Spin</a>
+        {nav.map((item) => (
+          <a href={item.href} {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}>{item.label}{item.external && ' ↗'}</a>
+        ))}
       </nav>
 
       <div class="ft__col">
         <h3 class="ft__h">Take action</h3>
         <a href={site.joinUrl}>Join the DJ Network</a>
         <a href={site.sponsorUrl}>Sponsor MixHer</a>
-        <a href={site.donateUrl}>Fund First Spin</a>
+        <a href={site.firstSpinUrl} target="_blank" rel="noopener">Fund First Spin ↗</a>
         <a href={site.bringUrl}>Bring MixHer to Your City</a>
       </div>
 
       <div class="ft__col">
         <h3 class="ft__h">Contact</h3>
         <a href={site.emailHref}>{site.email}</a>
-        <a href="/press">Press kit</a>
         <span class="ft__addr">Miami Beach, FL · Nationwide</span>
       </div>
     </div>

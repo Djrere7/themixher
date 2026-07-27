@@ -1,9 +1,6 @@
 ---
 import Wordmark from './Wordmark.astro';
 import { nav, site } from '../data/site';
-const path = Astro.url.pathname;
-const isActive = (href: string) => href !== '/' && path.startsWith(href.split('#')[0]);
-const childActive = (item: any) => item.children?.some((c: any) => isActive(c.href));
 ---
 <header class="nav" data-nav>
   <div class="wrap nav__row">
@@ -11,21 +8,12 @@ const childActive = (item: any) => item.children?.some((c: any) => isActive(c.hr
 
     <nav class="nav__links" aria-label="Primary">
       {nav.map((item) => (
-        item.children ? (
-          <div class="nav__group">
-            <a href={item.href} class:list={['nav__link', { on: isActive(item.href) || childActive(item) }]}>{item.label} <span class="nav__caret" aria-hidden="true">▾</span></a>
-            <div class="nav__menu">
-              {item.children.map((c) => <a href={c.href} class:list={['nav__mi', { on: isActive(c.href) }]}>{c.label}</a>)}
-            </div>
-          </div>
-        ) : (
-          <a href={item.href} class:list={['nav__link', { on: isActive(item.href) }]}>{item.label}</a>
-        )
+        <a href={item.href} class="nav__link" {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}>{item.label}{item.external && <span class="ext" aria-hidden="true">↗</span>}</a>
       ))}
     </nav>
 
     <div class="nav__cta">
-      <a href={site.donateUrl} class="btn btn-primary nav__donate">Fund First Spin</a>
+      <a href={site.joinUrl} class="btn btn-primary nav__join">Join the Network</a>
     </div>
 
     <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>
@@ -35,13 +23,10 @@ const childActive = (item: any) => item.children?.some((c: any) => isActive(c.hr
 
   <div class="nav__mobile" data-mobile hidden>
     {nav.map((item) => (
-      <>
-        <a href={item.href} class:list={['nav__mlink', { on: isActive(item.href) }]}>{item.label}</a>
-        {item.children && item.children.map((c) => <a href={c.href} class="nav__msub">{c.label}</a>)}
-      </>
+      <a href={item.href} class="nav__mlink" {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}>{item.label}{item.external && ' ↗'}</a>
     ))}
     <div class="nav__mrow">
-      <a href={site.donateUrl} class="btn btn-primary">Fund First Spin</a>
+      <a href={site.joinUrl} class="btn btn-primary">Join the Network</a>
       <a href={site.sponsorUrl} class="btn btn-ghost">Sponsor</a>
     </div>
   </div>
@@ -50,34 +35,26 @@ const childActive = (item: any) => item.children?.some((c: any) => isActive(c.hr
 <style>
   .nav { position: sticky; top: 0; z-index: 50; transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; border-bottom: 1px solid transparent; }
   .nav.stuck { background: rgba(255,255,255,0.9); backdrop-filter: blur(14px); border-bottom-color: var(--card-brd); box-shadow: 0 6px 24px -18px rgba(117,56,234,0.3); }
-  .nav__row { display: flex; align-items: center; gap: 1.4rem; min-height: 92px; }
-  .nav__links { display: flex; gap: 1.4rem; margin-left: auto; align-items: center; }
-  .nav__link { font-family: var(--display); font-weight: 800; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); position: relative; padding: 0.3rem 0; transition: color 0.2s ease; white-space: nowrap; cursor: pointer; }
+  .nav__row { display: flex; align-items: center; gap: 1.4rem; min-height: 90px; }
+  .nav__links { display: flex; gap: 1.6rem; margin-left: auto; align-items: center; }
+  .nav__link { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); position: relative; padding: 0.3rem 0; transition: color 0.2s ease; white-space: nowrap; }
   .nav__link::after { content: ''; position: absolute; left: 0; bottom: -3px; height: 2px; width: 0; background: linear-gradient(90deg, var(--orange), var(--orchid)); transition: width 0.25s ease; }
-  .nav__link:hover, .nav__link.on { color: var(--ink); }
-  .nav__link:hover::after, .nav__link.on::after { width: 100%; }
-  .nav__caret { font-size: 0.6rem; }
-
-  .nav__group { position: relative; }
-  .nav__menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); min-width: 210px; background: #fff; border: 1px solid var(--card-brd); border-radius: 14px; box-shadow: var(--shadow); padding: 0.5rem; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease; display: flex; flex-direction: column; }
-  .nav__group:hover .nav__menu, .nav__group:focus-within .nav__menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(2px); }
-  .nav__mi { padding: 0.6rem 0.8rem; border-radius: 9px; font-size: 0.82rem; font-weight: 600; color: var(--muted); transition: background 0.15s, color 0.15s; }
-  .nav__mi:hover, .nav__mi.on { background: var(--bg-lav); color: var(--ink); }
-
+  .nav__link:hover { color: var(--ink); }
+  .nav__link:hover::after { width: 100%; }
+  .ext { font-size: 0.7em; margin-left: 0.15rem; opacity: 0.7; }
   .nav__cta { margin-left: 0.3rem; }
-  .nav__donate { padding: 0.65rem 1.3rem; font-size: 0.68rem; }
+  .nav__join { padding: 0.65rem 1.3rem; font-size: 0.68rem; }
 
   .nav__burger { display: none; background: none; border: 0; cursor: pointer; margin-left: auto; width: 34px; height: 34px; padding: 0; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 4px; place-items: center; }
   .nav__burger span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); transition: background 0.2s ease; }
   .nav__burger[aria-expanded='true'] span { background: var(--orange); }
 
   .nav__mobile { display: none; flex-direction: column; gap: 0.1rem; padding: 0.5rem var(--gutter) 1.5rem; background: rgba(255,255,255,0.98); backdrop-filter: blur(14px); border-bottom: 1px solid var(--card-brd); }
-  .nav__mlink { padding: 0.75rem 0 0.4rem; font-family: var(--display); font-weight: 800; font-size: 1.25rem; text-transform: uppercase; color: var(--ink); }
-  .nav__msub { padding: 0.4rem 0 0.4rem 1rem; font-size: 0.95rem; color: var(--muted); border-left: 2px solid var(--card-brd-hi); margin-left: 0.2rem; }
+  .nav__mlink { padding: 0.8rem 0; font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--card-brd); }
   .nav__mrow { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
   .nav__mrow .btn { flex: 1; }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 980px) {
     .nav__links, .nav__cta { display: none; }
     .nav__burger { display: grid; }
     .nav__mobile[data-open] { display: flex; }
@@ -89,15 +66,11 @@ const childActive = (item: any) => item.children?.some((c: any) => isActive(c.hr
   const onScroll = () => nav?.classList.toggle('stuck', window.scrollY > 12);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
-
   const burger = document.querySelector('[data-burger]');
   const mobile = document.querySelector('[data-mobile]') as HTMLElement | null;
   burger?.addEventListener('click', () => {
     const open = burger.getAttribute('aria-expanded') === 'true';
     burger.setAttribute('aria-expanded', String(!open));
-    if (mobile) {
-      if (open) { mobile.removeAttribute('data-open'); mobile.hidden = true; }
-      else { mobile.hidden = false; mobile.setAttribute('data-open', ''); }
-    }
+    if (mobile) { if (open) { mobile.removeAttribute('data-open'); mobile.hidden = true; } else { mobile.hidden = false; mobile.setAttribute('data-open', ''); } }
   });
 </script>
