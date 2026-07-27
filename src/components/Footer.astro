@@ -1,5 +1,6 @@
 ---
 import Wordmark from './Wordmark.astro';
+import Social from './Social.astro';
 import { site, nav } from '../data/site';
 const year = new Date().getFullYear();
 ---
@@ -21,11 +22,7 @@ const year = new Date().getFullYear();
       <div class="ft__brand">
         <Wordmark height={64} />
         <p class="ft__mission">The national hub for female DJs — events, networking, community, and education.</p>
-        <div class="ft__socials">
-          <a href={site.socials.instagram} target="_blank" rel="noopener" class="ft__social">Instagram</a>
-          <a href={site.socials.tiktok} target="_blank" rel="noopener" class="ft__social">TikTok</a>
-          <a href={site.socials.youtube} target="_blank" rel="noopener" class="ft__social">YouTube</a>
-        </div>
+        <Social />
       </div>
 
       <nav class="ft__col" aria-label="Explore">

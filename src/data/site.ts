@@ -44,10 +44,12 @@ export const site = {
   url: 'https://www.themixher.org',
   socials: {
     instagram: 'https://www.instagram.com/themixher',
-    tiktok: 'https://www.tiktok.com/@themixher',
+    tiktok: 'https://www.tiktok.com/@themixher1',
     youtube: 'https://www.youtube.com/@themixher',
     facebook: 'https://www.facebook.com/themixher',
   },
+  igHandle: '@themixher',
+  tiktokHandle: '@themixher1',
 };
 
 /** Primary nav — simple, landing anchors + Sponsor page + external First Spin. */

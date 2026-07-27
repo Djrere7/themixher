@@ -4,6 +4,7 @@ import Marquee from '../components/Marquee.astro';
 import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
 import Form from '../components/Form.astro';
+import Social from '../components/Social.astro';
 import { site, proofBar, pillars, founder, sponsors, ticker, events } from '../data/site';
 
 const faqSchema = {
@@ -76,7 +77,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
   <section class="section-pad tint" id="djs">
     <div class="wrap split">
       <div class="split__media" data-reveal>
-        <Media src="/img/mh-djs.jpg" alt="Female DJs and creatives connecting at a MixHer event" ratio="4 / 5" />
+        <Media src="/img/mh-network.jpg" alt="The MixHer network of female DJs and creatives at an event" ratio="4 / 5" />
       </div>
       <div class="split__text" data-reveal>
         <p class="spaced">For female DJs</p>
@@ -148,10 +149,23 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
     </div>
   </section>
 
+  <!-- GALLERY (see it in action) -->
+  <section class="gallery-sec">
+    <div class="wrap"><p class="spaced center" data-reveal style="display:block;text-align:center;margin-bottom:1.4rem">See it in action</p></div>
+    <div class="gmq" aria-hidden="true">
+      <div class="gmq__track">
+        {['/img/dj-flowers.jpg','/img/djl-decks.jpg','/img/mh-djs.jpg','/img/group2.jpg','/img/laugh.jpg','/img/crowd.jpg','/img/group1.jpg',
+          '/img/dj-flowers.jpg','/img/djl-decks.jpg','/img/mh-djs.jpg','/img/group2.jpg','/img/laugh.jpg','/img/crowd.jpg','/img/group1.jpg'].map((src) => (
+          <img class="gmq__img" src={src} alt="A MixHer female DJ event in action" loading="lazy" />
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- FIRST SPIN (external) -->
   <section class="section-pad tint">
     <div class="wrap split">
-      <div class="split__media" data-reveal><Media src="/img/mh-firstspin.jpg" alt="The MixHer community — proceeds fund First Spin DJ Bootcamp" ratio="4 / 3" /></div>
+      <div class="split__media" data-reveal><Media src="/img/firstspin-student.jpg" alt="A First Spin DJ Bootcamp student learning to DJ" ratio="4 / 3" /></div>
       <div class="split__text" data-reveal>
         <img src="/img/firstspin-logo.png" alt="First Spin DJ Bootcamp logo" class="fs-logo" width="200" height="110" loading="lazy" />
         <h2 class="fancy">Every set fuels the next <span class="grad">First Spin.</span></h2>
@@ -225,10 +239,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
           <h3>Reach us</h3>
           <a href={site.emailHref} class="cside__email">{site.email}</a>
           <p class="cside__loc">Miami Beach, FL · Events nationwide</p>
-          <div class="cside__soc">
-            <a href={site.socials.instagram} target="_blank" rel="noopener">Instagram</a>
-            <a href={site.socials.tiktok} target="_blank" rel="noopener">TikTok</a>
-          </div>
+          <Social />
         </div>
       </aside>
     </div>
@@ -252,7 +263,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
       radial-gradient(28vw 28vw at 64% 2%, rgba(228,168,243,0.22), transparent 62%); }
 
   .hero { position: relative; padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem); overflow: hidden; }
-  .hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   .hero__h { font-size: clamp(2.7rem, 8.5vw, 6.4rem); margin: 0.4rem 0 0; }
   .hero__script { font-family: var(--script); font-size: clamp(2rem, 5vw, 3.4rem); color: var(--orchid-deep); line-height: 0.8; margin: 0.3rem 0 0.6rem; }
   .hero__sub { color: var(--muted); max-width: 48ch; font-size: 1.05rem; }
@@ -262,7 +273,16 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
   .hero__frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; border-radius: var(--radius-lg); border: 2px dashed var(--lavender); pointer-events: none; z-index: -1; }
   .hero__vinyl { position: absolute; bottom: -34px; left: -34px; z-index: 2; }
   .hero__badge { position: absolute; top: -14px; right: 8%; background: var(--ink); color: #fff; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 999px; }
-  @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 380px; margin: 1rem auto 0; } }
+  @media (max-width: 860px) { .hero__grid { grid-template-columns: 1fr; } .hero__art { max-width: 480px; margin: 1.5rem auto 0; } }
+
+  .gallery-sec { padding-block: clamp(2rem, 5vw, 3.5rem); overflow: hidden; }
+  .gmq { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .gmq__track { display: flex; gap: 1rem; width: max-content; animation: gscroll 48s linear infinite; }
+  .gmq:hover .gmq__track { animation-play-state: paused; }
+  @keyframes gscroll { to { transform: translateX(-50%); } }
+  .gmq__img { height: 240px; width: auto; border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow); }
+  @media (prefers-reduced-motion: reduce) { .gmq__track { animation: none; } }
+  @media (max-width: 620px) { .gmq__img { height: 170px; } }
 
   .proof { border-block: 1px solid var(--card-brd); background: var(--bg-2); }
   .proof__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; padding-block: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
