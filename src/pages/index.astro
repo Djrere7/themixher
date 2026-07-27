@@ -16,6 +16,11 @@ const faqSchema = {
   ],
 };
 const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key === 'Network' ? '#djs' : '#events');
+const galleryImgs = [
+  '/img/gallery/party.jpg', '/img/gallery/dj-ic3.jpg', '/img/gallery/decks.jpg',
+  '/img/gallery/network.jpg', '/img/gallery/sponsor.jpg', '/img/gallery/crowd.jpg',
+  '/img/gallery/market.jpg',
+];
 ---
 <Base schema={[faqSchema]}>
   <!-- HERO -->
@@ -55,9 +60,10 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
   <!-- WHAT + PILLARS -->
   <section class="section-pad" id="what">
     <div class="wrap narrow" style="text-align:center">
-      <p class="spaced center" data-reveal>What is MixHer?</p>
+      <p class="spaced center" data-reveal>What is MixHer &amp; why we exist</p>
       <h2 class="fancy" data-reveal>The hub for <span class="grad">what’s next</span> in DJ culture.</h2>
-      <p class="lead" data-reveal>{site.whatIs}</p>
+      <p class="lead" data-reveal>Female DJs have the talent, the following, and the vision — they just haven’t always had the stage. MixHer exists to change that.</p>
+      <p class="lead" data-reveal>We build the rooms, the network, and the opportunities that get women behind the decks seen, booked, and heard — from the party (<b>PLY</b>) to the industry table (<b>The Set</b>) to the classroom (<b>First Spin DJ Bootcamp</b>). One platform, one mission: put female DJs at the front of the culture.</p>
     </div>
     <div class="wrap" style="margin-top:clamp(2rem,5vw,3.5rem)">
       <div class="grid grid-4">
@@ -121,7 +127,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
     <div class="wrap">
       <div class="sec-head center"><p class="spaced" data-reveal>The experiences</p>
       <h2 class="display" data-reveal>PLY &amp; The Set</h2>
-      <p class="sec-sub" data-reveal>PLY is our high-energy party series. The Set is our intimate networking series. Both put female DJs and the industry in the same room.</p></div>
+      <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set.</p></div>
       <div class="ev-grid">
         {events.map((e) => (
           <article class="card evc" data-reveal>
@@ -154,8 +160,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
     <div class="wrap"><p class="spaced center" data-reveal style="display:block;text-align:center;margin-bottom:1.4rem">See it in action</p></div>
     <div class="gmq" aria-hidden="true">
       <div class="gmq__track">
-        {['/img/dj-flowers.jpg','/img/djl-decks.jpg','/img/mh-djs.jpg','/img/group2.jpg','/img/laugh.jpg','/img/crowd.jpg','/img/group1.jpg',
-          '/img/dj-flowers.jpg','/img/djl-decks.jpg','/img/mh-djs.jpg','/img/group2.jpg','/img/laugh.jpg','/img/crowd.jpg','/img/group1.jpg'].map((src) => (
+        {[...galleryImgs, ...galleryImgs].map((src) => (
           <img class="gmq__img" src={src} alt="A MixHer female DJ event in action" loading="lazy" />
         ))}
       </div>
@@ -170,6 +175,7 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
         <img src="/img/firstspin-logo.png" alt="First Spin DJ Bootcamp logo" class="fs-logo" width="200" height="110" loading="lazy" />
         <h2 class="fancy">Every set fuels the next <span class="grad">First Spin.</span></h2>
         <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure — funded by MixHer events.</p>
+        <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin is that chance — and every ticket, sponsorship, and donation helps fund it.</p>
         <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-primary">Fund First Spin ↗</a>
       </div>
     </div>
@@ -201,16 +207,18 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
 
   <!-- CONTACT -->
   <section class="section-pad tint" id="contact">
-    <div class="wrap contact">
-      <div data-reveal>
-        <p class="spaced">Contact</p>
-        <h2 class="fancy">Let’s <span class="grad">connect.</span></h2>
-        <p class="contact__lead">DJ, brand, venue, press, or want to bring MixHer to your city? Tell us who you are.</p>
-        <div class="card">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="spaced" data-reveal>Contact</p>
+        <h2 class="fancy" data-reveal>Let’s <span class="grad">connect.</span></h2>
+        <p class="contact__intro" data-reveal>DJ, brand, venue, press, or want to bring MixHer to your city? Tell us who you are — we’ll route it to the right person.</p>
+      </div>
+      <div class="contact">
+        <div class="card contact__form" data-reveal>
           <Form
             formName="Contact the team"
             submit="Send message"
-            note={`Or email ${site.email}`}
+            note={`Or email us directly at ${site.email}`}
             fields={[
               { name: 'reason', label: 'I am a…', type: 'select', required: true, options: ['DJ', 'Brand / sponsor', 'Venue', 'Artist', 'Press / media', 'Donor', 'Bringing MixHer to my city', 'Other'] },
               { name: 'name', label: 'Name', required: true },
@@ -219,29 +227,28 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
             ]}
           />
         </div>
+        <aside class="contact__side" data-reveal>
+          <div class="cs__glow" aria-hidden="true"></div>
+          <div class="cs__body">
+            <h3 class="cs__h">Take action</h3>
+            <div class="cs__btns">
+              <a href="#djs" class="btn btn-primary">Join the DJ Network</a>
+              <a href={site.sponsorUrl} class="btn band-glass-btn">Sponsor MixHer</a>
+              <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn band-glass-btn">Fund First Spin ↗</a>
+            </div>
+            <hr class="cs__rule" />
+            <a href={site.emailHref} class="cs__email">{site.email}</a>
+            <p class="cs__loc">Miami Beach, FL · Events nationwide</p>
+            <Social light />
+            <hr class="cs__rule" />
+            <p class="cs__nltitle">Join the newsletter</p>
+            <form class="nl" data-newsletter>
+              <input type="email" name="email" required placeholder="your@email.com" aria-label="Email" />
+              <button class="btn btn-primary" type="submit">Join</button>
+            </form>
+          </div>
+        </aside>
       </div>
-      <aside class="cside" data-reveal>
-        <div class="card cside__card">
-          <h3>Take action</h3>
-          <a href="#djs" class="btn btn-purple">Join the DJ Network</a>
-          <a href={site.sponsorUrl} class="btn btn-primary">Sponsor MixHer</a>
-          <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">Fund First Spin ↗</a>
-        </div>
-        <div class="card cside__card">
-          <h3>Newsletter</h3>
-          <p>Events, drops, and MixHer moments — first.</p>
-          <form class="nl" data-newsletter>
-            <input type="email" name="email" required placeholder="your@email.com" aria-label="Email" />
-            <button class="btn btn-primary" type="submit">Join</button>
-          </form>
-        </div>
-        <div class="card cside__card">
-          <h3>Reach us</h3>
-          <a href={site.emailHref} class="cside__email">{site.email}</a>
-          <p class="cside__loc">Miami Beach, FL · Events nationwide</p>
-          <Social />
-        </div>
-      </aside>
     </div>
   </section>
 
@@ -263,9 +270,9 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
       radial-gradient(28vw 28vw at 64% 2%, rgba(228,168,243,0.22), transparent 62%); }
 
   .hero { position: relative; padding-block: clamp(2rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem); overflow: hidden; }
-  .hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .hero__h { font-size: clamp(2.7rem, 8.5vw, 6.4rem); margin: 0.4rem 0 0; }
-  .hero__script { font-family: var(--script); font-size: clamp(2rem, 5vw, 3.4rem); color: var(--orchid-deep); line-height: 0.8; margin: 0.3rem 0 0.6rem; }
+  .hero__grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+  .hero__h { font-size: clamp(2.3rem, 5.2vw, 4.4rem); margin: 0.4rem 0 0; }
+  .hero__script { font-family: var(--script); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--orchid-deep); line-height: 0.8; margin: 0.3rem 0 0.6rem; }
   .hero__sub { color: var(--muted); max-width: 48ch; font-size: 1.05rem; }
   .hero__btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.5rem; }
   .hero__art { position: relative; }
@@ -333,19 +340,24 @@ const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key ===
   .logos__img { height: 34px; width: auto; object-fit: contain; opacity: 0.8; }
   .logos__word { font-family: var(--display); font-weight: 800; font-size: clamp(0.95rem, 2vw, 1.3rem); text-transform: uppercase; color: var(--dim); }
 
-  .contact { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
-  .contact .card { padding: clamp(1.3rem, 3vw, 2rem); margin-top: 1rem; }
-  .contact__lead { color: var(--muted); }
-  .cside { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
-  .cside__card h3 { font-family: var(--display); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; margin: 0 0 0.7rem; }
-  .cside__card p { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.7rem; }
-  .cside__card .btn { width: 100%; margin-bottom: 0.5rem; }
+  .contact__intro { color: var(--muted); max-width: 56ch; margin: 0.8rem auto 0; }
+  .contact { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(1.2rem, 3vw, 2rem); align-items: stretch; }
+  .contact__form { padding: clamp(1.5rem, 4vw, 2.4rem); }
+  .contact__side { position: relative; overflow: hidden; border-radius: var(--radius-lg); color: #fff; background: linear-gradient(150deg, var(--purple), var(--orchid-deep) 60%, var(--orange) 140%); box-shadow: var(--shadow); }
+  .cs__glow { position: absolute; width: 320px; height: 320px; top: -120px; right: -80px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%); pointer-events: none; }
+  .cs__body { position: relative; z-index: 1; padding: clamp(1.6rem, 4vw, 2.2rem); display: flex; flex-direction: column; }
+  .cs__h { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; margin: 0 0 0.9rem; color: #fff; }
+  .cs__btns { display: flex; flex-direction: column; gap: 0.6rem; }
+  .cs__btns .btn { width: 100%; }
+  .cs__rule { border: 0; height: 1px; background: rgba(255,255,255,0.25); margin: 1.3rem 0; }
+  .cs__email { color: #fff; font-weight: 700; font-size: 1.02rem; border-bottom: 1px solid rgba(255,255,255,0.5); align-self: flex-start; }
+  .cs__loc { color: rgba(255,255,255,0.85); font-size: 0.85rem; margin: 0.4rem 0 1rem; }
+  .cs__nltitle { font-family: var(--display); font-weight: 800; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 0 0 0.6rem; }
   .nl { display: flex; gap: 0.5rem; }
-  .nl input { flex: 1; min-width: 0; padding: 0.7rem 0.9rem; border-radius: 999px; border: 1px solid var(--card-brd-hi); font-family: var(--body); }
-  .nl input:focus { outline: none; border-color: var(--orchid); }
-  .cside__email { color: var(--orchid-deep); font-weight: 600; }
-  .cside__loc { color: var(--muted); font-size: 0.85rem; margin: 0.4rem 0 0.7rem; }
-  .cside__soc { display: flex; gap: 0.5rem; }
-  .cside__soc a { font-size: 0.82rem; padding: 0.35rem 0.8rem; border: 1px solid var(--card-brd); border-radius: 999px; color: var(--muted); }
+  .nl input { flex: 1; min-width: 0; padding: 0.7rem 0.9rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.14); color: #fff; font-family: var(--body); }
+  .nl input::placeholder { color: rgba(255,255,255,0.7); }
+  .nl input:focus { outline: none; border-color: #fff; background: rgba(255,255,255,0.2); }
+  .band-glass-btn { color: #fff; border-color: rgba(255,255,255,0.6); background: transparent; }
+  .band-glass-btn:hover { border-color: #fff; background: rgba(255,255,255,0.16); color: #fff; }
   @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
 </style>
