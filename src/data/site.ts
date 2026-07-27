@@ -95,10 +95,11 @@ export const sponsors = [
   { name: 'Raising Cane’s', img: '/img/logos/raisingcanes.png' },
   { name: 'Simply Pop', img: '/img/logos/simplypop.png' },
   { name: 'PrettyLittleThing', img: '/img/logos/prettylittlething.png' },
-  { name: 'Remy Martin', img: '' },
-  { name: 'Serato', img: '' },
-  { name: 'DJ City', img: '' },
-  { name: 'Jamaican Mango & Lime', img: '' },
+  { name: 'BASSBOSS', img: '/img/logos/bassboss.png' },
+  { name: 'DJ City', img: '/img/logos/djcity.png' },
+  { name: 'Remy Martin', img: '/img/logos/remymartin.png' },
+  { name: 'Serato', img: '/img/logos/serato.svg' },
+  { name: 'Jamaican Mango & Lime', img: '/img/logos/mangolime.png' },
   { name: '100% Pure Cosmetics', img: '' },
 ];
 
