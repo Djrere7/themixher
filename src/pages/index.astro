@@ -21,6 +21,12 @@ const galleryImgs = [
   '/img/djl-decks.jpg', '/img/dj-decks.jpg', '/img/gallery/party.jpg',
   '/img/gallery/crowd.jpg',
 ];
+const recaps = [
+  { src: '/video/recap-brunch.mp4', poster: '/video/recap-brunch-poster.jpg', title: 'Rooftop Brunch & Beats', meta: 'Miami · 12.8.24' },
+  { src: '/video/recap-clevelander.mp4', poster: '/video/recap-clevelander-poster.jpg', title: 'Clevelander Rooftop Party', meta: 'South Beach · 12.15.24' },
+  { src: '/video/recap-8.mp4', poster: '/video/recap-8-poster.jpg', title: 'MixHer Recap', meta: 'See the vibe' },
+  { src: '/video/recap-360.mp4', poster: '/video/recap-360-poster.jpg', title: 'PLY Debut · 360°', meta: 'Behind the decks' },
+];
 ---
 <Base schema={[faqSchema]}>
   <!-- HERO -->
@@ -159,14 +165,48 @@ const galleryImgs = [
     </div>
   </section>
 
-  <!-- GALLERY (see it in action) -->
+  <!-- RECAPS (see us in action) -->
+  <section class="section-pad tint" id="recaps">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>Event recaps</p>
+      <h2 class="display" data-reveal>See us in action</h2>
+      <p class="sec-sub" data-reveal>Rooftops, brunches, and packed nights across the country — press play.</p></div>
+      <div class="recap-grid">
+        {recaps.map((r) => (
+          <figure class="recap" data-reveal>
+            <video class="recap__v" src={r.src} poster={r.poster} controls preload="none" playsinline muted></video>
+            <figcaption class="recap__cap">
+              <span class="recap__title">{r.title}</span>
+              <span class="recap__meta">{r.meta}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY marquee -->
   <section class="gallery-sec">
-    <div class="wrap"><p class="spaced center" data-reveal style="display:block;text-align:center;margin-bottom:1.4rem">See it in action</p></div>
+    <div class="wrap"><p class="spaced center" data-reveal style="display:block;text-align:center;margin-bottom:1.4rem">Women behind the decks</p></div>
     <div class="gmq" aria-hidden="true">
       <div class="gmq__track">
         {[...galleryImgs, ...galleryImgs].map((src) => (
           <img class="gmq__img" src={src} alt="A MixHer female DJ event in action" loading="lazy" />
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AS SEEN AT (Chauvet welcomes MixHer) -->
+  <section class="section-pad seenat">
+    <div class="wrap">
+      <div class="seenat__card" data-reveal>
+        <div class="seenat__media"><Media src="/img/mh-theset.jpg" alt="Chauvet DJ welcomes The MixHer on the venue LED wall" ratio="16 / 9" /></div>
+        <div class="seenat__text">
+          <p class="spaced">Industry-recognized</p>
+          <h2 class="fancy">Welcomed by the <span class="grad">industry.</span></h2>
+          <p>From Chauvet DJ to Serato, DJ City, and BASSBOSS — the brands that power the culture show up for MixHer.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -234,13 +274,7 @@ const galleryImgs = [
         <aside class="contact__side" data-reveal>
           <div class="cs__glow" aria-hidden="true"></div>
           <div class="cs__body">
-            <h3 class="cs__h">Take action</h3>
-            <div class="cs__btns">
-              <a href="#djs" class="btn btn-primary">Join the DJ Network</a>
-              <a href={site.sponsorUrl} class="btn band-glass-btn">Sponsor MixHer</a>
-              <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn band-glass-btn">Fund First Spin ↗</a>
-            </div>
-            <hr class="cs__rule" />
+            <h3 class="cs__h">Reach us</h3>
             <a href={site.emailHref} class="cs__email">{site.email}</a>
             <p class="cs__loc">Miami Beach, FL · Events nationwide</p>
             <Social light />
@@ -294,6 +328,20 @@ const galleryImgs = [
   .gmq__img { height: 240px; width: auto; border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow); }
   @media (prefers-reduced-motion: reduce) { .gmq__track { animation: none; } }
   @media (max-width: 620px) { .gmq__img { height: 170px; } }
+
+  .recap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); }
+  @media (max-width: 620px) { .recap-grid { grid-template-columns: 1fr; } }
+  .recap { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); background: #000; }
+  .recap__v { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
+  .recap__cap { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; padding: 0.85rem 1.1rem; background: #fff; }
+  .recap__title { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; }
+  .recap__meta { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+
+  .seenat__card { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; background: #fff; border: 1px solid var(--card-brd); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+  .seenat__text { padding: clamp(1.4rem, 4vw, 2.4rem) clamp(1.4rem, 4vw, 2.4rem) clamp(1.4rem, 4vw, 2.4rem) 0; }
+  .seenat__text p { color: var(--muted); max-width: 46ch; }
+  .seenat__text h2 { margin: 0.3rem 0 0.5rem; }
+  @media (max-width: 780px) { .seenat__card { grid-template-columns: 1fr; } .seenat__text { padding: 0 1.4rem 1.6rem; } }
 
   .proof { border-block: 1px solid var(--card-brd); background: var(--bg-2); }
   .proof__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; padding-block: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
