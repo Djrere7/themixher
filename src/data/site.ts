@@ -38,6 +38,23 @@ export const site = {
   donateUrl: 'https://firstspindjbootcamp.carrd.co/', // funding flows to First Spin
   newsletterAction: '', // TODO: newsletter POST endpoint
   formEndpoint: '', // TODO: form service (Formspree/Tally) — falls back to mailto
+
+  /**
+   * Google Form integration — all submissions land in ONE Google Sheet.
+   * To turn on: create a Google Form, then send the "pre-filled link" and
+   * paste the /formResponse URL + entry IDs below. Until `action` is set,
+   * forms fall back to opening the visitor's email app.
+   */
+  googleForm: {
+    action: '', // e.g. https://docs.google.com/forms/d/e/FORM_ID/formResponse
+    entries: {
+      type: '',    // entry.XXX — which form / "I am a…"
+      name: '',    // entry.XXX
+      email: '',   // entry.XXX
+      city: '',    // entry.XXX (optional)
+      message: '', // entry.XXX
+    },
+  },
   // WhatsApp is gated: never link publicly. Access is granted after a request is approved.
   whatsappUrl: '', // TODO: private invite, sent to approved members only
 

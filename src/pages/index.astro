@@ -18,8 +18,8 @@ const faqSchema = {
 const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key === 'Network' ? '#djs' : '#events');
 const galleryImgs = [
   '/img/gallery/dj-ic3.jpg', '/img/gallery/decks.jpg', '/img/dj-spin.jpg',
-  '/img/djl-decks.jpg', '/img/dj-decks.jpg', '/img/gallery/party.jpg',
-  '/img/gallery/crowd.jpg',
+  '/img/djl-decks.jpg', '/img/dj-decks.jpg', '/img/gallery/sammie.jpg',
+  '/img/gallery/party.jpg', '/img/gallery/crowd.jpg',
 ];
 const recaps = [
   { src: '/video/recap-brunch.mp4', poster: '/video/recap-brunch-poster.jpg', title: 'Rooftop Brunch & Beats', meta: 'Miami · 12.8.24' },
@@ -280,7 +280,7 @@ const recaps = [
             <Social light />
             <hr class="cs__rule" />
             <p class="cs__nltitle">Join the newsletter</p>
-            <form class="nl" data-newsletter>
+            <form class="nl" data-newsletter data-gf={site.googleForm.action} data-gf-email={site.googleForm.entries.email} data-gf-type={site.googleForm.entries.type}>
               <input type="email" name="email" required placeholder="your@email.com" aria-label="Email" />
               <button class="btn btn-primary" type="submit">Join</button>
             </form>
@@ -295,7 +295,15 @@ const recaps = [
     nl?.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = (nl.querySelector('input') as HTMLInputElement)?.value || '';
-      window.location.href = `mailto:info@themixher.org?subject=${encodeURIComponent('[MixHer] Newsletter signup')}&body=${encodeURIComponent('Please add me: ' + email)}`;
+      const gf = nl.dataset.gf;
+      if (gf) {
+        const out = new FormData();
+        if (nl.dataset.gfEmail) out.append(nl.dataset.gfEmail, email);
+        if (nl.dataset.gfType) out.append(nl.dataset.gfType, 'Newsletter');
+        fetch(gf, { method: 'POST', mode: 'no-cors', body: out }).catch(() => {});
+      } else {
+        window.location.href = `mailto:info@themixher.org?subject=${encodeURIComponent('[MixHer] Newsletter signup')}&body=${encodeURIComponent('Please add me: ' + email)}`;
+      }
       nl.innerHTML = '<p style="margin:0;color:var(--orchid-deep);font-family:var(--sans);font-weight:800;">YOU’RE IN ✦</p>';
     });
   </script>

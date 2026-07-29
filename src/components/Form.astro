@@ -1,15 +1,18 @@
 ---
 import { site } from '../data/site';
 /**
- * Reusable conversion form. Emails the MixHer team via the visitor's mail client
- * (mailto) by default; set site.formEndpoint to a Formspree/Tally URL to POST instead.
+ * Reusable conversion form.
+ * - If site.googleForm.action is set → submits to your Google Form (lands in your
+ *   Google Sheet). The visitor stays on the page and sees a thank-you.
+ * - Otherwise → falls back to opening the visitor's email app (mailto).
  */
 export type Field = { name: string; label: string; type?: string; required?: boolean; options?: string[]; placeholder?: string; full?: boolean };
 interface Props { formName: string; fields: Field[]; submit?: string; note?: string; }
 const { formName, fields, submit = 'Submit', note } = Astro.props;
-const endpoint = site.formEndpoint;
+const gf = site.googleForm;
+const gfOn = !!gf.action;
 ---
-<form class="mform" data-form data-name={formName} action={endpoint || site.emailHref} method={endpoint ? 'post' : 'get'}>
+<form class="mform" data-form data-name={formName} data-gf={gfOn ? gf.action : ''} data-gf-entries={gfOn ? JSON.stringify(gf.entries) : ''}>
   <input type="hidden" name="_form" value={formName} />
   <div class="mform__grid">
     {fields.map((f) => (
@@ -43,27 +46,48 @@ const endpoint = site.formEndpoint;
   .mform input:focus, .mform select:focus, .mform textarea:focus { outline: none; border-color: var(--orchid); }
   .mform .btn { align-self: flex-start; }
   .mform__note { color: var(--dim); font-size: 0.85rem; margin: 0; }
+  .mform__done { margin: 0.4rem 0 0; color: var(--orchid-deep); font-family: var(--sans); font-weight: 800; }
   @media (max-width: 560px) { .mform__grid { grid-template-columns: 1fr; } }
 </style>
 
 <script>
   const TEAM = 'info@themixher.org';
+  function thanks(f: HTMLFormElement, msg: string) {
+    f.querySelectorAll('input,select,textarea,button').forEach((el) => ((el as HTMLElement).style.display = 'none'));
+    const p = document.createElement('p');
+    p.className = 'mform__done';
+    p.textContent = msg;
+    f.appendChild(p);
+  }
   document.querySelectorAll('[data-form]').forEach((form) => {
     const f = form as HTMLFormElement;
-    if (f.getAttribute('action') && f.getAttribute('method') === 'post') return; // real endpoint handles it
     f.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = f.dataset.name || 'Website form';
+      const gfAction = f.dataset.gf;
       const data = new FormData(f);
+
+      // Preferred: post into the Google Form (lands in the Google Sheet).
+      if (gfAction) {
+        let entries: Record<string, string> = {};
+        try { entries = JSON.parse(f.dataset.gfEntries || '{}'); } catch {}
+        const out = new FormData();
+        if (entries.type) out.append(entries.type, (data.get('reason') as string) || f.dataset.name || 'Website');
+        for (const key of ['name', 'email', 'city', 'message']) {
+          const id = (entries as any)[key];
+          if (id && data.get(key)) out.append(id, data.get(key) as string);
+        }
+        fetch(gfAction, { method: 'POST', mode: 'no-cors', body: out }).catch(() => {});
+        thanks(f, 'Thank you — we got it! ✦');
+        return;
+      }
+
+      // Fallback: open the visitor's email app.
       const lines: string[] = [];
       for (const [k, v] of data.entries()) { if (k === '_form' || !String(v).trim()) continue; lines.push(`${k}: ${v}`); }
-      const subject = encodeURIComponent(`[MixHer] ${name}`);
+      const subject = encodeURIComponent(`[MixHer] ${f.dataset.name || 'Website form'}`);
       const body = encodeURIComponent(lines.join('\n'));
       window.location.href = `mailto:${TEAM}?subject=${subject}&body=${body}`;
-      const done = document.createElement('p');
-      done.style.cssText = 'margin:0.6rem 0 0;color:var(--orchid-deep);font-family:var(--sans);font-weight:700;';
-      done.textContent = 'Opening your email to send — thank you! ✦';
-      f.appendChild(done);
+      thanks(f, 'Opening your email to send — thank you! ✦');
     });
   });
 </script>
