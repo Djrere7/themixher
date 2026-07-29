@@ -17,15 +17,15 @@ const faqSchema = {
 };
 const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key === 'Network' ? '#djs' : '#events');
 const galleryImgs = [
-  '/img/gallery/dj-ic3.jpg', '/img/gallery/decks.jpg', '/img/dj-spin.jpg',
-  '/img/djl-decks.jpg', '/img/dj-decks.jpg', '/img/gallery/sammie.jpg',
+  '/img/mh-network.jpg', '/img/gallery/decks.jpg', '/img/dj-spin.jpg',
+  '/img/gallery/squad.jpg', '/img/dj-decks.jpg', '/img/gallery/sammie.jpg',
   '/img/gallery/party.jpg', '/img/gallery/crowd.jpg',
 ];
 const recaps = [
   { src: '/video/recap-brunch.mp4', poster: '/video/recap-brunch-poster.jpg', title: 'Rooftop Brunch & Beats', meta: 'Miami · 12.8.24' },
   { src: '/video/recap-clevelander.mp4', poster: '/video/recap-clevelander-poster.jpg', title: 'Clevelander Rooftop Party', meta: 'South Beach · 12.15.24' },
   { src: '/video/recap-8.mp4', poster: '/video/recap-8-poster.jpg', title: 'MixHer Recap', meta: 'See the vibe' },
-  { src: '/video/recap-360.mp4', poster: '/video/recap-360-poster.jpg', title: 'PLY Debut · 360°', meta: 'Behind the decks' },
+  { src: '/video/recap-artbasel.mp4', poster: '/video/recap-artbasel-poster.jpg', title: 'Debut Rooftop Party', meta: 'Art Basel · Miami 2023' },
 ];
 ---
 <Base schema={[faqSchema]}>
@@ -78,7 +78,7 @@ const recaps = [
             <h3 class="pillar__t">{p.title}</h3>
             <span class="pillar__s">{p.sub}</span>
             <p class="pillar__b">{p.blurb}</p>
-            <span class="pillar__cta">{p.key === 'FirstSpin' ? 'Visit First Spin ↗' : 'Explore →'}</span>
+            <span class="pillar__cta">{p.key === 'FirstSpin' ? 'Visit the Bootcamp ↗' : 'Explore →'}</span>
           </a>
         ))}
       </div>
@@ -89,7 +89,7 @@ const recaps = [
   <section class="section-pad tint" id="djs">
     <div class="wrap split">
       <div class="split__media" data-reveal>
-        <Media src="/img/mh-network.jpg" alt="The MixHer network of female DJs and creatives at an event" ratio="4 / 5" />
+        <Media src="/img/mh-djs2.jpg" alt="The MixHer network of female DJs at a rooftop event" ratio="4 / 5" />
       </div>
       <div class="split__text" data-reveal>
         <p class="spaced">For female DJs</p>
@@ -120,7 +120,7 @@ const recaps = [
     <div class="wrap">
       <div class="sec-head center"><p class="spaced" data-reveal>The experiences</p>
       <h2 class="display" data-reveal>PLY &amp; The Set</h2>
-      <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set.</p></div>
+      <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set. And you never know who’ll pull up — our events regularly draw celebrity guests.</p></div>
       <div class="ev-grid">
         {events.map((e) => (
           <article class="card evc" data-reveal>
@@ -138,13 +138,13 @@ const recaps = [
         <article class="card evc" data-reveal>
           <div class="evc__ph evc__ph--set">
             <span class="evc__phkicker">The Set · Networking</span>
-            <span class="evc__phbig">Next date<br />coming soon</span>
-            <span class="evc__phnote">As seen: Chauvet DJ welcomes The MixHer</span>
+            <span class="evc__phbig">Atlanta<br />Aug 9</span>
+            <span class="evc__phnote">During Invest Fest</span>
           </div>
           <div class="evc__body">
             <span class="evc__series">The Set · Networking Series</span>
             <h3 class="evc__name">The Set</h3>
-            <p class="evc__meta">Intimate rooms in music-forward cities nationwide.</p>
+            <p class="evc__meta">Sat · Aug 9 · Atlanta, GA<br />During Invest Fest</p>
             <p class="evc__djs">DJs · execs · brands · venues · tastemakers</p>
             <a href="#contact" class="btn btn-ghost">Request an invite</a>
           </div>
@@ -217,10 +217,10 @@ const recaps = [
       <div class="split__media" data-reveal><Media src="/img/firstspin-student.jpg" alt="A First Spin DJ Bootcamp student learning to DJ" ratio="4 / 3" /></div>
       <div class="split__text" data-reveal>
         <img src="/img/firstspin-logo.png" alt="First Spin DJ Bootcamp logo" class="fs-logo" width="200" height="110" loading="lazy" />
-        <h2 class="fancy">Every set fuels the next <span class="grad">First Spin.</span></h2>
+        <h2 class="fancy">Every set fuels the next <span class="grad">first spin.</span></h2>
         <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure — funded by MixHer events.</p>
-        <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin is that chance — and every ticket, sponsorship, and donation helps fund it.</p>
-        <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-primary">Fund First Spin ↗</a>
+        <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin DJ Bootcamp is that chance — and every ticket, sponsorship, and donation helps fund it.</p>
+        <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-primary">Fund First Spin DJ Bootcamp ↗</a>
       </div>
     </div>
   </section>

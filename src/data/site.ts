@@ -77,7 +77,7 @@ export const nav = [
   { label: 'DJ Network', href: '/#djs' },
   { label: 'Events', href: '/#events' },
   { label: 'Sponsor', href: '/sponsor-mixher' },
-  { label: 'First Spin', href: 'https://firstspindjbootcamp.carrd.co/', external: true },
+  { label: 'First Spin DJ Bootcamp', href: 'https://firstspindjbootcamp.carrd.co/', external: true },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -126,7 +126,7 @@ export const sponsors = [
 
 /** Sponsorship opportunity types. */
 export const sponsorTypes = [
-  'Event sponsorship', 'PLY sponsorship', 'The Set sponsorship', 'First Spin sponsorship',
+  'Event sponsorship', 'PLY sponsorship', 'The Set sponsorship', 'First Spin DJ Bootcamp sponsorship',
   'DJ scholarship sponsorship', 'Gifting partner', 'Beverage partner', 'Fashion / beauty partner',
   'Tech partner', 'Media partner',
 ];
@@ -156,7 +156,7 @@ export const firstSpinLearn = [
 ];
 
 /** Marquee ticker. */
-export const ticker = ['Setting The Tone', 'Female DJs lead the vibe', 'PLY · The Party Series', 'The Set · Networking', 'First Spin Bootcamp', 'Nationwide'];
+export const ticker = ['Setting The Tone', 'Female DJs lead the vibe', 'PLY · The Party Series', 'The Set · Networking', 'First Spin DJ Bootcamp', 'Nationwide', 'Celebrity guests', 'Real opportunities'];
 
 /** "Inside the vibe" — female DJs behind the decks. */
 export const featuredDJs = [
