@@ -15,8 +15,8 @@ interface Props {
 const {
   title,
   fullTitle,
-  description = 'MixHer is a national 501(c)(3) nonprofit event series and DJ network creating stages, industry access, brand partnerships, and First Spin DJ Bootcamp opportunities for female DJs and youth.',
-  image = '/img/event-ply.jpg',
+  description = 'MixHer is a national 501(c)(3) nonprofit and female DJ network — culture-forward events (PLY, The Set), industry access, and First Spin DJ Bootcamp.',
+  image = '/og.jpg',
   schema = [],
   keywords = 'female DJs, women DJs, female DJ network, DJ nonprofit, DJ events Miami, Miami female DJs, national DJ event series, women behind the decks, DJ bootcamp, youth DJ lessons, DJ mentorship, music nonprofit, female DJ community, DJ networking event, female DJ party series',
 } = Astro.props;
@@ -40,6 +40,8 @@ const orgSchema = {
   nonprofitStatus: 'Nonprofit501c3',
   address: { '@type': 'PostalAddress', addressLocality: 'Miami Beach', addressRegion: 'FL', addressCountry: 'US' },
   areaServed: 'United States',
+  knowsAbout: ['female DJs', 'DJ events', 'music industry networking', 'youth DJ education'],
+  contactPoint: { '@type': 'ContactPoint', email: site.email, contactType: 'customer service' },
   sameAs: Object.values(site.socials),
 };
 const personSchema = {
@@ -76,6 +78,11 @@ const allSchema = [orgSchema, personSchema, ...schema];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site ?? origin).href} />
+    <meta name="twitter:site" content="@themixher" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <link rel="preload" href="/fonts/MonumentExtended-Ultrabold.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />

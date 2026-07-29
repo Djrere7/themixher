@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Page not found" description="This page moved or doesn't exist. Head back to MixHer — the national female DJ network.">
+  <section class="nf">
+    <div class="wrap">
+      <p class="spaced">404</p>
+      <h1 class="display nf__h">This track skipped.</h1>
+      <p class="nf__sub">The page you’re after moved or never existed. Let’s get you back to the vibe.</p>
+      <div class="nf__btns">
+        <a href="/" class="btn btn-primary">Back home</a>
+        <a href="/#events" class="btn btn-ghost">See events</a>
+        <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">First Spin DJ Bootcamp ↗</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { text-align: center; padding-block: clamp(4rem, 12vw, 9rem); }
+  .nf .spaced { display: inline-block; color: var(--orchid-deep); margin-bottom: 1rem; }
+  .nf__h { font-size: clamp(2.4rem, 8vw, 5rem); }
+  .nf__sub { color: var(--muted); max-width: 46ch; margin: 1rem auto 1.8rem; }
+  .nf__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+</style>
