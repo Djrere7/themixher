@@ -61,6 +61,7 @@ export const site = {
   whatsappUrl: '', // TODO: private invite, sent to approved members only
 
   url: 'https://www.themixher.org',
+  gaId: 'G-L8YJ5Q66ED', // Google Analytics 4 Measurement ID
   socials: {
     instagram: 'https://www.instagram.com/themixher',
     tiktok: 'https://www.tiktok.com/@themixher1',

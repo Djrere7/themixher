@@ -69,6 +69,13 @@ const allSchema = [orgSchema, personSchema, ...schema];
     <meta name="theme-color" content="#ffffff" />
     <script is:inline>document.documentElement.classList.add('js');</script>
 
+    {site.gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.gaId}');`}></script>
+      </>
+    )}
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
