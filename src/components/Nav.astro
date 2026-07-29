@@ -13,6 +13,7 @@ import { nav, site } from '../data/site';
     </nav>
 
     <div class="nav__cta">
+      <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-ghost nav__donate">Donate</a>
       <a href={site.joinUrl} class="btn btn-primary nav__join">Join the Network</a>
     </div>
 
@@ -27,7 +28,7 @@ import { nav, site } from '../data/site';
     ))}
     <div class="nav__mrow">
       <a href={site.joinUrl} class="btn btn-primary">Join the Network</a>
-      <a href={site.sponsorUrl} class="btn btn-ghost">Sponsor</a>
+      <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-ghost">Donate</a>
     </div>
   </div>
 </header>
@@ -42,8 +43,9 @@ import { nav, site } from '../data/site';
   .nav__link:hover { color: var(--ink); }
   .nav__link:hover::after { width: 100%; }
   .ext { font-size: 0.7em; margin-left: 0.15rem; opacity: 0.7; }
-  .nav__cta { margin-left: 0.3rem; }
+  .nav__cta { margin-left: 0.3rem; display: flex; gap: 0.5rem; align-items: center; }
   .nav__join { padding: 0.65rem 1.3rem; font-size: 0.68rem; }
+  .nav__donate { padding: 0.65rem 1.1rem; font-size: 0.68rem; }
 
   .nav__burger { display: none; background: none; border: 0; cursor: pointer; margin-left: auto; width: 34px; height: 34px; padding: 0; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 4px; place-items: center; }
   .nav__burger span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); transition: background 0.2s ease; }

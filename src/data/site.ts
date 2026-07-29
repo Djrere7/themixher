@@ -35,7 +35,7 @@ export const site = {
   sponsorKitUrl: '/sponsor-mixher#request-kit',
   firstSpinUrl: 'https://firstspindjbootcamp.carrd.co/', // external First Spin site
   bringUrl: '/#contact',
-  donateUrl: 'https://firstspindjbootcamp.carrd.co/', // funding flows to First Spin
+  donateUrl: 'https://www.paypal.com/donate/?hosted_button_id=3NNZ2Q6KTV676', // PayPal donation
   newsletterAction: '', // TODO: newsletter POST endpoint
   formEndpoint: '', // TODO: form service (Formspree/Tally) — falls back to mailto
 

@@ -220,7 +220,10 @@ const recaps = [
         <h2 class="fancy">Every set fuels the next <span class="grad">first spin.</span></h2>
         <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure — funded by MixHer events.</p>
         <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin DJ Bootcamp is that chance — and every ticket, sponsorship, and donation helps fund it.</p>
-        <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-primary">Fund First Spin DJ Bootcamp ↗</a>
+        <div class="fs-btns">
+          <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
+          <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">Visit First Spin DJ Bootcamp ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -382,6 +385,7 @@ const recaps = [
   .gate { background: var(--bg-lav); border-left: 3px solid var(--orchid); padding: 0.8rem 1rem; border-radius: 0 10px 10px 0; font-size: 0.9rem !important; }
   .joinform { margin-top: 1.2rem; padding: clamp(1.3rem, 3vw, 1.8rem); }
   .fs-logo { max-width: 200px; height: auto; margin-bottom: 0.6rem; }
+  .fs-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 0.4rem; }
 
   .band-inner { position: relative; z-index: 1; }
   .band-lead { color: rgba(255,255,255,0.9); max-width: 60ch; margin: 1rem auto 1.6rem; }
