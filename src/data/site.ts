@@ -46,13 +46,15 @@ export const site = {
    * forms fall back to opening the visitor's email app.
    */
   googleForm: {
-    action: '', // e.g. https://docs.google.com/forms/d/e/FORM_ID/formResponse
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLScnDGj60fGI0N73xTN6RXEQmXHcccCdsR5qzB3v3WN7Et7p7A/formResponse',
     entries: {
-      type: '',    // entry.XXX — which form / "I am a…"
-      name: '',    // entry.XXX
-      email: '',   // entry.XXX
-      city: '',    // entry.XXX (optional)
-      message: '', // entry.XXX
+      type: 'entry.1866583875',    // Submission type / "I am a…"
+      name: 'entry.1671281563',    // Full name
+      email: 'entry.423254323',    // Email
+      phone: 'entry.163039677',    // Phone
+      city: 'entry.909485606',     // City
+      state: 'entry.202742797',    // State
+      message: 'entry.282093774',  // Message
     },
   },
   // WhatsApp is gated: never link publicly. Access is granted after a request is approved.

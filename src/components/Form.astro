@@ -72,7 +72,7 @@ const gfOn = !!gf.action;
         try { entries = JSON.parse(f.dataset.gfEntries || '{}'); } catch {}
         const out = new FormData();
         if (entries.type) out.append(entries.type, (data.get('reason') as string) || f.dataset.name || 'Website');
-        for (const key of ['name', 'email', 'city', 'message']) {
+        for (const key of ['name', 'email', 'phone', 'city', 'state', 'message']) {
           const id = (entries as any)[key];
           if (id && data.get(key)) out.append(id, data.get(key) as string);
         }
