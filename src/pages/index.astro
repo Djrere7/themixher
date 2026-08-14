@@ -8,7 +8,7 @@ import Social from '../components/Social.astro';
 import { site, proofBar, pillars, founder, sponsors, ticker, events, merch, merchNote } from '../data/site';
 
 const orderHref = (m: any) =>
-  `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XXL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
+  `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
 
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -257,7 +257,7 @@ const recaps = [
           </article>
         ))}
       </div>
-      <p class="shop-foot" data-reveal>Sizes S–XXL · Ships nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
+      <p class="shop-foot" data-reveal>Sizes S–XL · Ships nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
     </div>
   </section>
 

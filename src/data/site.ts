@@ -174,7 +174,8 @@ export const featuredDJs = [
  * button link (same idea as the Donate button). Create the buttons at
  * paypal.com → Pay & Get Paid → PayPal buttons → Create a "Buy Now" button
  * (add a "Size" option: S / M / L / XL / XXL, set price + shipping). PayPal
- * gives you a hosted_button_id — paste it into the URL below:
+ * gives you a hosted_button_id — paste it into the URL below.
+ * Sizes offered: S / M / L / XL. Price: $25.
  *   buyUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXXXXXXX'
  * Until buyUrl is set, the button opens a pre-filled order email as a bridge.
  */
@@ -183,8 +184,8 @@ export const merch = [
   {
     name: 'MixHer “DGAF” Tee',
     color: 'White',
-    price: '$30',
-    sizes: 'S – XXL',
+    price: '$25',
+    sizes: 'S – XL',
     blurb: 'Get money. Stay pretty. Handle your business. Enjoy life. Stay sexy. & DGAF. The MixHer mantra on a premium unisex tee.',
     img: '/img/merch/tee-white.jpg',
     buyUrl: '', // TODO: paste PayPal Buy Now link (white)
@@ -192,8 +193,8 @@ export const merch = [
   {
     name: 'MixHer “DGAF” Tee',
     color: 'Black',
-    price: '$30',
-    sizes: 'S – XXL',
+    price: '$25',
+    sizes: 'S – XL',
     blurb: 'The signature MixHer mantra tee in black — brand-orchid & orange accents. Premium unisex fit.',
     img: '/img/merch/tee-black.jpg',
     buyUrl: '', // TODO: paste PayPal Buy Now link (black)
