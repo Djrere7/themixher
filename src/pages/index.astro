@@ -5,7 +5,10 @@ import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
 import Form from '../components/Form.astro';
 import Social from '../components/Social.astro';
-import { site, proofBar, pillars, founder, sponsors, ticker, events } from '../data/site';
+import { site, proofBar, pillars, founder, sponsors, ticker, events, merch, merchNote } from '../data/site';
+
+const orderHref = (m: any) =>
+  `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XXL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
 
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -228,6 +231,36 @@ const recaps = [
     </div>
   </section>
 
+  <!-- SHOP / MERCH -->
+  <section class="section-pad tint" id="shop">
+    <div class="wrap">
+      <div class="sec-head center">
+        <p class="spaced" data-reveal>Shop MixHer</p>
+        <h2 class="display" data-reveal>Wear the <span class="grad">movement.</span></h2>
+        <p class="sec-sub" data-reveal>{merchNote}</p>
+      </div>
+      <div class="shop-grid">
+        {merch.map((m) => (
+          <article class="card shopc" data-reveal>
+            <div class="shopc__art"><Media src={m.img} alt={`MixHer ${m.color} DGAF tee`} ratio="1 / 1" /></div>
+            <div class="shopc__body">
+              <div class="shopc__top">
+                <h3 class="shopc__name">{m.name}</h3>
+                <span class="shopc__price">{m.price}</span>
+              </div>
+              <span class="shopc__color">{m.color} · Sizes {m.sizes}</span>
+              <p class="shopc__blurb">{m.blurb}</p>
+              {m.buyUrl
+                ? <a href={m.buyUrl} target="_blank" rel="noopener" class="btn btn-primary shopc__btn">Buy now — {m.price}</a>
+                : <a href={orderHref(m)} class="btn btn-primary shopc__btn">Order now</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="shop-foot" data-reveal>Sizes S–XXL · Ships nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
+    </div>
+  </section>
+
   <!-- FOUNDER -->
   <section class="section-pad">
     <div class="wrap split reverse">
@@ -438,4 +471,19 @@ const recaps = [
   .band-glass-btn { color: #fff; border-color: rgba(255,255,255,0.6); background: transparent; }
   .band-glass-btn:hover { border-color: #fff; background: rgba(255,255,255,0.16); color: #fff; }
   @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+
+  /* SHOP */
+  .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.8rem); max-width: 860px; margin-inline: auto; }
+  @media (max-width: 620px) { .shop-grid { grid-template-columns: 1fr; max-width: 380px; } }
+  .shopc { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .shopc__art { background: #fff; }
+  .shopc__body { padding: 1.2rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+  .shopc__top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; }
+  .shopc__name { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; margin: 0; }
+  .shopc__price { font-family: var(--display); font-weight: 800; font-size: 1.2rem; color: var(--orchid-deep); white-space: nowrap; }
+  .shopc__color { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .shopc__blurb { color: var(--muted); font-size: 0.88rem; margin: 0.4rem 0 0.9rem; flex: 1; }
+  .shopc__btn { margin-top: auto; align-self: flex-start; }
+  .shop-foot { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 1.6rem; }
+  .shop-foot a { color: var(--orchid-deep); border-bottom: 1px solid var(--card-brd-hi); }
 </style>

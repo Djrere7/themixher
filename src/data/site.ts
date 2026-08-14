@@ -77,6 +77,7 @@ export const nav = [
   { label: 'What We Do', href: '/#what' },
   { label: 'DJ Network', href: '/#djs' },
   { label: 'Events', href: '/#events' },
+  { label: 'Shop', href: '/#shop' },
   { label: 'Sponsor', href: '/sponsor-mixher' },
   { label: 'First Spin DJ Bootcamp', href: 'https://firstspindjbootcamp.carrd.co/', external: true },
   { label: 'Contact', href: '/#contact' },
@@ -164,6 +165,39 @@ export const featuredDJs = [
   { name: 'Behind the decks', img: '/img/dj-flowers.jpg' },
   { name: 'On the mic', img: '/img/djl-decks.jpg' },
   { name: 'In the mix', img: '/img/fan.jpg' },
+];
+
+/**
+ * MERCH / SHOP — physical products sold on the site.
+ *
+ * To take real payments, set each item's `buyUrl` to a PayPal "Buy Now"
+ * button link (same idea as the Donate button). Create the buttons at
+ * paypal.com → Pay & Get Paid → PayPal buttons → Create a "Buy Now" button
+ * (add a "Size" option: S / M / L / XL / XXL, set price + shipping). PayPal
+ * gives you a hosted_button_id — paste it into the URL below:
+ *   buyUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXXXXXXX'
+ * Until buyUrl is set, the button opens a pre-filled order email as a bridge.
+ */
+export const merchNote = 'Every purchase funds First Spin DJ Bootcamp & the next generation of women behind the decks.';
+export const merch = [
+  {
+    name: 'MixHer “DGAF” Tee',
+    color: 'White',
+    price: '$30',
+    sizes: 'S – XXL',
+    blurb: 'Get money. Stay pretty. Handle your business. Enjoy life. Stay sexy. & DGAF. The MixHer mantra on a premium unisex tee.',
+    img: '/img/merch/tee-white.jpg',
+    buyUrl: '', // TODO: paste PayPal Buy Now link (white)
+  },
+  {
+    name: 'MixHer “DGAF” Tee',
+    color: 'Black',
+    price: '$30',
+    sizes: 'S – XXL',
+    blurb: 'The signature MixHer mantra tee in black — brand-orchid & orange accents. Premium unisex fit.',
+    img: '/img/merch/tee-black.jpg',
+    buyUrl: '', // TODO: paste PayPal Buy Now link (black)
+  },
 ];
 
 /** Upcoming events. */
