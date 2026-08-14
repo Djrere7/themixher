@@ -48,6 +48,7 @@ const recaps = [
           <a href="#djs" class="btn btn-purple">Join the DJ Network</a>
           <a href="#contact" class="btn btn-ghost">Bring MixHer to Your City</a>
         </div>
+        <a href="#shop" class="hero__shop" data-reveal>🛍️ Shop the merch — new “DGAF” tees <span aria-hidden="true">→</span></a>
       </div>
       <div class="hero__art" data-reveal>
         <div class="hero__frame"><Media src="/img/mh-hero.jpg" alt="The MixHer community at a female DJ event" ratio="4 / 3" /></div>
@@ -383,6 +384,13 @@ const recaps = [
   .hero__script { font-family: var(--script); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--orchid-deep); line-height: 0.8; margin: 0.3rem 0 0.6rem; }
   .hero__sub { color: var(--muted); max-width: 48ch; font-size: 1.05rem; }
   .hero__btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .hero__shop { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1.1rem; border-radius: 999px;
+    font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, var(--orange), var(--orchid), var(--purple)) border-box;
+    border: 2px solid transparent; box-shadow: 0 8px 24px -16px rgba(117,56,234,0.5); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .hero__shop span { transition: transform 0.2s ease; }
+  .hero__shop:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px rgba(117,56,234,0.6); }
+  .hero__shop:hover span { transform: translateX(3px); }
   .hero__art { position: relative; }
   .hero__frame { position: relative; }
   .hero__frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; border-radius: var(--radius-lg); border: 2px dashed var(--lavender); pointer-events: none; z-index: -1; }
