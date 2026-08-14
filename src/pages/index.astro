@@ -5,10 +5,12 @@ import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
 import Form from '../components/Form.astro';
 import Social from '../components/Social.astro';
-import { site, proofBar, pillars, founder, sponsors, ticker, events, merch, merchNote } from '../data/site';
+import { site, proofBar, pillars, founder, sponsors, ticker, events, merch, merchNote, merchShipping, merchHero, merchBundle } from '../data/site';
 
 const orderHref = (m: any) =>
   `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
+const bundleHref =
+  `mailto:${site.email}?subject=${encodeURIComponent('Merch order: The Duo — 2 Tees ($45)')}&body=${encodeURIComponent(`I'd like the 2-tee bundle ($45):\n\nTee 1 — color (black/white): \nTee 1 — size (S–XL): \nTee 2 — color (black/white): \nTee 2 — size (S–XL): \n\nName:\nShipping address:\n`)}`;
 
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -239,6 +241,13 @@ const recaps = [
         <h2 class="display" data-reveal>Wear the <span class="grad">movement.</span></h2>
         <p class="sec-sub" data-reveal>{merchNote}</p>
       </div>
+      <div class="shop-hero" data-reveal>
+        <div class="shop-hero__media"><Media src={merchHero.img} alt={merchHero.caption} ratio="3 / 4" /></div>
+        <div class="shop-hero__cap">
+          <span class="shop-hero__tag">In the wild</span>
+          <p class="shop-hero__txt">{merchHero.caption}</p>
+        </div>
+      </div>
       <div class="shop-grid">
         {merch.map((m) => (
           <article class="card shopc" data-reveal>
@@ -248,7 +257,7 @@ const recaps = [
                 <h3 class="shopc__name">{m.name}</h3>
                 <span class="shopc__price">{m.price}</span>
               </div>
-              <span class="shopc__color">{m.color} · Sizes {m.sizes}</span>
+              <span class="shopc__color">{m.color} · Sizes {m.sizes} · {merchShipping}</span>
               <p class="shopc__blurb">{m.blurb}</p>
               {m.buyUrl
                 ? <a href={m.buyUrl} target="_blank" rel="noopener" class="btn btn-primary shopc__btn">Buy now — {m.price}</a>
@@ -257,7 +266,22 @@ const recaps = [
           </article>
         ))}
       </div>
-      <p class="shop-foot" data-reveal>Sizes S–XL · Ships nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
+
+      <div class="bundle" data-reveal>
+        <div class="bundle__left">
+          <span class="bundle__save">{merchBundle.save}</span>
+          <h3 class="bundle__name">{merchBundle.name}</h3>
+          <p class="bundle__blurb">{merchBundle.blurb}</p>
+        </div>
+        <div class="bundle__right">
+          <span class="bundle__price">{merchBundle.price} <small>{merchShipping}</small></span>
+          {merchBundle.buyUrl
+            ? <a href={merchBundle.buyUrl} target="_blank" rel="noopener" class="btn btn-primary">Buy the bundle — {merchBundle.price}</a>
+            : <a href={bundleHref} class="btn btn-primary">Order the bundle</a>}
+        </div>
+      </div>
+
+      <p class="shop-foot" data-reveal>Sizes S–XL · $5 flat shipping, nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
     </div>
   </section>
 
@@ -486,4 +510,25 @@ const recaps = [
   .shopc__btn { margin-top: auto; align-self: flex-start; }
   .shop-foot { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 1.6rem; }
   .shop-foot a { color: var(--orchid-deep); border-bottom: 1px solid var(--card-brd-hi); }
+
+  /* lifestyle hero */
+  .shop-hero { position: relative; max-width: 520px; margin: 0 auto clamp(1.4rem, 3.5vw, 2.2rem); }
+  .shop-hero__media { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+  .shop-hero__cap { position: absolute; left: 14px; bottom: 14px; right: 14px; display: flex; flex-direction: column; gap: 0.15rem;
+    background: linear-gradient(180deg, transparent, rgba(24,10,34,0.72)); color: #fff; padding: 2.4rem 1rem 0.9rem; border-radius: 0 0 var(--radius) var(--radius); }
+  .shop-hero__tag { font-family: var(--display); font-weight: 800; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lavender); }
+  .shop-hero__txt { margin: 0; font-weight: 600; font-size: 0.92rem; }
+
+  /* bundle strip */
+  .bundle { display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 1.2rem; align-items: center; max-width: 860px; margin: clamp(1rem,2.5vw,1.6rem) auto 0;
+    background: linear-gradient(120deg, var(--purple), var(--orchid-deep) 70%, var(--orange) 150%); color: #fff; border-radius: var(--radius-lg); padding: clamp(1.3rem, 3vw, 1.9rem); box-shadow: var(--shadow); }
+  .bundle__save { display: inline-block; background: #fff; color: var(--orchid-deep); font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 999px; margin-bottom: 0.5rem; }
+  .bundle__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; margin: 0 0 0.3rem; color: #fff; }
+  .bundle__blurb { color: rgba(255,255,255,0.9); font-size: 0.9rem; margin: 0; max-width: 42ch; }
+  .bundle__right { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .bundle__price { font-family: var(--display); font-weight: 800; font-size: 2rem; line-height: 1; }
+  .bundle__price small { font-family: var(--body); font-weight: 600; font-size: 0.72rem; color: rgba(255,255,255,0.85); display: block; margin-top: 0.2rem; }
+  .bundle__right .btn { background: #fff; color: var(--orchid-deep); border-color: #fff; }
+  .bundle__right .btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  @media (max-width: 620px) { .bundle { grid-template-columns: 1fr; text-align: left; } .bundle__right { align-items: stretch; } .bundle__right .btn { width: 100%; text-align: center; } }
 </style>

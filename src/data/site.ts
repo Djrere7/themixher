@@ -180,6 +180,9 @@ export const featuredDJs = [
  * Until buyUrl is set, the button opens a pre-filled order email as a bridge.
  */
 export const merchNote = 'Every purchase funds First Spin DJ Bootcamp & the next generation of women behind the decks.';
+export const merchShipping = '+ $5 flat shipping';
+/** Lifestyle "worn" shot for the shop header — DJ ReRe in the black DGAF tee. */
+export const merchHero = { img: '/img/merch/tee-worn.jpg', caption: 'DJ ReRe in the black “DGAF” tee' };
 export const merch = [
   {
     name: 'MixHer “DGAF” Tee',
@@ -188,7 +191,7 @@ export const merch = [
     sizes: 'S – XL',
     blurb: 'Get money. Stay pretty. Handle your business. Enjoy life. Stay sexy. & DGAF. The MixHer mantra on a premium unisex tee.',
     img: '/img/merch/tee-white.jpg',
-    buyUrl: '', // TODO: paste PayPal Buy Now link (white)
+    buyUrl: '', // TODO: paste PayPal Buy Now link (white). Set price $25 + $5 shipping line in PayPal.
   },
   {
     name: 'MixHer “DGAF” Tee',
@@ -197,9 +200,18 @@ export const merch = [
     sizes: 'S – XL',
     blurb: 'The signature MixHer mantra tee in black — brand-orchid & orange accents. Premium unisex fit.',
     img: '/img/merch/tee-black.jpg',
-    buyUrl: '', // TODO: paste PayPal Buy Now link (black)
+    buyUrl: '', // TODO: paste PayPal Buy Now link (black). Set price $25 + $5 shipping line in PayPal.
   },
 ];
+/** Bundle deal — any 2 tees. Create a separate PayPal Buy Now button ($45 + shipping). */
+export const merchBundle = {
+  name: 'The Duo — Any 2 Tees',
+  price: '$45',
+  save: 'Save $5',
+  sizes: 'S – XL',
+  blurb: 'Grab both colorways (or two of your favorite) and save. Mix or match black & white, pick your sizes at checkout.',
+  buyUrl: '', // TODO: paste PayPal Buy Now link (bundle). $45 + $5 shipping.
+};
 
 /** Upcoming events. */
 export const events = [
