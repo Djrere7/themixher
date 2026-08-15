@@ -192,7 +192,7 @@ export const merch = [
     sizes: 'S – XL',
     blurb: 'Get money. Stay pretty. Handle your business. Enjoy life. Stay sexy. & DGAF. The MixHer mantra on a premium unisex tee.',
     img: '/img/merch/tee-white.jpg',
-    buyUrl: 'https://py.pl/FA3jv', // PayPal: "MixHer DGAF Tee White"
+    buyUrl: 'https://py.pl/8VnqG4O2wiO', // PayPal: white tee
   },
   {
     name: 'MixHer “DGAF” Tee',
@@ -201,7 +201,7 @@ export const merch = [
     sizes: 'S – XL',
     blurb: 'The signature MixHer mantra tee in black — brand-orchid & orange accents. Premium unisex fit.',
     img: '/img/merch/tee-black.jpg',
-    buyUrl: 'https://py.pl/CR9Ef', // PayPal: "MixHer DGAF Tee" (black)
+    buyUrl: 'https://py.pl/3yVby1usL23', // PayPal: black tee
   },
 ];
 /** Bundle deal — any 2 tees. Create a separate PayPal Buy Now button ($45 + shipping). */
@@ -211,7 +211,7 @@ export const merchBundle = {
   save: 'Save $5',
   sizes: 'S – XL',
   blurb: 'Grab both colorways (or two of your favorite) and save. Mix or match black & white, pick your sizes at checkout.',
-  buyUrl: 'https://py.pl/1fnYlqva56D', // PayPal: "MixHer DGAF The Duo (2 tees)"
+  buyUrl: 'https://py.pl/EBiSS', // PayPal: The Duo (2 tees)
 };
 
 /** Upcoming events. */
