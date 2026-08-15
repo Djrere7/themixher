@@ -118,6 +118,7 @@ export const sponsors = [
   { name: 'Raising Cane’s', img: '/img/logos/raisingcanes.png' },
   { name: 'Simply Pop', img: '/img/logos/simplypop.png' },
   { name: 'PrettyLittleThing', img: '/img/logos/prettylittlething.png' },
+  { name: 'Monster Energy', img: '/img/logos/monster.png' },
   { name: 'BASSBOSS', img: '/img/logos/bassboss.png' },
   { name: 'DJ City', img: '/img/logos/djcity.png' },
   { name: 'Remy Martin', img: '/img/logos/remymartin.png' },
@@ -179,7 +180,7 @@ export const featuredDJs = [
  *   buyUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXXXXXXX'
  * Until buyUrl is set, the button opens a pre-filled order email as a bridge.
  */
-export const merchNote = 'Every purchase funds First Spin DJ Bootcamp & the next generation of women behind the decks.';
+export const merchNote = 'A portion of every sale funds First Spin DJ Bootcamp — where we give beginner DJs their first real spin at DJing.';
 export const merchShipping = '+ $5 flat shipping';
 /** Lifestyle "worn" shot for the shop header — DJ ReRe in the black DGAF tee. */
 export const merchHero = { img: '/img/merch/tee-worn.jpg', caption: 'DJ ReRe in the black “DGAF” tee' };

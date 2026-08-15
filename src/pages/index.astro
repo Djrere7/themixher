@@ -5,7 +5,7 @@ import Media from '../components/Media.astro';
 import Vinyl from '../components/Vinyl.astro';
 import Form from '../components/Form.astro';
 import Social from '../components/Social.astro';
-import { site, proofBar, pillars, founder, sponsors, ticker, events, merch, merchNote, merchShipping, merchHero, merchBundle } from '../data/site';
+import { site, proofBar, pillars, founder, sponsors, ticker, merch, merchNote, merchShipping, merchHero, merchBundle } from '../data/site';
 
 const orderHref = (m: any) =>
   `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
@@ -128,29 +128,31 @@ const recaps = [
       <h2 class="display" data-reveal>PLY &amp; The Set</h2>
       <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set. And you never know who’ll pull up — our events regularly draw celebrity guests.</p></div>
       <div class="ev-grid">
-        {events.map((e) => (
-          <article class="card evc" data-reveal>
-            <div class="evc__art"><Media src={e.img} alt={`${e.name} PLY party flyer — female DJs in ${e.city}`} ratio="3 / 4" /></div>
-            <div class="evc__body">
-              <span class="evc__series">{e.seriesLabel}</span>
-              <h3 class="evc__name">{e.name}</h3>
-              <p class="evc__meta">{e.date} · {e.time}<br />{e.venue} · {e.city}</p>
-              <p class="evc__djs">{e.djs}</p>
-              <a href={e.href} class="btn btn-primary">Get tickets</a>
-            </div>
-          </article>
-        ))}
+        <article class="card evc" data-reveal>
+          <div class="evc__ph evc__ph--ply">
+            <span class="evc__phkicker">PLY · The Party Series</span>
+            <span class="evc__phbig">Coming<br />Soon</span>
+            <span class="evc__phnote">Next PLY · Miami</span>
+          </div>
+          <div class="evc__body">
+            <span class="evc__series">PLY · Party Series</span>
+            <h3 class="evc__name">PLY</h3>
+            <p class="evc__meta">Next date coming soon · Miami, FL<br />All-female DJ lineup</p>
+            <p class="evc__djs">Be first to know</p>
+            <a href="#contact" class="btn btn-primary">Get on the list</a>
+          </div>
+        </article>
 
         <article class="card evc" data-reveal>
           <div class="evc__ph evc__ph--set">
             <span class="evc__phkicker">The Set · Networking</span>
-            <span class="evc__phbig">Atlanta<br />Aug 9</span>
-            <span class="evc__phnote">During Invest Fest</span>
+            <span class="evc__phbig">Miami<br />October</span>
+            <span class="evc__phnote">Date coming soon</span>
           </div>
           <div class="evc__body">
             <span class="evc__series">The Set · Networking Series</span>
             <h3 class="evc__name">The Set</h3>
-            <p class="evc__meta">Sat · Aug 9 · Atlanta, GA<br />During Invest Fest</p>
+            <p class="evc__meta">October · Miami, FL<br />Exact date announced soon</p>
             <p class="evc__djs">DJs · execs · brands · venues · tastemakers</p>
             <a href="#contact" class="btn btn-ghost">Request an invite</a>
           </div>
@@ -239,7 +241,8 @@ const recaps = [
     <div class="wrap">
       <div class="sec-head center">
         <p class="spaced" data-reveal>Shop MixHer</p>
-        <h2 class="display" data-reveal>Wear the <span class="grad">movement.</span></h2>
+        <h2 class="fancy shop-head" data-reveal>For the girlies who <span class="grad">get money, stay pretty &amp; handle business.</span></h2>
+        <p class="shop-cta" data-reveal><a href="#shop-grid">Shop the tee <span aria-hidden="true">→</span></a></p>
         <p class="sec-sub" data-reveal>{merchNote}</p>
       </div>
       <div class="shop-hero" data-reveal>
@@ -249,7 +252,7 @@ const recaps = [
           <p class="shop-hero__txt">{merchHero.caption}</p>
         </div>
       </div>
-      <div class="shop-grid">
+      <div class="shop-grid" id="shop-grid">
         {merch.map((m) => (
           <article class="card shopc" data-reveal>
             <div class="shopc__art"><Media src={m.img} alt={`MixHer ${m.color} DGAF tee`} ratio="1 / 1" /></div>
@@ -466,6 +469,7 @@ const recaps = [
   /* placeholder art areas */
   .evc__ph { aspect-ratio: 3 / 4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 0.7rem; padding: 1.5rem; color: #fff; }
   .evc__ph--set { background: linear-gradient(150deg, var(--orchid-deep), var(--purple)); }
+  .evc__ph--ply { background: linear-gradient(150deg, var(--orange), var(--orchid)); }
   .evc__ph--city { background: linear-gradient(150deg, var(--orange), var(--orchid-deep)); }
   .evc__phkicker { font-family: var(--display); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
   .evc__phbig { font-family: var(--serif); font-size: 2rem; line-height: 1.05; }
@@ -518,6 +522,11 @@ const recaps = [
   .shopc__btn { margin-top: auto; align-self: flex-start; }
   .shop-foot { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 1.6rem; }
   .shop-foot a { color: var(--orchid-deep); border-bottom: 1px solid var(--card-brd-hi); }
+
+  .shop-head { max-width: 20ch; margin-inline: auto; text-transform: uppercase; }
+  .shop-cta { margin: 0.9rem 0 0.2rem; }
+  .shop-cta a { font-family: var(--display); font-weight: 800; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orchid-deep); border-bottom: 2px solid var(--orange); padding-bottom: 2px; transition: color 0.2s ease; }
+  .shop-cta a:hover { color: var(--orange); }
 
   /* lifestyle hero */
   .shop-hero { position: relative; max-width: 520px; margin: 0 auto clamp(1.4rem, 3.5vw, 2.2rem); }
