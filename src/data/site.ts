@@ -29,6 +29,16 @@ export const site = {
   nonprofit: 'MixHer Inc. is a registered 501(c)(3) nonprofit organization.',
   taxLine: 'Sponsorships and donations are tax-deductible.',
 
+  // Legal / IRS nonprofit details (from IRS determination letter)
+  ein: '99-1568393',
+  address: {
+    street: '1000 5th St, Suite 200 Y8',
+    city: 'Miami Beach',
+    region: 'FL',
+    postal: '33139',
+  },
+  addressLine: '1000 5th St, Suite 200 Y8, Miami Beach, FL 33139',
+
   // Action links — TODO: wire real endpoints/URLs before go-live
   joinUrl: '/#djs', // request to join the DJ Network (form on landing)
   sponsorUrl: '/sponsor-mixher',

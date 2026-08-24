@@ -44,9 +44,21 @@ const year = new Date().getFullYear();
       <div class="ft__col">
         <h3 class="ft__h">Contact</h3>
         <a href={site.emailHref}>{site.email}</a>
-        <span class="ft__addr">Miami Beach, FL · Nationwide</span>
+        <span class="ft__addr">{site.address.street}<br />{site.address.city}, {site.address.region} {site.address.postal}</span>
       </div>
     </div>
+
+    <section class="ft__np" aria-label="Nonprofit information" data-reveal>
+      <h3 class="ft__h">Nonprofit information</h3>
+      <dl class="ft__npgrid">
+        <div><dt>Legal name</dt><dd>{site.legalName}</dd></div>
+        <div><dt>EIN</dt><dd>{site.ein}</dd></div>
+        <div><dt>501(c)(3) status</dt><dd>Tax-exempt nonprofit organization</dd></div>
+        <div><dt>Primary website</dt><dd>TheMixHer.org</dd></div>
+        <div class="ft__npaddr"><dt>Address</dt><dd>{site.addressLine}</dd></div>
+      </dl>
+      <p class="ft__nptax">{site.legalName} is a registered 501(c)(3) nonprofit. {site.taxLine}</p>
+    </section>
 
     <hr class="rule" />
     <div class="ft__base">
@@ -77,8 +89,15 @@ const year = new Date().getFullYear();
   .ft__base { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.4rem; color: var(--dim); font-size: 0.8rem; }
   .ft__legal a { color: var(--dim); } .ft__legal a:hover { color: var(--ink); }
 
+  .ft__np { margin-top: clamp(2.2rem, 5vw, 3.2rem); padding: clamp(1.2rem, 3vw, 1.6rem) clamp(1.3rem, 3vw, 1.8rem); background: var(--bg-2, #faf6fe); border: 1px solid var(--card-brd); border-radius: var(--radius); }
+  .ft__npgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem 2.4rem; margin: 0.9rem 0 0; }
+  .ft__npgrid dt { font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.1rem; }
+  .ft__npgrid dd { margin: 0; color: var(--ink); font-size: 0.9rem; font-weight: 600; }
+  .ft__npaddr { grid-column: 1 / -1; }
+  .ft__nptax { margin: 1rem 0 0; color: var(--muted); font-size: 0.8rem; }
+
   @media (max-width: 860px) { .ft__cta { grid-template-columns: 1fr; } .ft__grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .ft__grid { grid-template-columns: 1fr; } .ft__form { flex-direction: column; } }
+  @media (max-width: 520px) { .ft__grid { grid-template-columns: 1fr; } .ft__form { flex-direction: column; } .ft__npgrid { grid-template-columns: 1fr; } }
 </style>
 
 <script>
