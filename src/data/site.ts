@@ -8,7 +8,7 @@
 export const site = {
   name: 'MixHer',
   fullName: 'The MixHer',
-  legalName: 'MixHer Inc.',
+  legalName: 'MIXHER INC.', // exact wording from IRS 501(c)(3) determination letter
   tagline: 'Setting The Tone',
   vibeline: 'Female DJs lead the vibe. All vibes welcome.',
   founded: '2023',
@@ -26,7 +26,7 @@ export const site = {
   email: 'info@themixher.org',
   emailHref: 'mailto:info@themixher.org',
   location: 'Founded in Miami · Based in Miami Beach, FL · Events nationwide',
-  nonprofit: 'MixHer Inc. is a registered 501(c)(3) nonprofit organization.',
+  nonprofit: 'MIXHER INC. is a registered 501(c)(3) nonprofit organization.',
   taxLine: 'Sponsorships and donations are tax-deductible.',
 
   // Legal / IRS nonprofit details (from IRS determination letter)
