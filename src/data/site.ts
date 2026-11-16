@@ -18,7 +18,7 @@ export const site = {
   hero:
     'MixHer is a 501(c)(3) nonprofit event series and national DJ network creating stages, industry access, and culture-forward experiences for women behind the decks.',
   mission:
-    'MixHer exists to put female DJs at the front of the culture — building stages, industry access, and community for women behind the decks, and funding the next generation through First Spin DJ Bootcamp.',
+    'MixHer exists to put female DJs at the front of the culture, building stages, industry access, and community for women behind the decks, and funding the next generation through First Spin DJ Bootcamp.',
   whatIs:
     'MixHer is the go-to platform for female DJs, brands, venues, artists, and music lovers who want to be part of what is next in DJ culture.',
 
@@ -115,8 +115,8 @@ export const founder = {
   name: 'DJ ReRe',
   role: 'Founder · MixHer',
   bio: [
-    'DJ ReRe is an international DJ with over 20 years behind the decks — a performer, connector, and culture builder who has spun everywhere from luxury events and the world’s largest cruise ships to stages for major artists including GloRilla.',
-    'She’s also an entrepreneur and recruiter who owns her own entertainment company, REmixed Events, and founded MixHer to open doors for the next generation of women in music. Her passion for music and people drives everything she does — and it shows.',
+    'DJ ReRe is an international DJ with over 20 years behind the decks, a performer, connector, and culture builder who has spun everywhere from luxury events and the world’s largest cruise ships to stages for major artists including GloRilla.',
+    'She’s also an entrepreneur and recruiter who owns her own entertainment company, REmixed Events, and founded MixHer to open doors for the next generation of women in music. Her passion for music and people drives everything she does, and it shows.',
   ],
 };
 
@@ -190,7 +190,7 @@ export const featuredDJs = [
  *   buyUrl: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXXXXXXX'
  * Until buyUrl is set, the button opens a pre-filled order email as a bridge.
  */
-export const merchNote = 'A portion of every sale funds First Spin DJ Bootcamp — where we give beginner DJs their first real spin at DJing.';
+export const merchNote = 'A portion of every sale funds First Spin DJ Bootcamp, where we give beginner DJs their first real spin at DJing.';
 export const merchShipping = '+ $5 flat shipping';
 /** Lifestyle "worn" shot for the shop header — DJ ReRe in the black DGAF tee. */
 export const merchHero = { img: '/img/merch/tee-worn.jpg', caption: 'DJ ReRe in the black “DGAF” tee' };
@@ -199,7 +199,7 @@ export const merch = [
     name: 'MixHer “DGAF” Tee',
     color: 'White',
     price: '$25',
-    sizes: 'S – XL',
+    sizes: 'S to XL',
     blurb: 'Get money. Stay pretty. Handle your business. Enjoy life. Stay sexy. & DGAF. The MixHer mantra on a premium unisex tee.',
     img: '/img/merch/tee-white.jpg',
     buyUrl: 'https://www.paypal.com/instantcommerce/checkout/N6NR25T9HKJP6', // PayPal: "MixHer DGAF Tee White"
@@ -208,18 +208,18 @@ export const merch = [
     name: 'MixHer “DGAF” Tee',
     color: 'Black',
     price: '$25',
-    sizes: 'S – XL',
-    blurb: 'The signature MixHer mantra tee in black — brand-orchid & orange accents. Premium unisex fit.',
+    sizes: 'S to XL',
+    blurb: 'The signature MixHer mantra tee in black, with brand-orchid and orange accents. Premium unisex fit.',
     img: '/img/merch/tee-black.jpg',
     buyUrl: 'https://www.paypal.com/instantcommerce/checkout/F7GLPUG9K9DDA', // PayPal: "MixHer DGAF Tee" (black)
   },
 ];
 /** Bundle deal — any 2 tees. Create a separate PayPal Buy Now button ($45 + shipping). */
 export const merchBundle = {
-  name: 'The Duo — Any 2 Tees',
+  name: 'The Duo · Any 2 Tees',
   price: '$45',
   save: 'Save $5',
-  sizes: 'S – XL',
+  sizes: 'S to XL',
   blurb: 'Grab both colorways (or two of your favorite) and save. Mix or match black & white, pick your sizes at checkout.',
   buyUrl: 'https://www.paypal.com/instantcommerce/checkout/8CVQSAWDRZKEY', // PayPal: "MixHer DGAF The Duo (2 tees)"
 };
@@ -232,11 +232,11 @@ export const events = [
     series: 'PLY',
     seriesLabel: 'Party Series debut · with BASSBOSS',
     date: 'Tue · Aug 11, 2026',
-    time: '8:00–10:00 PM',
+    time: '8:00 to 10:00 PM',
     venue: 'BASSBOSS Showroom · DJX',
     city: 'Atlantic City, NJ',
     djs: 'All-female DJ lineup',
-    blurb: 'An all-female DJ lineup kicks off PLY — our signature party series — presented with BASSBOSS.',
+    blurb: 'A lineup of female DJs kicks off PLY, our signature party series, presented with BASSBOSS.',
     img: '/img/event-ply.jpg',
     href: '#tickets', // TODO: ticket link
   },

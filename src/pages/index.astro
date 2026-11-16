@@ -8,15 +8,15 @@ import Social from '../components/Social.astro';
 import { site, proofBar, pillars, founder, sponsors, ticker, merch, merchNote, merchShipping, merchHero, merchBundle } from '../data/site';
 
 const orderHref = (m: any) =>
-  `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name} — ${m.color}\nSize (S–XL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
+  `mailto:${site.email}?subject=${encodeURIComponent(`Merch order: ${m.name} (${m.color})`)}&body=${encodeURIComponent(`I'd like to order:\n\n${m.name}, ${m.color}\nSize (S to XL): \nQuantity: \n\nName:\nShipping address:\n`)}`;
 const bundleHref =
-  `mailto:${site.email}?subject=${encodeURIComponent('Merch order: The Duo — 2 Tees ($45)')}&body=${encodeURIComponent(`I'd like the 2-tee bundle ($45):\n\nTee 1 — color (black/white): \nTee 1 — size (S–XL): \nTee 2 — color (black/white): \nTee 2 — size (S–XL): \n\nName:\nShipping address:\n`)}`;
+  `mailto:${site.email}?subject=${encodeURIComponent('Merch order: The Duo, 2 Tees ($45)')}&body=${encodeURIComponent(`I'd like the 2-tee bundle ($45):\n\nTee 1 color (black/white): \nTee 1 size (S to XL): \nTee 2 color (black/white): \nTee 2 size (S to XL): \n\nName:\nShipping address:\n`)}`;
 
 const faqSchema = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'What is MixHer?', acceptedAnswer: { '@type': 'Answer', text: site.whatIs } },
-    { '@type': 'Question', name: 'Is MixHer a nonprofit?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — MixHer is a registered 501(c)(3) nonprofit event series and DJ network founded in Miami by DJ ReRe.' } },
+    { '@type': 'Question', name: 'Is MixHer a nonprofit?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. MixHer is a registered 501(c)(3) nonprofit event series and DJ network founded in Miami by DJ ReRe.' } },
     { '@type': 'Question', name: 'How do female DJs join MixHer?', acceptedAnswer: { '@type': 'Answer', text: 'Female DJs request to join the MixHer DJ Network for stages, gig-sharing, industry connections, and brand opportunities. Every request is reviewed.' } },
   ],
 };
@@ -49,7 +49,7 @@ const recaps = [
           <a href="#djs" class="btn btn-purple">Join the DJ Network</a>
           <a href="#contact" class="btn btn-ghost">Bring MixHer to Your City</a>
         </div>
-        <a href="#shop" class="hero__shop" data-reveal>🛍️ Shop the merch — new “DGAF” tees <span aria-hidden="true">→</span></a>
+        <a href="#shop" class="hero__shop" data-reveal>🛍️ Shop the merch · new “DGAF” tees <span aria-hidden="true">→</span></a>
       </div>
       <div class="hero__art" data-reveal>
         <div class="hero__frame"><Media src="/img/mh-hero.jpg" alt="The MixHer community at a female DJ event" ratio="4 / 3" /></div>
@@ -75,8 +75,8 @@ const recaps = [
     <div class="wrap narrow" style="text-align:center">
       <p class="spaced center" data-reveal>What is MixHer &amp; why we exist</p>
       <h2 class="fancy" data-reveal>The hub for <span class="grad">what’s next</span> in DJ culture.</h2>
-      <p class="lead" data-reveal>Female DJs have the talent, the following, and the vision — they just haven’t always had the stage. MixHer exists to change that.</p>
-      <p class="lead" data-reveal>We build the rooms, the network, and the opportunities that get women behind the decks seen, booked, and heard — from the party (<b>PLY</b>) to the industry table (<b>The Set</b>) to the classroom (<b>First Spin DJ Bootcamp</b>). One platform, one mission: put female DJs at the front of the culture.</p>
+      <p class="lead" data-reveal>Female DJs have the talent, the following, and the vision. They just haven’t always had the stage. MixHer exists to change that.</p>
+      <p class="lead" data-reveal>We build the rooms, the network, and the opportunities that get women behind the decks seen, booked, and heard, from the party (<b>PLY</b>) to the industry table (<b>The Set</b>) to the classroom (<b>First Spin DJ Bootcamp</b>). One platform, one mission: put female DJs at the front of the culture.</p>
     </div>
     <div class="wrap" style="margin-top:clamp(2rem,5vw,3.5rem)">
       <div class="grid grid-4">
@@ -102,7 +102,7 @@ const recaps = [
         <p class="spaced">For female DJs</p>
         <h2 class="fancy">Built for the DJs <span class="grad">Setting The Tone.</span></h2>
         <p>Join a national network for more stages, stronger industry connections, gig-sharing, resources, brand opportunities, and a community that moves together.</p>
-        <p class="gate"><b>By request only.</b> We review every applicant to keep the community — and our private group — real. Approved DJs get the invite by email. No one is auto-added.</p>
+        <p class="gate"><b>By request only.</b> We review every applicant to keep the community and our private group real. Approved DJs get the invite by email. No one is auto-added.</p>
         <a href="#contact" class="btn btn-primary djs__cta">Request to join &rarr;</a>
       </div>
     </div>
@@ -114,7 +114,7 @@ const recaps = [
     <div class="wrap band-inner" style="text-align:center">
       <p class="spaced center" data-reveal>For brands &amp; sponsors</p>
       <h2 class="fancy" data-reveal>Put your brand where culture is heard first.</h2>
-      <p class="band-lead" data-reveal>Curated events, DJ collaborations, gifting moments, social content, live activations, and nonprofit-aligned visibility — in front of a music-forward audience.</p>
+      <p class="band-lead" data-reveal>Curated events, DJ collaborations, gifting moments, social content, live activations, and nonprofit-aligned visibility, all in front of a music-forward audience.</p>
       <div class="band-flash" data-reveal>
         <span class="band-flash__tag">Dec 4 · Art Basel</span>
         <p class="band-flash__txt">Now booking <b>drink sponsors</b> for our December 4 PLY activation in the heart of Miami. A standout chance to be seen in front of the Basel crowd.</p>
@@ -131,7 +131,7 @@ const recaps = [
     <div class="wrap">
       <div class="sec-head center"><p class="spaced" data-reveal>The experiences</p>
       <h2 class="display" data-reveal>PLY &amp; The Set</h2>
-      <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set. And you never know who’ll pull up — our events regularly draw celebrity guests.</p></div>
+      <p class="sec-sub" data-reveal><b>PLY</b> is the party. Female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table, intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set. And you never know who’ll pull up: our events regularly draw celebrity guests.</p></div>
       <div class="ev-grid">
         <article class="card evc" data-reveal>
           <div class="evc__art">
@@ -169,7 +169,7 @@ const recaps = [
           <div class="evc__body">
             <span class="evc__series">Host · Partner</span>
             <h3 class="evc__name">Your City</h3>
-            <p class="evc__meta">Want PLY or The Set where you are? Let’s make it happen — venues, promoters, and partners welcome.</p>
+            <p class="evc__meta">Want PLY or The Set where you are? Let’s make it happen. Venues, promoters, and partners welcome.</p>
             <a href="#contact" class="btn btn-primary">Bring MixHer to Your City</a>
           </div>
         </article>
@@ -182,7 +182,7 @@ const recaps = [
     <div class="wrap">
       <div class="sec-head center"><p class="spaced" data-reveal>Event recaps</p>
       <h2 class="display" data-reveal>See us in action</h2>
-      <p class="sec-sub" data-reveal>Rooftops, brunches, and packed nights across the country — press play.</p></div>
+      <p class="sec-sub" data-reveal>Rooftops, brunches, and packed nights across the country. Press play.</p></div>
       <div class="recap-grid">
         {recaps.map((r) => (
           <figure class="recap" data-reveal>
@@ -217,7 +217,7 @@ const recaps = [
         <div class="seenat__text">
           <p class="spaced">Industry-recognized</p>
           <h2 class="fancy">Welcomed by the <span class="grad">industry.</span></h2>
-          <p>From Chauvet DJ to Serato, DJ City, and BASSBOSS — the brands that power the culture show up for MixHer.</p>
+          <p>From Chauvet DJ to Serato, DJ City, and BASSBOSS, the brands that power the culture show up for MixHer.</p>
         </div>
       </div>
     </div>
@@ -230,8 +230,8 @@ const recaps = [
       <div class="split__text" data-reveal>
         <img src="/img/firstspin-logo.png" alt="First Spin DJ Bootcamp logo" class="fs-logo" width="200" height="110" loading="lazy" />
         <h2 class="fancy">Every set fuels the next <span class="grad">first spin.</span></h2>
-        <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure — funded by MixHer events.</p>
-        <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin DJ Bootcamp is that chance — and every ticket, sponsorship, and donation helps fund it.</p>
+        <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure, funded by MixHer events.</p>
+        <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin DJ Bootcamp is that chance, and every ticket, sponsorship, and donation helps fund it.</p>
         <div class="fs-btns">
           <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
           <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">Visit First Spin DJ Bootcamp ↗</a>
@@ -268,7 +268,7 @@ const recaps = [
               <span class="shopc__color">{m.color} · Sizes {m.sizes} · {merchShipping}</span>
               <p class="shopc__blurb">{m.blurb}</p>
               {m.buyUrl
-                ? <a href={m.buyUrl} target="_blank" rel="noopener" class="btn btn-primary shopc__btn">Buy now — {m.price}</a>
+                ? <a href={m.buyUrl} target="_blank" rel="noopener" class="btn btn-primary shopc__btn">Buy now · {m.price}</a>
                 : <a href={orderHref(m)} class="btn btn-primary shopc__btn">Order now</a>}
             </div>
           </article>
@@ -284,12 +284,12 @@ const recaps = [
         <div class="bundle__right">
           <span class="bundle__price">{merchBundle.price} <small>{merchShipping}</small></span>
           {merchBundle.buyUrl
-            ? <a href={merchBundle.buyUrl} target="_blank" rel="noopener" class="btn btn-primary">Buy the bundle — {merchBundle.price}</a>
+            ? <a href={merchBundle.buyUrl} target="_blank" rel="noopener" class="btn btn-primary">Buy the bundle · {merchBundle.price}</a>
             : <a href={bundleHref} class="btn btn-primary">Order the bundle</a>}
         </div>
       </div>
 
-      <p class="shop-foot" data-reveal>Sizes S–XL · $5 flat shipping, nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
+      <p class="shop-foot" data-reveal>Sizes S to XL · $5 flat shipping, nationwide · Questions? <a href={site.emailHref}>{site.email}</a></p>
     </div>
   </section>
 
@@ -311,7 +311,7 @@ const recaps = [
       <p class="spaced center" data-reveal>Trusted by brands &amp; partners</p>
       <div class="logos__row" data-reveal>
         {sponsors.map((s) => (
-          s.img ? <img class="logos__img" src={s.img} alt={`${s.name} — MixHer sponsor`} loading="lazy" /> : <span class="logos__word">{s.name}</span>
+          s.img ? <img class="logos__img" src={s.img} alt={`${s.name}, MixHer sponsor`} loading="lazy" /> : <span class="logos__word">{s.name}</span>
         ))}
       </div>
     </div>
@@ -323,7 +323,7 @@ const recaps = [
       <div class="sec-head center">
         <p class="spaced" data-reveal>Contact</p>
         <h2 class="fancy" data-reveal>Let’s <span class="grad">connect.</span></h2>
-        <p class="contact__intro" data-reveal>DJ, brand, venue, press, or want to bring MixHer to your city? Tell us who you are — we’ll route it to the right person.</p>
+        <p class="contact__intro" data-reveal>DJ, brand, venue, press, or want to bring MixHer to your city? Tell us who you are, we’ll route it to the right person.</p>
       </div>
       <div class="contact">
         <div class="card contact__form" data-reveal>

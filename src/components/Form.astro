@@ -77,7 +77,7 @@ const gfOn = !!gf.action;
           if (id && data.get(key)) out.append(id, data.get(key) as string);
         }
         fetch(gfAction, { method: 'POST', mode: 'no-cors', body: out }).catch(() => {});
-        thanks(f, 'Thank you — we got it! ✦');
+        thanks(f, 'Thank you, we got it! ✦');
         return;
       }
 
@@ -87,7 +87,7 @@ const gfOn = !!gf.action;
       const subject = encodeURIComponent(`[MixHer] ${f.dataset.name || 'Website form'}`);
       const body = encodeURIComponent(lines.join('\n'));
       window.location.href = `mailto:${TEAM}?subject=${subject}&body=${body}`;
-      thanks(f, 'Opening your email to send — thank you! ✦');
+      thanks(f, 'Opening your email to send, thank you! ✦');
     });
   });
 </script>
