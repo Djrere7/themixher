@@ -44,7 +44,7 @@ const recaps = [
         <p class="hero__script script" data-reveal>Female DJs lead the vibe.</p>
         <p class="hero__sub" data-reveal>{site.hero}</p>
         <div class="hero__btns" data-reveal>
-          <a href="https://posh.vip/e/basels-baddest-female-djs-ply" target="_blank" rel="noopener" class="btn btn-primary">Get PLY Tickets · Dec 4</a>
+          <a href="https://posh.vip/e/basels-baddest-female-djs-ply" target="_blank" rel="noopener" class="btn btn-ply">Get PLY Tickets · Dec 4</a>
           <a href={site.sponsorUrl} class="btn btn-primary">Sponsor MixHer</a>
           <a href="#djs" class="btn btn-purple">Join the DJ Network</a>
           <a href="#contact" class="btn btn-ghost">Bring MixHer to Your City</a>
@@ -115,6 +115,10 @@ const recaps = [
       <p class="spaced center" data-reveal>For brands &amp; sponsors</p>
       <h2 class="fancy" data-reveal>Put your brand where culture is heard first.</h2>
       <p class="band-lead" data-reveal>Curated events, DJ collaborations, gifting moments, social content, live activations, and nonprofit-aligned visibility — in front of a music-forward audience.</p>
+      <div class="band-flash" data-reveal>
+        <span class="band-flash__tag">Dec 4 · Art Basel</span>
+        <p class="band-flash__txt">Now booking <b>drink sponsors</b> for our December 4 PLY activation in the heart of Miami. A standout chance to be seen in front of the Basel crowd.</p>
+      </div>
       <div class="band-btns" data-reveal>
         <a href={site.sponsorKitUrl} class="btn btn-primary">Request the Sponsor Kit</a>
         <a href={site.sponsorUrl} class="btn btn-ghost band-glass-btn">See sponsorship</a>
@@ -130,10 +134,8 @@ const recaps = [
       <p class="sec-sub" data-reveal><b>PLY</b> is the party — female DJs headlining packed, culture-forward nights where the crowd, artists, and brands all show up. <b>The Set</b> is the industry table — intimate rooms where DJs meet the executives, brands, and venues who book them. Talent gets you noticed at PLY; access gets you booked at The Set. And you never know who’ll pull up — our events regularly draw celebrity guests.</p></div>
       <div class="ev-grid">
         <article class="card evc" data-reveal>
-          <div class="evc__ph evc__ph--ply">
-            <span class="evc__phkicker">PLY · The Party Series</span>
-            <span class="evc__phbig">Dec 4<br />Miami</span>
-            <span class="evc__phnote">Art Basel Week · Red Bar Brickell</span>
+          <div class="evc__art">
+            <Media src="/img/PLY_Basel_Edition_flyer_v8_1080x1350.jpg" alt="PLY Basel Edition flyer. The MixHer presents PLY, say it like play. Friday December 4, 8 to 11 PM at Red Bar Brickell, Miami, during Art Basel week. Female DJs on the decks, lighting by CHAUVET DJ." ratio="4 / 5" />
           </div>
           <div class="evc__body">
             <span class="evc__series">PLY · Party Series</span>
@@ -389,6 +391,9 @@ const recaps = [
   .hero__script { font-family: var(--script); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--orchid-deep); line-height: 0.8; margin: 0.3rem 0 0.6rem; }
   .hero__sub { color: var(--muted); max-width: 48ch; font-size: 1.05rem; }
   .hero__btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  /* PLY palette (Electric Pink / Rich Black), used only for PLY ticket CTA */
+  .btn-ply { background: #FF0066; color: #fff; border-color: #FF0066; }
+  .btn-ply:hover { background: #0A0A0A; color: #fff; border-color: #0A0A0A; }
   .hero__shop { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.6rem 1.1rem; border-radius: 999px;
     font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
     background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, var(--orange), var(--orchid), var(--purple)) border-box;
@@ -459,6 +464,9 @@ const recaps = [
 
   .band-inner { position: relative; z-index: 1; }
   .band-lead { color: rgba(255,255,255,0.9); max-width: 60ch; margin: 1rem auto 1.6rem; }
+  .band-flash { display: inline-flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; justify-content: center; max-width: 58ch; margin: 0 auto 1.6rem; padding: 0.7rem 1.1rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 18px; }
+  .band-flash__tag { flex: none; font-family: var(--display); font-weight: 800; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: #FF0066; padding: 0.35rem 0.7rem; border-radius: 999px; }
+  .band-flash__txt { margin: 0; color: #fff; font-size: 0.92rem; font-weight: 500; text-align: left; }
   .band-btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
   .band-glass-btn { color: #fff; border-color: rgba(255,255,255,0.7); }
   .band-glass-btn:hover { border-color: #fff; background: rgba(255,255,255,0.14); color: #fff; }
