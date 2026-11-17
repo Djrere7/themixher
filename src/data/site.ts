@@ -16,11 +16,11 @@ export const site = {
 
   // One-liner + mission
   hero:
-    'MixHer is a 501(c)(3) nonprofit event series and national DJ network creating stages, industry access, and culture-forward experiences for women behind the decks.',
+    'The MixHer is a nonprofit culture platform creating stages and industry access for female DJs. Through curated events, brand collaborations, networking rooms, and DJ education, we connect women behind the decks to the audiences, brands, venues, and opportunities shaping music culture.',
   mission:
-    'MixHer exists to put female DJs at the front of the culture, building stages, industry access, and community for women behind the decks, and funding the next generation through First Spin DJ Bootcamp.',
+    'The MixHer exists to put female DJs at the front of the culture, building stages, industry access, and community for women behind the decks, and funding the next generation through First Spin DJ Bootcamp.',
   whatIs:
-    'MixHer is the go-to platform for female DJs, brands, venues, artists, and music lovers who want to be part of what is next in DJ culture.',
+    'The MixHer is a nonprofit culture platform creating stages and industry access for female DJs through curated events, brand collaborations, a national DJ network, and DJ education.',
 
   // Contact
   email: 'info@themixher.org',
