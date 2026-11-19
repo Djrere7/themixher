@@ -45,7 +45,7 @@ const recaps = [
         <p class="hero__sub" data-reveal>{site.hero}</p>
         <div class="hero__btns" data-reveal>
           <a href="https://posh.vip/e/basels-baddest-female-djs-ply" target="_blank" rel="noopener" class="btn btn-ply">Get PLY Tickets · Dec 4</a>
-          <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
+          <a href="/#donate" class="btn btn-primary">Donate</a>
           <a href="#djs" class="btn btn-purple">Join the DJ Network</a>
           <a href={site.sponsorUrl} class="btn btn-ghost">Sponsor MixHer</a>
           <a href="#contact" class="btn btn-ghost">Bring MixHer to Your City</a>
@@ -234,9 +234,22 @@ const recaps = [
         <p>First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ education, mentorship, and entrepreneurship exposure, funded by MixHer events.</p>
         <p><b>Why it matters:</b> the next generation of women behind the decks needs a first chance, and most never get near the equipment. First Spin DJ Bootcamp is that chance, and every ticket, sponsorship, and donation helps fund it.</p>
         <div class="fs-btns">
-          <a href={site.donateUrl} target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
+          <a href="/#donate" class="btn btn-primary">Donate</a>
           <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">Visit First Spin DJ Bootcamp ↗</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE -->
+  <section class="section-pad" id="donate">
+    <div class="wrap narrow">
+      <div class="donate-card" data-reveal>
+        <span class="donate-kick">Donate</span>
+        <h2 class="donate-h">Your gift keeps her on the decks.</h2>
+        <p class="donate-lead">Every gift helps put female DJs on real stages and gives youth in underserved communities their first shot behind the decks through First Spin DJ Bootcamp.</p>
+        <a href={site.donateUrl} target="_blank" rel="noopener" class="btn donate-btn">Donate with PayPal</a>
+        <p class="donate-tax">{site.legalName} is a registered 501(c)(3) nonprofit. {site.taxLine} EIN {site.ein}.</p>
       </div>
     </div>
   </section>
@@ -559,4 +572,13 @@ const recaps = [
   .bundle__right .btn { background: #fff; color: var(--orchid-deep); border-color: #fff; }
   .bundle__right .btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
   @media (max-width: 620px) { .bundle { grid-template-columns: 1fr; text-align: left; } .bundle__right { align-items: stretch; } .bundle__right .btn { width: 100%; text-align: center; } }
+
+  /* DONATE */
+  .donate-card { position: relative; overflow: hidden; text-align: center; border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 3.4rem); color: #fff; box-shadow: var(--shadow); background: linear-gradient(150deg, var(--purple), var(--orchid-deep) 60%, var(--orange) 150%); }
+  .donate-kick { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+  .donate-h { font-size: clamp(2rem, 5vw, 3rem); margin: 0.4rem 0 0.7rem; color: #fff; }
+  .donate-lead { color: rgba(255,255,255,0.92); max-width: 52ch; margin: 0 auto 1.5rem; }
+  .donate-btn { background: #fff; color: var(--orchid-deep); border-color: #fff; }
+  .donate-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .donate-tax { color: rgba(255,255,255,0.82); font-size: 0.8rem; margin: 1.1rem 0 0; }
 </style>
