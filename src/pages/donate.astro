@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site, proofBar } from '../data/site';
+
+const gives = [
+  { t: 'Stages for female DJs', b: 'Fund PLY and The Set, the nights and rooms where women behind the decks get booked, seen, and heard.' },
+  { t: 'A national DJ network', b: 'Keep the MixHer network running with gig-sharing, resources, and real industry connections for female DJs across the country.' },
+  { t: 'Access and community', b: 'Put female DJs in the room with the brands, venues, and tastemakers who shape music culture.' },
+  { t: 'First Spin DJ Bootcamp', b: 'Give youth in underserved communities no-cost DJ education, mentorship, and their first real spin behind the decks.' },
+];
+
+const donateSchema = {
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  name: 'Donate to MixHer',
+  description: 'Donate to The MixHer, a 501(c)(3) nonprofit creating stages and industry access for female DJs and funding free youth DJ education through First Spin DJ Bootcamp.',
+};
+---
+<Base
+  title="Donate"
+  fullTitle="Donate to MixHer | Support Female DJs & Youth Music Education"
+  description="Donate to The MixHer, a 501(c)(3) nonprofit creating stages and industry access for female DJs and funding free youth DJ education through First Spin DJ Bootcamp. Your gift is tax-deductible. EIN 99-1568393."
+  schema={[donateSchema]}
+>
+  <PageHeader
+    kicker="Donate"
+    title={`Back the whole <span class='grad-o'>mission.</span>`}
+    lead="The MixHer is a nonprofit culture platform creating stages and industry access for female DJs. Your donation funds all of it: curated events, the national DJ network, community, and free youth DJ education through First Spin DJ Bootcamp."
+  />
+
+  <!-- Where your gift goes -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>Where your gift goes</p><h2 class="display" data-reveal>Every dollar moves the mission</h2></div>
+      <div class="grid grid-4">
+        {gives.map((g) => (
+          <div class="card give" data-reveal><h3 class="give__t">{g.t}</h3><p class="give__b">{g.b}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate CTA -->
+  <section class="section-pad">
+    <div class="wrap narrow">
+      <div class="dn" data-reveal>
+        <span class="dn__kick">Give today</span>
+        <h2 class="dn__h">Support women in music.</h2>
+        <p class="dn__lead">Every gift helps put female DJs on stage and keeps First Spin free for the next generation. Give securely through PayPal in whatever amount feels right.</p>
+        <a href={site.donateUrl} target="_blank" rel="noopener" class="btn dn__btn">Donate with PayPal</a>
+        <p class="dn__tax">{site.legalName} is a registered 501(c)(3) nonprofit. {site.taxLine} EIN {site.ein}.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>Your impact</p><h2 class="display" data-reveal>A community already moving</h2></div>
+      <div class="grid grid-4 statgrid">
+        {proofBar.slice(0, 4).map((s) => (
+          <div class="statcard" data-reveal><span class="statcard__n grad">{s.num}</span><span class="statcard__l">{s.label}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Other ways -->
+  <section class="section-pad">
+    <div class="wrap narrow" style="text-align:center">
+      <div class="sec-head center"><p class="spaced" data-reveal>More ways to support</p><h2 class="fancy" data-reveal>Not a donor today? There is still room for you.</h2></div>
+      <div class="ways" data-reveal>
+        <a href="/sponsor-mixher" class="card way"><h3 class="way__t">Sponsor MixHer</h3><p class="way__b">Put your brand in front of a music-forward audience and support the mission.</p><span class="way__cta">See sponsorship →</span></a>
+        <a href="/#shop" class="card way"><h3 class="way__t">Shop the merch</h3><p class="way__b">A portion of every sale funds First Spin DJ Bootcamp.</p><span class="way__cta">Shop now →</span></a>
+        <a href="/#contact" class="card way"><h3 class="way__t">Bring MixHer to your city</h3><p class="way__b">Host PLY or The Set where you are, or partner with us.</p><span class="way__cta">Get in touch →</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sec-head .spaced { display: inline-block; margin-bottom: 0.7rem; }
+  .sec-head.center { text-align: center; }
+  .center { display: block; text-align: center; }
+
+  .give { display: flex; flex-direction: column; gap: 0.4rem; }
+  .give__t { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; margin: 0; color: var(--orchid-deep); }
+  .give__b { color: var(--muted); margin: 0; font-size: 0.92rem; }
+
+  .dn { position: relative; overflow: hidden; text-align: center; border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 3.4rem); color: #fff; box-shadow: var(--shadow); background: linear-gradient(150deg, var(--purple), var(--orchid-deep) 60%, var(--orange) 150%); }
+  .dn__kick { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+  .dn__h { font-size: clamp(2rem, 5vw, 3rem); margin: 0.4rem 0 0.7rem; color: #fff; }
+  .dn__lead { color: rgba(255,255,255,0.92); max-width: 52ch; margin: 0 auto 1.5rem; }
+  .dn__btn { background: #fff; color: var(--orchid-deep); border-color: #fff; }
+  .dn__btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .dn__tax { color: rgba(255,255,255,0.82); font-size: 0.8rem; margin: 1.1rem 0 0; }
+
+  .statgrid { text-align: center; }
+  .statcard { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.2rem 0.4rem; }
+  .statcard__n { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4.5vw, 2.8rem); line-height: 1; }
+  .statcard__l { color: var(--muted); font-size: 0.78rem; }
+
+  .ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.4rem; text-align: left; }
+  @media (max-width: 820px) { .ways { grid-template-columns: 1fr; } }
+  .way { display: flex; flex-direction: column; gap: 0.3rem; }
+  .way__t { font-family: var(--display); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; margin: 0; }
+  .way__b { color: var(--muted); font-size: 0.9rem; margin: 0.2rem 0 0.5rem; flex: 1; }
+  .way__cta { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orchid-deep); }
+</style>
