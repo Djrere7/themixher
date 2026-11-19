@@ -43,7 +43,7 @@ export const site = {
   joinUrl: '/#djs', // request to join the DJ Network (form on landing)
   sponsorUrl: '/sponsor-mixher',
   sponsorKitUrl: '/sponsor-mixher#request-kit',
-  firstSpinUrl: 'https://firstspindjbootcamp.carrd.co/', // external First Spin site
+  firstSpinUrl: 'https://firstspindjbootcamp.org', // external First Spin site (new domain)
   bringUrl: '/#contact',
   donateUrl: 'https://www.paypal.com/donate/?hosted_button_id=3NNZ2Q6KTV676', // PayPal donation
   newsletterAction: '', // TODO: newsletter POST endpoint
@@ -89,7 +89,7 @@ export const nav = [
   { label: 'Events', href: '/#events' },
   { label: 'Shop', href: '/#shop' },
   { label: 'Sponsor', href: '/sponsor-mixher' },
-  { label: 'First Spin DJ Bootcamp', href: 'https://firstspindjbootcamp.carrd.co/', external: true },
+  { label: 'First Spin DJ Bootcamp', href: 'https://firstspindjbootcamp.org', external: true },
   { label: 'Contact', href: '/#contact' },
 ];
 
