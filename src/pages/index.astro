@@ -20,7 +20,7 @@ const faqSchema = {
     { '@type': 'Question', name: 'How do female DJs join MixHer?', acceptedAnswer: { '@type': 'Answer', text: 'Female DJs request to join the MixHer DJ Network for stages, gig-sharing, industry connections, and brand opportunities. Every request is reviewed.' } },
   ],
 };
-const links = (p: any) => (p.key === 'FirstSpin' ? site.firstSpinUrl : p.key === 'Network' ? '#djs' : '#events');
+const links = (p: any) => (p.key === 'FirstSpin' ? '/first-spin-dj-bootcamp' : p.key === 'Network' ? '#djs' : '#events');
 const galleryImgs = [
   '/img/mh-network.jpg', '/img/gallery/decks.jpg', '/img/dj-spin.jpg',
   '/img/gallery/squad.jpg', '/img/dj-decks.jpg', '/img/gallery/sammie.jpg',
@@ -82,11 +82,11 @@ const recaps = [
     <div class="wrap" style="margin-top:clamp(2rem,5vw,3.5rem)">
       <div class="grid grid-4">
         {pillars.map((p) => (
-          <a href={links(p)} class="card pillar" data-reveal style={`--accent:${p.accent}`} {...(p.key === 'FirstSpin' ? { target: '_blank', rel: 'noopener' } : {})}>
+          <a href={links(p)} class="card pillar" data-reveal style={`--accent:${p.accent}`}>
             <h3 class="pillar__t">{p.title}</h3>
             <span class="pillar__s">{p.sub}</span>
             <p class="pillar__b">{p.blurb}</p>
-            <span class="pillar__cta">{p.key === 'FirstSpin' ? 'Visit the Bootcamp ↗' : 'Explore →'}</span>
+            <span class="pillar__cta">Explore →</span>
           </a>
         ))}
       </div>

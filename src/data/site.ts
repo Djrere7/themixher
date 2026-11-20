@@ -89,7 +89,7 @@ export const nav = [
   { label: 'Events', href: '/#events' },
   { label: 'Shop', href: '/#shop' },
   { label: 'Sponsor', href: '/sponsor-mixher' },
-  { label: 'First Spin DJ Bootcamp', href: 'https://firstspindjbootcamp.org', external: true },
+  { label: 'First Spin DJ Bootcamp', href: '/first-spin-dj-bootcamp' },
   { label: 'Contact', href: '/#contact' },
 ];
 
