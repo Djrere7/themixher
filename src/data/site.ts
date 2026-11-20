@@ -72,6 +72,7 @@ export const site = {
 
   url: 'https://www.themixher.org',
   gaId: 'G-L8YJ5Q66ED', // Google Analytics 4 Measurement ID
+  adsId: 'AW-18553274459', // Google Ads tag (conversion tracking)
   socials: {
     instagram: 'https://www.instagram.com/themixher',
     tiktok: 'https://www.tiktok.com/@themixher1',
