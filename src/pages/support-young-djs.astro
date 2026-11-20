@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Media from '../components/Media.astro';
+import { site, firstSpinLearn } from '../data/site';
+
+const fsSchema = {
+  '@context': 'https://schema.org', '@type': 'EducationalOrganization',
+  name: 'First Spin DJ Bootcamp',
+  description: 'First Spin DJ Bootcamp is a no-cost youth DJ education program in South Florida, a program of The MixHer, a 501(c)(3) nonprofit.',
+  url: 'https://www.themixher.org/support-young-djs',
+  parentOrganization: { '@type': 'NonprofitOrganization', name: 'MixHer' },
+  areaServed: 'South Florida',
+};
+---
+<Base
+  title="Support Young DJs"
+  fullTitle="Support Young DJs | Free Youth DJ Classes in South Florida (First Spin)"
+  description="Support young DJs through First Spin DJ Bootcamp, The MixHer's no-cost youth DJ education program in South Florida. Donate to fund free DJ classes, mentorship, and equipment. 501(c)(3), tax-deductible. EIN 99-1568393."
+  keywords="support young DJs, free DJ classes Miami, youth DJ programs Miami, music programs for kids South Florida, nonprofit DJ classes, youth music education, donate to youth music education, support free DJ classes, First Spin DJ Bootcamp"
+  schema={[fsSchema]}
+>
+  <PageHeader
+    kicker="First Spin DJ Bootcamp"
+    title={`Support the next <span class='grad-o'>generation of DJs.</span>`}
+    lead="First Spin DJ Bootcamp gives youth in underserved communities no-cost DJ classes, mentorship, and their first real time behind the decks. It is the youth education program of The MixHer, funded by our events, sponsors, and donors."
+  />
+
+  <!-- Intro -->
+  <section class="section-pad">
+    <div class="wrap split">
+      <div class="split__media" data-reveal><Media src="/img/firstspin-student.jpg" alt="A First Spin DJ Bootcamp student learning to DJ in South Florida" ratio="4 / 3" /></div>
+      <div class="split__text" data-reveal>
+        <img src="/img/firstspin-logo.png" alt="First Spin DJ Bootcamp logo" class="fs-logo" width="200" height="110" loading="lazy" />
+        <h2 class="fancy">Free DJ classes for the next generation.</h2>
+        <p>Most kids never get near real DJ equipment. First Spin changes that with hands on classes in South Florida at no cost to students or families, taught by working DJs who have lived it.</p>
+        <p>Every session builds real skill and real confidence, from the first beatmatch to a full set in front of a crowd.</p>
+        <div class="fs-btns">
+          <a href="/donate" class="btn btn-primary">Donate to support young DJs</a>
+          <a href={site.firstSpinUrl} target="_blank" rel="noopener" class="btn btn-ghost">Enroll or learn more ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What students learn -->
+  <section class="section-pad tint">
+    <div class="wrap">
+      <div class="sec-head center"><p class="spaced" data-reveal>The curriculum</p><h2 class="display" data-reveal>What students learn</h2></div>
+      <div class="learn">
+        {firstSpinLearn.map((l) => <span class="learn__chip" data-reveal>{l}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="section-pad">
+    <div class="wrap narrow" style="text-align:center">
+      <div class="sec-head center"><p class="spaced" data-reveal>Who it is for</p><h2 class="fancy" data-reveal>Built for kids who would not get the chance otherwise.</h2></div>
+      <p class="who" data-reveal>First Spin is a youth music education program for young people in underserved South Florida communities. Classes are always free. All we need is a young person who wants to learn and a community that helps us keep the doors open.</p>
+    </div>
+  </section>
+
+  <!-- Support -->
+  <section class="section-pad tint">
+    <div class="wrap narrow">
+      <div class="fsupport" data-reveal>
+        <span class="fsupport__kick">Support young DJs</span>
+        <h2 class="fsupport__h">Keep it free for every kid.</h2>
+        <p class="fsupport__lead">First Spin runs on the generosity of our community. Your gift puts equipment, instruction, and mentorship in the hands of a young DJ who would not get the chance otherwise.</p>
+        <div class="fsupport__btns">
+          <a href="/donate" class="btn fsupport__btn">Donate</a>
+          <a href="/sponsor-mixher" class="btn btn-ghost fsupport__ghost">Sponsor the program</a>
+        </div>
+        <p class="fsupport__tax">First Spin DJ Bootcamp is a program of {site.legalName}, a registered 501(c)(3) nonprofit. {site.taxLine} EIN {site.ein}.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sec-head .spaced { display: inline-block; margin-bottom: 0.7rem; }
+  .sec-head.center { text-align: center; }
+  .center { display: block; text-align: center; }
+
+  .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .split__text p { color: var(--muted); max-width: 52ch; }
+  .split__text h2 { margin-bottom: 0.5rem; }
+  @media (max-width: 840px) { .split { grid-template-columns: 1fr; } .split__media { order: -1; max-width: 420px; } }
+  .fs-logo { max-width: 200px; height: auto; margin-bottom: 0.6rem; }
+  .fs-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+
+  .learn { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; margin-top: 1.4rem; }
+  .learn__chip { font-family: var(--display); font-weight: 800; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.7rem 1.2rem; border: 1px solid var(--card-brd-hi); border-radius: 999px; color: var(--ink); background: #fff; }
+
+  .who { color: var(--muted); font-size: 1.05rem; max-width: 60ch; margin: 0.4rem auto 0; }
+
+  .fsupport { position: relative; overflow: hidden; text-align: center; border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 3.4rem); color: #fff; box-shadow: var(--shadow); background: linear-gradient(150deg, var(--purple), var(--orchid-deep) 60%, var(--orange) 150%); }
+  .fsupport__kick { font-family: var(--display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+  .fsupport__h { font-size: clamp(2rem, 5vw, 3rem); margin: 0.4rem 0 0.7rem; color: #fff; }
+  .fsupport__lead { color: rgba(255,255,255,0.92); max-width: 52ch; margin: 0 auto 1.5rem; }
+  .fsupport__btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .fsupport__btn { background: #fff; color: var(--orchid-deep); border-color: #fff; }
+  .fsupport__btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .fsupport__ghost { color: #fff; border-color: rgba(255,255,255,0.7); }
+  .fsupport__ghost:hover { border-color: #fff; background: rgba(255,255,255,0.14); color: #fff; }
+  .fsupport__tax { color: rgba(255,255,255,0.82); font-size: 0.8rem; margin: 1.1rem 0 0; }
+</style>

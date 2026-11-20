@@ -19,7 +19,8 @@ export default defineConfig({
     '/press': '/#contact',
     '/contact': '/#contact',
     '/sponsors': '/sponsor-mixher',
-    '/first-spin': '/first-spin-dj-bootcamp',
+    '/first-spin': '/support-young-djs',
+    '/first-spin-dj-bootcamp': '/support-young-djs',
   },
   prefetch: {
     prefetchAll: true,
