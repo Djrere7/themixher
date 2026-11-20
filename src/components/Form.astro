@@ -7,12 +7,12 @@ import { site } from '../data/site';
  * - Otherwise → falls back to opening the visitor's email app (mailto).
  */
 export type Field = { name: string; label: string; type?: string; required?: boolean; options?: string[]; placeholder?: string; full?: boolean };
-interface Props { formName: string; fields: Field[]; submit?: string; note?: string; }
-const { formName, fields, submit = 'Submit', note } = Astro.props;
+interface Props { formName: string; fields: Field[]; submit?: string; note?: string; conv?: string }
+const { formName, fields, submit = 'Submit', note, conv } = Astro.props;
 const gf = site.googleForm;
 const gfOn = !!gf.action;
 ---
-<form class="mform" data-form data-name={formName} data-gf={gfOn ? gf.action : ''} data-gf-entries={gfOn ? JSON.stringify(gf.entries) : ''}>
+<form class="mform" data-form data-name={formName} data-conv={conv} data-gf={gfOn ? gf.action : ''} data-gf-entries={gfOn ? JSON.stringify(gf.entries) : ''}>
   <input type="hidden" name="_form" value={formName} />
   <div class="mform__grid">
     {fields.map((f) => (
